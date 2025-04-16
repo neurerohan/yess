@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /kalimati-tarkari-rate-today
+Allow: /nep-to-eng-date-converter
+
+Sitemap: https://kalimatirate.nyure.com.np/sitemap.xml 
