@@ -6,14 +6,23 @@ import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { BackgroundSyncPlugin } from 'workbox-background-sync';
 
 // --- Service Worker State & Config ---
-const VERSION = 'v1'; // Increment to force update flows
+const SW_VERSION = 'v1.1'; // Increment this on significant SW changes
 const IDB_NAME = 'holidayNotificationsDB';
 const IDB_VERSION = 1;
 const IDB_STORE_NAME = 'notifiedEvents';
+// Constants for notification logic
+const DAYS_TO_CHECK_AHEAD = 3; 
+const NOTIFICATION_HOUR_2_DAYS_BEFORE = 20; // 8 PM
+const NOTIFICATION_HOUR_1_DAY_BEFORE = 10; // 10 AM
 
 // --- IndexedDB Helper Functions ---
 /** Opens IndexedDB */
 const openDB = () => {
+  // Check if IndexedDB is supported
+  if (!self.indexedDB) {
+      console.warn('SW: IndexedDB not supported by this browser.');
+      return Promise.reject('IndexedDB not supported');
+  }
   return new Promise((resolve, reject) => {
     const request = self.indexedDB.open(IDB_NAME, IDB_VERSION);
     request.onupgradeneeded = (event) => {
@@ -87,21 +96,52 @@ const isPublicHolidaySW = (day) => {
 
 const isSaturdaySW = (day) => day?.week_day === 6; // Assuming 1=Mon, ..., 6=Sat, 7=Sun
 
-/** Fetches precached calendar data JSON for a specific BS year */
+/** 
+ * Fetches precached calendar data JSON for a specific BS year.
+ * Includes a fallback mechanism for the previous year near year change.
+ */
 const getCalendarDataFromCache = async (bsYear) => {
   const url = `/src/data/${bsYear}-calendar.json`; // Path relative to the project root
   console.log(`SW: Trying to fetch precached calendar data from: ${url}`);
   try {
     // Fetch from the cache (or network if not precached, though it should be)
     const response = await caches.match(url);
-    if (response) {
+    if (response && response.ok) { // Check if response is valid
       const data = await response.json();
       console.log(`SW: Successfully loaded calendar data for ${bsYear} from cache.`);
       return data; // This should be the object like { "01": [...days...], "02": [...days...] }
     }
     throw new Error(`Calendar data for ${bsYear} not found in cache.`);
   } catch (error) {
-    console.error(`SW: Error loading calendar data for ${bsYear} from cache:`, error);
+    console.warn(`SW: Could not load primary calendar data for ${bsYear} from cache:`, error);
+    // Fallback: Try fetching the previous year's data if primary fails (useful near year change)
+    const prevYear = bsYear - 1;
+    const fallbackUrl = `/src/data/${prevYear}-calendar.json`;
+    console.log(`SW: Attempting fallback fetch for previous year: ${fallbackUrl}`);
+    try {
+        const fallbackResponse = await caches.match(fallbackUrl);
+        if (fallbackResponse && fallbackResponse.ok) {
+            const fallbackData = await fallbackResponse.json();
+            console.log(`SW: Successfully loaded fallback calendar data for ${prevYear} from cache.`);
+            return fallbackData; // Return previous year's data
+        }
+        console.error(`SW: Fallback calendar data for ${prevYear} also not found in cache.`);
+        return null;
+    } catch (fallbackError) {
+         console.error(`SW: Error loading fallback calendar data for ${prevYear} from cache:`, fallbackError);
+         return null;
+    }
+  }
+};
+
+// Helper to safely parse AD date string from calendar data
+const parseAdDate = (adDateStr) => {
+  if (!adDateStr || typeof adDateStr !== 'string') return null;
+  try {
+    // Assume YYYY-MM-DD format. Append time to ensure local timezone.
+    return new Date(adDateStr + 'T00:00:00');
+  } catch (e) {
+    console.error(`SW: Error parsing AD date string: ${adDateStr}`, e);
     return null;
   }
 };
@@ -128,17 +168,17 @@ const checkAndNotifyUpcomingHolidays = async () => {
     return;
   }
 
-  const daysToCheck = 3; // Check today, tomorrow, day after tomorrow
-
-  for (let i = 0; i < daysToCheck; i++) {
+  for (let i = 0; i < DAYS_TO_CHECK_AHEAD; i++) {
     const checkDate = new Date();
     checkDate.setDate(now.getDate() + i);
+    checkDate.setHours(0, 0, 0, 0); // Normalize checkDate to start of day
     const checkDateStr = checkDate.toISOString().slice(0, 10);
 
     // --- Find matching day data by iterating (simplified approach) ---
     let dayData = null;
-    // Iterate through months (keys like "01", "02"...) in the fetched year data
-    for (const monthKey in yearData) {
+    // Use try-catch for safety in case yearData format is unexpected
+    try {
+      for (const monthKey in yearData) {
         const monthDays = yearData[monthKey]; // Should be an array of day objects
         if(Array.isArray(monthDays)) {
             // Find the day where the AD date matches checkDateStr
@@ -147,6 +187,10 @@ const checkAndNotifyUpcomingHolidays = async () => {
                 break; // Found the day, exit month loop
             }
         }
+      }
+    } catch (parseError) {
+      console.error('SW: Error iterating through calendar data structure:', parseError);
+      continue; // Skip to next day if current year data parsing fails
     }
     // --- End day data finding ---
 
@@ -164,14 +208,15 @@ const checkAndNotifyUpcomingHolidays = async () => {
         }
 
         // Calculate target times relative to the *holiday date* (checkDate)
-        const holidayDate = new Date(checkDateStr + 'T00:00:00');
+        // Use normalized checkDate (which is already start of day)
+        const holidayDate = checkDate; 
         const twoDaysBeforeTarget = new Date(holidayDate);
         twoDaysBeforeTarget.setDate(holidayDate.getDate() - 2);
-        twoDaysBeforeTarget.setHours(20, 0, 0, 0); // 8 PM
+        twoDaysBeforeTarget.setHours(NOTIFICATION_HOUR_2_DAYS_BEFORE, 0, 0, 0);
 
         const oneDayBeforeTarget = new Date(holidayDate);
         oneDayBeforeTarget.setDate(holidayDate.getDate() - 1);
-        oneDayBeforeTarget.setHours(10, 0, 0, 0); // 10 AM
+        oneDayBeforeTarget.setHours(NOTIFICATION_HOUR_1_DAY_BEFORE, 0, 0, 0);
 
         let notificationTitle = '';
         let notificationBody = '';
@@ -189,24 +234,19 @@ const checkAndNotifyUpcomingHolidays = async () => {
         // Is it currently the time slot for the 1-day-before notification?
         else if (now >= oneDayBeforeTarget && now < holidayDate && i === 1) { 
             // Only trigger if today is exactly 1 day before 
-            console.log(`SW: Condition met for '1 day before' notification for ${eventName}`);
+            // Ensure we haven't passed midnight of the holiday itself
+            console.log(`SW: Condition met for '1 day before' notification for ${eventName}. Now: ${now.toISOString()}, Target Start: ${oneDayBeforeTarget.toISOString()}, Target End: ${holidayDate.toISOString()}`);
             notificationTitle = 'Leave Tomorrow!';
             notificationBody = `Voli '${eventName}' ko xutti xa, moj gara`;
             shouldNotifyNow = true;
         }
         // Is it the fallback condition (holiday today, missed 10 AM deadline)?
+        // Check if today IS the holiday (i === 0) AND the 10 AM deadline from yesterday has passed
         else if (i === 0 && now >= oneDayBeforeTarget) { 
-            // Only trigger if today IS the holiday and 10 AM target passed yesterday
-            // We need to refine the check slightly: has the 10am notification time for *this specific event* passed?
-            const oneDayBeforeCheckTime = new Date(holidayDate); // Holiday date at 00:00
-            oneDayBeforeCheckTime.setDate(holidayDate.getDate() - 1);
-            oneDayBeforeCheckTime.setHours(10, 0, 0, 0); // 10 AM the day before
-            if (now >= oneDayBeforeCheckTime) { // If 10am yesterday has passed
-                 console.log(`SW: Condition met for 'Fallback (Today)' notification for ${eventName}`);
-                 notificationTitle = 'Happy Leave Day!';
-                 notificationBody = `Babyy '${eventName}' ko xutti, have fun!!`;
-                 shouldNotifyNow = true;
-            }
+            console.log(`SW: Condition met for 'Fallback (Today)' notification for ${eventName}. Now: ${now.toISOString()}, 10AM Deadline Passed: ${oneDayBeforeTarget.toISOString()}`);
+            notificationTitle = 'Happy Leave Day!';
+            notificationBody = `Babyy '${eventName}' ko xutti, have fun!!`;
+            shouldNotifyNow = true;
         }
 
         if (shouldNotifyNow) {
@@ -230,13 +270,13 @@ const checkAndNotifyUpcomingHolidays = async () => {
 
 // --- Service Worker Lifecycle Events ---
 self.addEventListener('install', (event) => {
-  console.log('SW Install event', VERSION);
+  console.log('SW Install event', SW_VERSION);
   // Optional: Force immediate activation of new SW
   // event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('activate', (event) => {
-  console.log('SW Activate event', VERSION);
+  console.log('SW Activate event', SW_VERSION);
   // Claim clients immediately allows the new SW to control open pages faster
   event.waitUntil(self.clients.claim());
   // *** Run the holiday check when the service worker activates ***
@@ -279,13 +319,10 @@ registerRoute(
 
 // 2. Network First for API Calls (e.g., Kalimati Prices)
 // Tries network first, uses cache if offline.
-const apiBackgroundSyncPlugin = new BackgroundSyncPlugin('api-retry-queue', {
-  maxRetentionTime: 24 * 60, // Retry for up to 24 hours (in minutes)
-});
-
+// NOTE: The /api/ route rule might be removed if no other APIs are used.
+// Keep it if other parts of the app fetch from /api/ endpoints.
 registerRoute(
-  // IMPORTANT: Adjust this regex if your API path is different!
-  ({ url }) => url.pathname.startsWith('/api/'), // Match API calls starting with /api/
+  ({ url }) => url.pathname.startsWith('/api/'), 
   new NetworkFirst({
     cacheName: 'api-cache',
     networkTimeoutSeconds: 10, // How long to wait for network before falling back to cache
@@ -300,7 +337,9 @@ registerRoute(
         maxAgeSeconds: 1 * 24 * 60 * 60, // 1 Day
       }),
       // Use the Background Sync plugin to retry failed requests
-      apiBackgroundSyncPlugin,
+      new BackgroundSyncPlugin('api-retry-queue', { // Define plugin inline
+           maxRetentionTime: 24 * 60 
+      }),
     ],
   })
 );

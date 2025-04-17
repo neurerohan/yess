@@ -19,7 +19,11 @@ export default defineConfig({
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       injectionPoint: 'self.__WB_MANIFEST',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff,woff2}'],
+        globPatterns: [
+          '**/*.{js,css,html,ico,png,svg,woff,woff2}',
+          'src/data/*.json'
+        ],
+        globIgnores: ['**/node_modules/**', 'sw.js'],
       },
       manifest: {
         name: 'Kalimati Rate & Calendar - Nyure',

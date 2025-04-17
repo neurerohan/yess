@@ -10,6 +10,7 @@ import { debugSanityConnection, checkSpecificBlogPost } from './services/sanity'
 import NotFoundPage from './pages/NotFoundPage';
 import CalendarPage from './pages/Calendar/CalendarPage';
 import InstallPwaPrompt from './components/InstallPwaPrompt';
+import useNotificationPermission from './hooks/useNotificationPermission';
 
 // Component to handle redirection for the base /calendar route
 const CalendarRedirect = () => {
@@ -108,6 +109,21 @@ const SanityDebug = () => {
 };
 
 const App = () => {
+  const { permissionStatus, requestPermission, canAskPermission } = useNotificationPermission();
+
+  useEffect(() => {
+    if (permissionStatus === 'default' && canAskPermission) {
+      const timerId = setTimeout(() => {
+        console.log('[App.jsx] Triggering notification permission request...');
+        requestPermission();
+      }, 15000);
+
+      return () => clearTimeout(timerId);
+    } else {
+        console.log(`[App.jsx] Notification permission status: ${permissionStatus}. Can ask: ${canAskPermission}. Not requesting.`);
+    }
+  }, [permissionStatus, canAskPermission, requestPermission]);
+
   return (
     <HelmetProvider>
       <Router>

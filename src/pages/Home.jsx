@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import NepaliDate from 'nepali-date-converter';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -191,6 +192,7 @@ const Home = () => {
     };
   }, []);
 
+  // --- Date/Time Formatting Helpers (Using Library) ---
   const formatDate = (date) => {
     return date.toLocaleDateString('en-US', {
       year: 'numeric',
@@ -199,24 +201,31 @@ const Home = () => {
     }).replace(/\//g, '-');
   };
 
+  // CORRECTED: Use nepali-date-converter library for accurate BS date
   const getNepaliDate = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth() + 1;
-    const day = today.getDate();
-    
-    // This is a simple approximation. You might want to use a proper Nepali date converter library
-    // Adding 56 years, 8 months and 17 days (approximate difference)
-    const nepYear = year + 56;
-    const nepMonth = month + 8 > 12 ? month - 4 : month + 8;
-    const nepDay = day + 17 > 30 ? day - 13 : day + 17;
-    
-    const nepaliMonths = [
-      'बैशाख', 'जेठ', 'असार', 'श्रावण', 'भदौ', 'असोज',
-      'कार्तिक', 'मंसिर', 'पुष', 'माघ', 'फागुन', 'चैत'
-    ];
-
-    return `${nepDay} ${nepaliMonths[nepMonth - 1]} ${nepYear}`;
+    // Ensure the library is available. If not, add `import NepaliDate from 'nepali-date-converter';` at the top.
+    try {
+      const today = new NepaliDate(); // Create a NepaliDate object for today
+      const nepDay = today.getDate();
+      const nepMonthIndex = today.getMonth(); // 0-indexed
+      const nepYear = today.getYear();
+      
+      const nepaliMonths = [
+        'बैशाख', 'जेठ', 'असार', 'श्रावण', 'भदौ', 'असोज',
+        'कार्तिक', 'मंसिर', 'पुष', 'माघ', 'फागुन', 'चैत'
+      ];
+      
+      // Check if the index is valid before accessing the array
+      if (nepMonthIndex >= 0 && nepMonthIndex < nepaliMonths.length) {
+           return `${nepDay} ${nepaliMonths[nepMonthIndex]} ${nepYear}`;
+      } else {
+          console.error('Invalid month index from nepali-date-converter');
+          return 'मिति लोड गर्न सकिएन'; // Error message
+      }
+    } catch (error) {
+        console.error('Error using nepali-date-converter:', error);
+        return 'मिति लोड गर्न सकिएन'; // Error message
+    }
   };
 
   const formatTime = (date) => {
