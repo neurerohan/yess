@@ -105,7 +105,7 @@ const Home = () => {
   // Use the custom hook to set meta tags
   useMetaTags(
     'आजको कलिमाटी तरकारी रेट | Kalimati Tarkari Rate Today [2025] - Daily Updates',
-    'आजको कलिमाटी तरकारी मूल्य (Kalimati Tarkari Rate Today) हेर्नुहोस्। दैनिक अपडेट गरिएको तरकारी बजारको मूल्य Kathmandu, Nepal बाट प्राप्त गर्नुहोस्।'
+    'आजको कलिमाटी तरकारी मूल्य (Kalimati Tarkari Rate Today) हेर्नुहोस्। दैनिक अपडेट गरिएको तरकारी बजारको मूल्य Kathmandu, Nepal बाट प्राप्त गर्नुहोस्। Also find Nepali Calendar (Hamro Patro/Mero Patro style) and Nepali Date Today.'
   );
 
   useEffect(() => {
@@ -144,7 +144,7 @@ const Home = () => {
             "name": "What is Kalimati Tarkari Rate Today?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Kalimati tarkari rate today refers to the latest vegetable prices at Kalimati Tarkari Bazar, Nepal's biggest wholesale vegetable market. Prices are updated daily based on market trends."
+              "text": "Kalimati tarkari rate today refers to the latest vegetable prices at Kalimati Tarkari Bazar, Nepal's biggest wholesale vegetable market. Prices are updated daily based on market trends. Check here for today's rates and also find the Nepali Date Today."
             }
           },
           {
@@ -176,7 +176,7 @@ const Home = () => {
             "name": "Can I download the full Kalimati Tarkari Rate list?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes! We provide the daily Kalimati Tarkari Rate list with all vegetable prices in an easy-to-read format. You can download it anytime."
+              "text": "Yes! We provide the daily Kalimati Tarkari Rate list. You can also check the Nepali Calendar (similar to Mero Patro/Hamro Patro) and the Nepal calendar date today on our site."
             }
           },
           {
@@ -216,7 +216,7 @@ const Home = () => {
             "name": "How can I get daily updates on Kalimati Tarkari Rate?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "You can bookmark our website and visit daily for the latest Kalimati Tarkari Rate today. We ensure 100% accurate and up-to-date vegetable prices."
+              "text": "Bookmark our website for daily Kalimati Tarkari Rate today. We also offer Nepali Calendar features like Hamro Patro and Mero Patro for checking the Nepali date today."
             }
           }
         ]
@@ -227,7 +227,7 @@ const Home = () => {
         "@type": "WebSite",
         "url": "https://kalimatirate.nyure.com.np/",
         "name": "Kalimati Tarkari Rate Today",
-        "description": "Get real-time vegetable prices from Kalimati Tarkari Bazar, Nepal's largest wholesale market. Daily updates on vegetable rates and market information.",
+        "description": "Get real-time vegetable prices from Kalimati Tarkari Bazar, Nepal. Daily updates on vegetable rates, plus Nepali Calendar (Mero Patro/Hamro Patro style) and Nepali Date Today.",
         "potentialAction": {
           "@type": "SearchAction",
           "target": "https://kalimatirate.nyure.com.np/search?q={search_term_string}",
@@ -277,7 +277,7 @@ const Home = () => {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": "Kalimati Tarkari Rate Today - Daily Vegetable Price Updates",
-        "description": "Get the latest vegetable prices from Kalimati Tarkari Bazar, Nepal's largest wholesale market. Updated daily with real-time rates.",
+        "description": "Get the latest vegetable prices from Kalimati Tarkari Bazar, Nepal. Updated daily. Also features Nepali Calendar (similar to Hamro Patro/Mero Patro) and Nepali date today converter.",
         "image": "https://kalimatirate.nyure.com.np/market-image.jpg",
         "author": {
           "@type": "Organization",
@@ -365,7 +365,7 @@ const Home = () => {
           "@type": "Organization",
           "name": "KalimatiRate - Nyure"
         },
-        "description": "Daily vegetable price updates from Kalimati Tarkari Bazar, including wholesale rates for all vegetables.",
+        "description": "Daily vegetable price updates from Kalimati Tarkari Bazar. We also provide tools like Nepali Calendar (Mero Patro/Hamro Patro) and Nepali Date Today converter.",
         "areaServed": {
           "@type": "Country",
           "name": "Nepal"
@@ -646,8 +646,8 @@ const Home = () => {
             <h3 className="text-gray-800 text-xl font-bold mb-2">Nepali Calendar</h3>
             <p className="text-gray-600 text-sm mb-6">View Bikram Sambat calendar with Tithis, events, and holidays. Updated yearly.</p>
             <Link
-              to="/calendar" // Link to the base calendar route
-              className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full block" // Added block display
+              to="/calendar"
+              className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full block"
             >
               View Calendar
             </Link>
@@ -671,7 +671,7 @@ const Home = () => {
             {/* Descriptive Text */}
             <p className="text-gray-600 text-lg mb-8 text-center">
               दैनिक अपडेट गरिएको तरकारी बजारको मूल्य | Get real-time vegetable prices from 
-              <span className="text-green-600"> Kalimati Tarkari Bazar</span>, Nepal's largest wholesale market.
+              <span className="text-green-600"> Kalimati Tarkari Bazar</span>, Nepal's largest wholesale market. Check the Nepali date today and calendar too!
             </p>
 
             {/* Features */}
@@ -839,7 +839,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">1️⃣</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">What is Kalimati Tarkari Rate Today?</h3>
-                  <p className="text-gray-600">Kalimati tarkari rate today refers to the latest vegetable prices at Kalimati Tarkari Bazar, Nepal's biggest wholesale vegetable market. Prices are updated daily based on market trends.</p>
+                  <p className="text-gray-600">Kalimati tarkari rate today refers to the latest vegetable prices at Kalimati Tarkari Bazar, Nepal's biggest wholesale vegetable market. Prices are updated daily based on market trends. Check here for today's rates and also find the Nepali Date Today.</p>
                 </div>
               </div>
             </div>
@@ -883,7 +883,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">5️⃣</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">Can I download the full Kalimati Tarkari Rate list?</h3>
-                  <p className="text-gray-600">Yes! We provide the daily Kalimati Tarkari Rate list with all vegetable prices in an easy-to-read format. You can download it anytime.</p>
+                  <p className="text-gray-600">Yes! We provide the daily Kalimati Tarkari Rate list. Also explore our Nepali Calendar (Mero Patro / Hamro Patro style) feature to check the Nepal calendar date today.</p>
                 </div>
               </div>
             </div>
@@ -938,7 +938,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">🔟</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">How can I get daily updates on Kalimati Tarkari Rate?</h3>
-                  <p className="text-gray-600">You can bookmark our website and visit daily for the latest Kalimati Tarkari Rate today. We ensure 100% accurate and up-to-date vegetable prices.</p>
+                  <p className="text-gray-600">Bookmark our website for daily Kalimati Tarkari Rate today. We also offer Nepali Calendar features like Hamro Patro and Mero Patro for checking the Nepali date today.</p>
                 </div>
               </div>
             </div>

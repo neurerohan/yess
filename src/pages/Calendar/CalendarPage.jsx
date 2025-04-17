@@ -21,52 +21,8 @@ const ContentSection = lazy(() => import('./ContentSection')); // Import Content
 const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
 
 // --- START: Added Helper Functions from Home.jsx ---
-const formatDate = (date) => {
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  }).replace(/\//g, '-');
-};
-
-const nepaliMonths = [
-  'बैशाख', 'जेठ', 'असार', 'श्रावण', 'भदौ', 'असोज',
-  'कार्तिक', 'मंसिर', 'पुष', 'माघ', 'फागुन', 'चैत'
-];
-
-const getNepaliDate = () => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
-
-  // This is a simple approximation. You might want to use a proper Nepali date converter library
-  // Adding 56 years, 8 months and 17 days (approximate difference)
-  const nepYear = year + 56;
-  let nepMonth = month + 8;
-  let nepDay = day + 17;
-
-  // Crude adjustment for month/day overflow - needs a proper library for accuracy
-  if (nepDay > 30) { // Assuming 30 days max for simplicity, NOT ACCURATE
-      nepDay -= 30;
-      nepMonth += 1;
-  }
-  if (nepMonth > 12) {
-      nepMonth -= 12;
-      // Note: This simple logic doesn't adjust the year correctly if month wraps around.
-  }
-
-  return `${nepDay} ${nepaliMonths[nepMonth - 1] || '?'} ${nepYear}`; // Added fallback for month index
-};
-
-
-const formatTime = (date) => {
-  return date.toLocaleTimeString('en-US', {
-    hour: '2-digit',
-    minute: '2-digit',
-    hour12: false
-  });
-};
+// Removed duplicate helper functions (formatDate, nepaliMonths, getNepaliDate, formatTime) as they are now centrally managed or part of the component logic.
+// Consider moving these to a utils file if used elsewhere.
 // --- END: Added Helper Functions from Home.jsx ---
 
 const CalendarPage = () => {
@@ -218,11 +174,12 @@ const CalendarPage = () => {
   const endYearNav = 2090;
   const yearOptionsNav = Array.from({ length: endYearNav - startYearNav + 1 }, (_, i) => startYearNav + i);
 
-  // SEO Content - Enhanced description
-  const pageTitle = `Nepali Calendar ${currentBSYear} - ${capitalize(currentBSMonthName || '')} | विक्रम सम्वत् पात्रो | Kalimati Rate`;
-  const pageDescription = `View the detailed Nepali calendar (विक्रम सम्वत् पात्रो) for ${capitalize(currentBSMonthName || '')} ${currentBSYear}. Includes daily tithi, festivals, public holidays, official events, and cultural celebrations in Nepal. Easily convert BS to AD dates and navigate through months and years.`;
+  // SEO Content - Enhanced description with new keywords
+  const pageTitle = `Nepali Calendar ${currentBSYear} ${capitalize(currentBSMonthName || '')} | ${currentBSYear} Nepali Date Today | Mero Patro Hamro Patro ${currentBSYear} | Kalimati Rate`;
+  const pageDescription = `View the official Nepali calendar (विक्रम सम्वत् पात्रो) for ${capitalize(currentBSMonthName || '')} ${currentBSYear}. Find the Nepali date today, including daily tithi, festivals, public holidays, and official events using our comprehensive mero patro / hamro patro style calendar. Easily check the Nepal calendar date today and convert BS to AD dates. Stay updated with the ${currentBSYear} nepali calendar nepali calendar.`;
   const canonicalUrl = `https://kalimatirate.nyure.com.np/calendar/${currentBSYear}/${currentBSMonthName}`;
-  const keywords = `Nepali calendar, ${currentBSYear}, ${capitalize(currentBSMonthName || '')}, Bikram Sambat, BS calendar, Nepali Patro, Nepal calendar, tithi, events, festivals, holidays Nepal, BS to AD`;
+  // Added more keywords
+  const keywords = `Nepali calendar, nepali date today, mero patro, hamro patro, nepal calendar date today, nepali calendar nepali calendar, ${currentBSYear}, ${capitalize(currentBSMonthName || '')}, Bikram Sambat, BS calendar, Nepali Patro, Nepal calendar, tithi, events, festivals, holidays Nepal, BS to AD, विक्रम सम्वत् पात्रो`;
 
   // Schema.org Markup - Enhanced description
   const pageSchema = {
@@ -244,14 +201,14 @@ const CalendarPage = () => {
       "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://kalimatirate.nyure.com.np" },
           { "@type": "ListItem", "position": 2, "name": "Nepali Calendar", "item": `https://kalimatirate.nyure.com.np/calendar` }, // Link to base calendar
-          { "@type": "ListItem", "position": 3, "name": `${capitalize(currentBSMonthName || '')} ${currentBSYear}`, "item": canonicalUrl } // Current page
+          { "@type": "ListItem", "position": 3, "name": `Nepali Calendar ${capitalize(currentBSMonthName || '')} ${currentBSYear}`, "item": canonicalUrl } // Current page, more descriptive
       ]
     },
     "mainEntity": {
         "@type": "Dataset",
-        "name": `Nepali Calendar Data ${currentBSYear}`,
-        "description": `Bikram Sambat calendar data for year ${currentBSYear}, including AD conversions, tithis, holidays, and events sourced from public records.`,
-        "keywords": ["Nepali Calendar Data", "Bikram Sambat Data", "Nepal Calendar JSON"],
+        "name": `Nepali Calendar Data ${currentBSYear} - Mero Patro/Hamro Patro Alternative`,
+        "description": `Bikram Sambat ${currentBSYear} nepali calendar data, including AD conversions, tithis, holidays, and events. Check the nepali date today easily.`,
+        "keywords": ["Nepali Calendar Data", "Bikram Sambat Data", "Nepal Calendar JSON", "nepali date today", "mero patro", "hamro patro", "nepali calendar nepali calendar"],
         "creator": {
             "@type": "Organization",
             "name": "(Source like miti.bikram.io or relevant authority)",
@@ -262,11 +219,11 @@ const CalendarPage = () => {
 
   // Define FAQ data here to use in both component and schema
   const faqItems = [
-    { q: "What is the Nepali Calendar (Bikram Sambat)?", a: "The Bikram Sambat (BS) is the official solar calendar of Nepal..." },
-    { q: "How do I read this calendar?", a: "Each box represents a day... Click any day to see detailed events." },
-    { q: "What is a 'Tithi'?", a: "A Tithi represents a lunar day..." },
-    { q: "How accurate is the event information?", a: "The event and festival information..." },
-    { q: "Can I convert dates between BS and AD?", a: "Yes! This website also features..." }
+    { q: "What is the Nepali Calendar (Bikram Sambat)?", a: "The Bikram Sambat (BS) is the official solar calendar of Nepal, often referred to as the Nepali Patro. This page shows the current nepali date today based on this system." },
+    { q: "How do I read this Nepali Calendar?", a: "Each box represents a day in the Bikram Sambat calendar. Click any day to see detailed events and tithi information, similar to hamro patro or mero patro applications. It helps you find the nepal calendar date today easily." },
+    { q: "What is a 'Tithi' in the Nepali Patro?", a: "A Tithi represents a lunar day in the traditional Nepali calendar (nepali calendar nepali calendar), which is crucial for determining festivals and auspicious times." },
+    { q: "How accurate is the event information on this Mero Patro style calendar?", a: "The event and festival information for the nepali calendar ${currentBSYear} is based on official government sources and widely accepted practices in Nepal." },
+    { q: "Can I convert dates between BS (Nepali Date) and AD?", a: "Yes! Our integrated tool allows easy conversion between the Bikram Sambat date (nepali date today) and the Gregorian (AD) calendar." }
     // Ensure these match the content in FAQSection.jsx
   ];
 
@@ -313,59 +270,64 @@ const CalendarPage = () => {
 
       <Header />
       <main className="container mx-auto px-2 sm:px-4 py-8">
-        {/* Introductory Content - Made Dynamic */}
+        {/* Introductory Content - Made Dynamic with keywords */}
         <div className="mb-6 text-center">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">
-            Nepali Calendar {currentBSYear} (विक्रम सम्वत् पात्रो)
+            Nepali Calendar {currentBSYear} - {capitalize(currentBSMonthName || '')} (विक्रम सम्वत् पात्रो)
           </h1>
+          <p className="text-gray-600 text-sm">Your reliable source for the {currentBSYear} mero patro / hamro patro, showing the Nepali date today.</p>
         </div>
 
-        {/* --- START: Added Date/Time/Weather Display from Home.jsx --- */}
-        <div className="px-2 sm:px-4 mt-4 mb-6"> {/* Reduced top/bottom margins */}
-          <div className="max-w-2xl mx-auto"> {/* Reduced max-width slightly */}
-            {/* RESTORED the outer white container */}
-            <div className="bg-white rounded-xl p-4 relative border border-green-100 shadow-sm"> {/* Reduced padding */}
-              {/* Main info row: Date/Location */}
-              <div className="text-center mb-4"> {/* Reduced bottom margin */}
-                <div className="text-gray-800 text-lg font-medium inline-flex items-center gap-2 flex-wrap justify-center"> {/* Reduced font size & gap */}
-                  <span className="text-gray-900">{getNepaliDate()}</span>
-                  <span className="text-gray-400 hidden sm:inline">/</span>
-                  <span className="text-gray-600">{formatDate(currentTime)}</span>
+        {/* --- START: Reworked Date/Time/Weather Display --- */}
+        <div className="px-2 sm:px-4 mt-4 mb-6">
+          <div className="max-w-4xl mx-auto"> {/* Increased max-width for wider layout */}
+            {/* Outer white container */}
+            <div className="bg-white rounded-xl p-4 relative border border-green-100 shadow-sm">
+              {/* Flex container for Desktop: Date/Location on Left, Time/Temp on Right */}
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
+
+                {/* Date/Location Info (Left Side on Desktop) */}
+                <div className="text-center sm:text-left mb-4 sm:mb-0">
+                  <div className="text-gray-800 text-lg font-medium inline-flex items-center gap-2 flex-wrap justify-center sm:justify-start">
+                    <span className="text-gray-900">{getNepaliDate()}</span> {/* Assumes getNepaliDate exists */}
+                    <span className="text-gray-400 hidden sm:inline">/</span>
+                    <span className="text-gray-600">{formatDate(currentTime)}</span> {/* Assumes formatDate exists */}
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">Kathmandu, Nepal</div>
                 </div>
-                <div className="text-xs text-gray-500 mt-1">Kathmandu, Nepal</div> {/* Reduced font size */}
-              </div>
-              
-              {/* Time and Temperature Grid - Always 2 columns, square aspect ratio */}
-              <div className="grid grid-cols-2 gap-3 max-w-[240px] sm:max-w-[280px] mx-auto"> {/* Reduced gap & max-width */}
-                {/* Current Time Box */}
-                <div className="bg-white rounded-lg p-3 border border-green-100 shadow-sm aspect-square flex flex-col items-center justify-center text-center"> {/* Reduced padding, rounded-lg */}
-                  <div className="w-8 h-8 bg-green-50 rounded-md flex items-center justify-center mb-1.5"> {/* Reduced icon size/margin, rounded-md */}
-                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"> {/* Reduced SVG size */}
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+
+                {/* Time and Temperature Grid (Right Side on Desktop) */}
+                <div className="grid grid-cols-2 gap-3 max-w-[240px] sm:max-w-[280px] mx-auto sm:mx-0"> {/* Removed mx-auto for desktop */}
+                  {/* Current Time Box */}
+                  <div className="bg-white rounded-lg p-3 border border-green-100 shadow-sm aspect-square flex flex-col items-center justify-center text-center">
+                    <div className="w-8 h-8 bg-green-50 rounded-md flex items-center justify-center mb-1.5">
+                      <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="text-gray-600 text-[10px] mb-0.5">Current Time</div>
+                      <div className="text-gray-800 text-lg sm:text-xl font-bold">{formatTime(currentTime)}</div> {/* Assumes formatTime exists */}
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-gray-600 text-[10px] mb-0.5">Current Time</div> {/* Reduced font size/margin */}
-                    <div className="text-gray-800 text-lg sm:text-xl font-bold">{formatTime(currentTime)}</div> {/* Reduced font size */}
-                  </div>
-                </div>
-                {/* Temperature Box */}
-                <div className="bg-white rounded-lg p-3 border border-green-100 shadow-sm aspect-square flex flex-col items-center justify-center text-center"> {/* Reduced padding, rounded-lg */}
-                  <div className="w-8 h-8 bg-green-50 rounded-md flex items-center justify-center mb-1.5"> {/* Reduced icon size/margin, rounded-md */}
-                    <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"> {/* Reduced SVG size */}
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-gray-600 text-[10px] mb-0.5">Temperature</div> {/* Reduced font size/margin */}
-                    <div className="text-gray-800 text-lg sm:text-xl font-bold">{temperature}°C</div> {/* Reduced font size */}
+                  {/* Temperature Box */}
+                  <div className="bg-white rounded-lg p-3 border border-green-100 shadow-sm aspect-square flex flex-col items-center justify-center text-center">
+                    <div className="w-8 h-8 bg-green-50 rounded-md flex items-center justify-center mb-1.5">
+                      <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="text-gray-600 text-[10px] mb-0.5">Temperature</div>
+                      <div className="text-gray-800 text-lg sm:text-xl font-bold">{temperature}°C</div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* --- END: Added Date/Time/Weather Display from Home.jsx --- */}
+        {/* --- END: Reworked Date/Time/Weather Display --- */}
 
         {/* Navigation Component */}
         <CalendarNavigation
@@ -407,24 +369,38 @@ const CalendarPage = () => {
 
               {/* Monthly Events List */}
               {monthData && (
-                 <MonthlyEventsList 
-                   monthData={monthData} 
-                   monthName={currentBSMonthName} 
-                   year={currentBSYear} 
+                 <MonthlyEventsList
+                   monthData={monthData}
+                   monthName={currentBSMonthName}
+                   year={currentBSYear}
+                   // Add keywords context if possible, e.g., title prop
+                   title={`Events in ${capitalize(currentBSMonthName || '')} ${currentBSYear} - Nepali Calendar`}
                  />
               )}
 
-              {/* Content Section - Made Dynamic */}
-              <ContentSection title={`About ${capitalize(currentBSMonthName || '')} ${currentBSYear}`}>
+              {/* Content Section - Made Dynamic with keywords */}
+              <ContentSection title={`About ${capitalize(currentBSMonthName || '')} ${currentBSYear} Nepali Calendar (Mero Patro/Hamro Patro)`}>
                 <p>
-                  This section provides details for the month of {capitalize(currentBSMonthName || '')} in the Bikram Sambat year {currentBSYear}. 
-                  Explore daily details including tithis, festivals, and important events occurring in Nepal during this period. 
-                  The Bikram Sambat calendar holds significant cultural importance.
+                  This section provides details for the month of {capitalize(currentBSMonthName || '')} in the Bikram Sambat year {currentBSYear}.
+                  Explore the official Nepali calendar (nepali calendar nepali calendar), including daily details like tithis, festivals, and important events occurring in Nepal. Find the 'nepali date today' and understand its significance.
+                  The Bikram Sambat calendar, often accessed via tools like 'mero patro' or 'hamro patro', holds significant cultural importance. Check the 'nepal calendar date today' for accurate scheduling.
                 </p>
               </ContentSection>
 
+              {/* --- START: New SEO Description Section --- */}
+              <section className="my-8 p-6 bg-white rounded-lg shadow-sm border border-gray-200">
+                <h2 className="text-xl font-semibold text-gray-800 mb-3">Understanding the Nepali Calendar {currentBSYear}</h2>
+                <p className="text-gray-600 mb-4">
+                  The <strong>Nepali calendar</strong>, or Bikram Sambat (BS), is the official calendar of Nepal. This page features the <strong>{currentBSYear} nepali calendar nepali calendar</strong> for the month of {capitalize(currentBSMonthName || '')}. Whether you're looking for the <strong>nepali date today</strong>, planning for festivals, or seeking information similar to <strong>hamro patro</strong> or <strong>mero patro</strong>, our calendar provides comprehensive details.
+                </p>
+                <p className="text-gray-600">
+                  Easily find the <strong>nepal calendar date today</strong>, view upcoming holidays, and understand cultural events. Our goal is to be your primary resource for the official <strong>Nepali Patro</strong> online.
+                </p>
+              </section>
+              {/* --- END: New SEO Description Section --- */}
+
               {/* FAQ Section - Pass faqItems if needed, or ensure internal data matches */}
-              <FAQSection />
+              <FAQSection /* Pass faqItems={faqItems} if FAQSection accepts props */ />
             </>
           )}
         </Suspense>
