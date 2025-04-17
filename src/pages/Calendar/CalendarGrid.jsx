@@ -121,9 +121,9 @@ const CalendarGrid = ({ monthData, year, monthName }) => {
           const adDateInfo = formatADDateInfo(dayData.ad);
 
           // --- Dynamically add text color class ---
-          const dayNumberColorClass = isWeekendOrHoliday ? 'text-red-600' : (isToday ? 'text-blue-700 font-bold' : 'text-gray-700');
-          const adDateColorClass = isWeekendOrHoliday ? 'text-red-500' : (isToday ? 'text-blue-600' : 'text-gray-400');
-          const cellBgClass = isToday ? 'bg-blue-50 border-blue-300' : 'bg-white';
+          const dayNumberColorClass = isWeekendOrHoliday ? 'text-red-600' : (isToday ? 'text-green-700 font-bold' : 'text-gray-700');
+          const adDateColorClass = isWeekendOrHoliday ? 'text-red-500' : (isToday ? 'text-green-600' : 'text-gray-400');
+          const cellBgClass = isToday ? 'bg-green-50 border-green-300' : 'bg-white';
           // --- End Dynamic class ---
 
           return (
