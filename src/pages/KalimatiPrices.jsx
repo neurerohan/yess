@@ -27,23 +27,23 @@ const KalimatiPrices = () => {
   const carouselImages = [
     {
       src: "/market-image.jpg",
-      alt: "Kalimati Market Overview - Kalimati Tarkari Rate Today",
-      caption: "Kalimati Fresh Vegetable Market - Daily Kalimati Tarkari Price"
+      alt: "Kalimati Market Overview",
+      caption: "Kalimati Fresh Vegetable Market"
     },
     {
       src: "/market-entrance.jpg",
-      alt: "Kalimati Tarkari Bazar Entrance - Kalimati Tarkari Bazar Price Today",
-      caption: "Welcome to Kalimati Bazar - Check Kalimati Tarkari Rate Today"
+      alt: "Kalimati Market Entrance",
+      caption: "Welcome to Kalimati Bazar"
     },
     {
       src: "/market-aerial.jpg",
-      alt: "Aerial View of Kalimati Market - Find Kalimati Tarkari Price",
+      alt: "Aerial View of Market",
       caption: "Bird's Eye View of Kalimati Market"
     },
     {
       src: "/kalimati-tarkari-rate-today.png",
-      alt: "Kalimati Tarkari Rate Today - Price List",
-      caption: "Daily Kalimati Tarkari Bazar Rate Today Updates"
+      alt: "Today's Vegetable Rates",
+      caption: "Daily Price Updates"
     }
   ];
 
@@ -84,14 +84,13 @@ const KalimatiPrices = () => {
     });
   };
 
-  // --- START Schema Markup with Enhanced Keywords ---
   const marketPricesSchema = {
     "@context": "https://schema.org",
     "@type": "Dataset",
-    "name": "Kalimati Tarkari Rate Today - Daily Kalimati Tarkari Price List",
-    "description": "Daily updated kalimati tarkari price list from Kalimati market, Nepal. Check the official kalimati tarkari rate today and kalimati tarkari bazar price today.",
+    "name": "Kalimati Vegetable Price List",
+    "description": "Daily updated vegetable prices from Kalimati Market, Nepal's largest wholesale vegetable market",
     "url": "https://kalimatirate.nyure.com.np/kalimati-tarkari-rate-today",
-    "keywords": ["kalimati", "kalimati tarkari rate today", "kalimati tarkari bazar price today", "kalimati tarkari bazar rate today", "kalimati tarkari price", "vegetable prices", "kalimati market", "nepal wholesale market", "fresh vegetables", "daily vegetable prices"],
+    "keywords": ["vegetable prices", "kalimati market", "nepal wholesale market", "fresh vegetables", "daily vegetable prices", "Kalimati Tarkari rate today"],
     "isAccessibleForFree": true,
     "dateModified": modifiedDate,
     "datePublished": publishDate,
@@ -100,10 +99,10 @@ const KalimatiPrices = () => {
       "name": "Nyure",
       "url": "https://nyure.com.np"
     },
-    "temporalCoverage": `Provides the ${new Date().getFullYear()} kalimati tarkari rate today`,
+    "temporalCoverage": new Date().getFullYear().toString(),
     "spatialCoverage": {
       "@type": "Place",
-      "name": "Kalimati Fruits and Vegetable Market (Kalimati Tarkari Bazar)",
+      "name": "Kalimati Fruits and Vegetable Market",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Kalimati",
@@ -122,17 +121,15 @@ const KalimatiPrices = () => {
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+977-9746265996",
-        "contactType": "customer service for Kalimati Tarkari Price"
+        "contactType": "customer service"
       }
     },
     "offers": {
       "@type": "AggregateOffer",
-      "name": "Kalimati Tarkari Bazar Rate Today Offers",
       "lowPrice": summary?.minPrice || 0,
       "highPrice": summary?.maxPrice || 0,
       "priceCurrency": "NPR",
-      "offerCount": vegetables.length,
-      "description": `Range of kalimati tarkari price available at Kalimati.`
+      "offerCount": vegetables.length
     },
     "about": {
       "@type": "LocalBusiness",
@@ -140,8 +137,7 @@ const KalimatiPrices = () => {
       "openingHours": [
         "Mo-Su 04:00-21:00"
       ],
-      "priceRange": "₨₨-₨₨₨",
-      "description": "Primary source for Kalimati Tarkari Bazar Price Today in Kathmandu."
+      "priceRange": "₨₨-₨₨₨"
     }
   };
 
@@ -154,15 +150,15 @@ const KalimatiPrices = () => {
         "name": "What is the latest Kalimati Tarkari rate today?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": `The latest kalimati tarkari rate today is updated daily. Today's average kalimati tarkari price range is Rs. ${summary?.minPrice || 0} to Rs. ${summary?.maxPrice || 0}. Check the full kalimati tarkari bazar price today list here.`
+          "text": `The latest vegetable rates at Kalimati Market are updated daily. Today's average price range is Rs. ${summary?.minPrice || 0} to Rs. ${summary?.maxPrice || 0}.`
         }
       },
       {
         "@type": "Question",
-        "name": "Why do Kalimati Tarkari prices change daily in Kalimati Bazar?",
+        "name": "Why do vegetable prices change daily in Kalimati Bazar?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Kalimati tarkari price changes daily due to weather, fuel costs, supply/demand, and policies affecting the kalimati market. This impacts the kalimati tarkari bazar rate today."
+          "text": "Vegetable prices in Kalimati Bazar change daily due to weather conditions, fuel costs, demand & supply variations, and government policies."
         }
       },
       {
@@ -170,23 +166,23 @@ const KalimatiPrices = () => {
         "name": "Where can I check the daily Kalimati vegetable price list?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "You can check the updated Kalimati Tarkari Rate Today on this page. We provide the official kalimati tarkari bazar price today directly from the kalimati vegetable market."
+          "text": "You can check the updated Kalimati Tarkari Rate Today on this page, updated daily with official data from the Kalimati vegetable market."
         }
       },
       {
         "@type": "Question",
-        "name": "Which vegetables have the cheapest Kalimati Tarkari Price today?",
+        "name": "Which vegetables are the cheapest today in Kalimati Bazar?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Seasonal vegetables usually have the cheapest kalimati tarkari price. Check today's updated kalimati tarkari bazar rate today list to find the current best prices at kalimati."
+          "text": "Seasonal vegetables like spinach, radish, and cabbage are usually the most affordable. Check today's updated rates to find the best prices."
         }
       },
       {
         "@type": "Question",
-        "name": "Why is the Kalimati Tarkari Bazar Rate Today increasing?",
+        "name": "Why do vegetable prices increase in Nepal?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The kalimati tarkari bazar rate today can increase due to weather, fuel price hikes, supply issues, demand, and policies. These factors influence the overall kalimati tarkari price."
+          "text": "Prices can increase due to weather changes, fuel price hikes, supply shortages, market demand, and government policies affecting imports and local farming."
         }
       },
       {
@@ -194,39 +190,39 @@ const KalimatiPrices = () => {
         "name": "Are Kalimati Bazar prices the same across Nepal?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No, the kalimati tarkari bazar price today is a wholesale reference for Kathmandu. Retail kalimati tarkari price in other cities may vary due to transport and local factors."
+          "text": "No, Kalimati is a wholesale vegetable market in Kathmandu, and prices may vary in other cities due to transport costs and local supply-demand conditions."
         }
       },
       {
         "@type": "Question",
-        "name": "What is the best time to buy vegetables at Kalimati market?",
+        "name": "What is the best time to buy vegetables in Kalimati Market?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Early morning is best for fresh vegetables and potentially better kalimati tarkari price deals before the main kalimati tarkari bazar rate today fluctuates."
+          "text": "The best time to buy fresh and cheaper vegetables in Kalimati Bazar is early in the morning before prices fluctuate."
         }
       },
       {
         "@type": "Question",
-        "name": "Does Kalimati Tarkari Bazar have an online price list for today?",
+        "name": "Does Kalimati Tarkari Bazar have an online price list?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, this website provides the updated Kalimati Tarkari Rate Today online. Get the official kalimati tarkari bazar price today list here daily."
+          "text": "Yes, you can check the updated Kalimati Tarkari Rate Today on our website for daily updates on vegetable prices in Nepal."
         }
       },
       {
         "@type": "Question",
-        "name": "Why are seasonal vegetables cheaper in the Kalimati Tarkari Bazar Rate Today?",
+        "name": "Why are seasonal vegetables cheaper than off-season vegetables?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Seasonal vegetables are locally abundant, reducing transport/storage costs, leading to a lower kalimati tarkari price in the kalimati tarkari bazar rate today."
+          "text": "Seasonal vegetables are locally grown and abundant, reducing transportation and storage costs. Off-season vegetables are often imported, making them more expensive."
         }
       },
       {
         "@type": "Question",
-        "name": "How do transportation costs affect the Kalimati Tarkari Price?",
+        "name": "How do transportation costs affect vegetable prices in Nepal?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Increased fuel prices raise transport costs, directly impacting the kalimati tarkari price reflected in the kalimati tarkari bazar rate today at the kalimati market."
+          "text": "When fuel prices rise, transportation costs increase, which directly impacts vegetable prices in Kalimati Bazar and across Nepal."
         }
       }
     ]
@@ -246,19 +242,17 @@ const KalimatiPrices = () => {
         "@type": "ListItem",
         "position": 2,
         "name": "Kalimati Tarkari Rate Today",
-        "item": "https://kalimatirate.nyure.com.np/kalimati-tarkari-rate-today" // Current page
+        "item": "https://kalimatirate.nyure.com.np/kalimati-tarkari-rate-today"
       }
     ]
   };
-  // --- END Schema Markup with Enhanced Keywords ---
 
   return (
     <>
-      {/* --- START Helmet with Enhanced Keywords --- */}
       <Helmet>
-        <title>आजको कालिमाटी तरकारी रेट | Kalimati Tarkari Rate Today [2024] - Kalimati Tarkari Price</title>
-        <meta name="description" content="Check today's Kalimati Tarkari rate today for fresh vegetables in Nepal. Get daily updates on Kalimati Tarkari Bazar Price Today. View the latest Kalimati Tarkari Price list from Kalimati market, Kathmandu." />
-        <meta name="keywords" content="kalimati, kalimati tarkari rate today, kalimati tarkari bazar price today, kalimati tarkari bazar rate today, kalimati tarkari price, vegetable prices, Kalimati market, Nepal wholesale market, fresh vegetables, daily vegetable prices" />
+        <title>आजको कालिमाटी तरकारी रेट | Kalimati Tarkari Rate Today [2024]</title>
+        <meta name="description" content="Check today's Kalimati Tarkari rate for fresh vegetables in Nepal. Get daily updates on wholesale and retail prices from Kalimati Market, Kathmandu." />
+        <meta name="keywords" content="Kalimati Tarkari rate today, vegetable prices, Kalimati market, Nepal wholesale market, fresh vegetables, daily vegetable prices" />
         <script type="application/ld+json">
           {JSON.stringify(marketPricesSchema)}
         </script>
@@ -269,7 +263,6 @@ const KalimatiPrices = () => {
           {JSON.stringify(breadcrumbSchema)}
         </script>
       </Helmet>
-      {/* --- END Helmet with Enhanced Keywords --- */}
 
       <div className="min-h-screen bg-[#fdfbf6]">
         <Header />
@@ -289,17 +282,17 @@ const KalimatiPrices = () => {
             </ol>
           </nav>
 
-          {/* --- START SEO Enhanced Header with Keywords --- */}
+          {/* SEO Enhanced Header with Dates */}
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-3">
               कालिमाटी तरकारी रेट टुडे | Kalimati Tarkari Rate Today
             </h1>
             <p className="text-xl text-gray-600 mb-4">
-              Kalimati Tarkari Bazar Price Today - Nepal
+              Today's Vegetable Price in Nepal - Kalimati Bazar
             </p>
             <p className="text-gray-600 max-w-2xl mx-auto mb-4">
-              Daily updates on the official <strong>Kalimati Tarkari Rate Today</strong> from Nepal's largest wholesale market in <strong>Kalimati</strong>, Kathmandu.
-              Check today's wholesale and retail <strong>kalimati tarkari price</strong>, view the complete <strong>Kalimati Tarkari Bazar Rate Today</strong> list updated every morning.
+              Daily updates on fresh vegetable rates from Nepal's largest wholesale market in Kalimati, Kathmandu. 
+              Check today's wholesale and retail तरकारी prices, updated every morning for the best deals.
             </p>
             <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
               <time dateTime={publishDate} className="flex items-center">
@@ -312,11 +305,10 @@ const KalimatiPrices = () => {
                 <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-                Kalimati Tarkari Rate Today Updated: {getFormattedDate()}
+                Last Updated: {getFormattedDate()}
               </time>
             </div>
           </div>
-          {/* --- END SEO Enhanced Header with Keywords --- */}
 
           {/* Dynamic Content Area: Price Summary, Table/Card View */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -333,7 +325,7 @@ const KalimatiPrices = () => {
                   }`}
                   aria-pressed={viewMode === 'table'}
                 >
-                  Table View (Kalimati Rates)
+                  Table View
                 </button>
                 <button
                   onClick={() => setViewMode('card')}
@@ -344,7 +336,7 @@ const KalimatiPrices = () => {
                   }`}
                   aria-pressed={viewMode === 'card'}
                 >
-                  Card View (Kalimati Prices)
+                  Card View
                 </button>
               </div>
               
@@ -352,11 +344,11 @@ const KalimatiPrices = () => {
               <div className="flex gap-2 items-center">
                 <input
                   type="text"
-                  placeholder="Search Kalimati Tarkari Price..."
+                  placeholder="Search vegetables..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full sm:w-64 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                  aria-label="Search Kalimati Tarkari Price"
+                  aria-label="Search vegetables"
                 />
                 <div className="flex gap-1">
                   {['all', 'min', 'max', 'avg'].map((filterType) => (
@@ -370,7 +362,7 @@ const KalimatiPrices = () => {
                       }`}
                       aria-pressed={filter === filterType}
                     >
-                      {filterType === 'all' ? 'All Kalimati Prices' : `${filterType.charAt(0).toUpperCase() + filterType.slice(1)} Price`}
+                      {filterType === 'all' ? 'All' : `${filterType.charAt(0).toUpperCase() + filterType.slice(1)} Price`}
                     </button>
                   ))}
                 </div>
@@ -382,40 +374,40 @@ const KalimatiPrices = () => {
               <div className="flex items-center justify-center py-20">
                 <div className="text-center">
                   <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-500 mx-auto"></div>
-                  <h2 className="mt-4 text-xl font-semibold text-gray-700">Loading Kalimati Tarkari Rate Today...</h2>
+                  <h2 className="mt-4 text-xl font-semibold text-gray-700">Loading prices...</h2>
                 </div>
               </div>
             ) : error ? (
               <div className="flex items-center justify-center px-4 py-20">
                 <div className="text-center max-w-md w-full">
                   <div className="bg-red-100 p-6 rounded-lg shadow-sm">
-                    <h2 className="text-xl font-semibold text-red-700 mb-2">Error Fetching Kalimati Tarkari Price</h2>
+                    <h2 className="text-xl font-semibold text-red-700 mb-2">Error Fetching Prices</h2>
                     <p className="text-gray-600 mb-4">{error}</p>
                     <button
                       onClick={refresh}
                       className="bg-green-600 text-white px-6 py-2 rounded-md hover:bg-green-700 transition-colors"
                     >
-                      Retry Loading Kalimati Rates
+                      Try Again
                     </button>
                   </div>
                 </div>
               </div>
             ) : (
               <>
-                {/* --- START Table View with Enhanced Keywords --- */}
+                {/* Table View */}
                 {viewMode === 'table' && (
-                  <div id="price-table-section" className="mb-8 overflow-x-auto"> {/* Added ID for scroll target */}
+                  <div className="mb-8 overflow-x-auto">
                     <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                      Kalimati Tarkari Bazar Rate Today - Price List
+                      Kalimati Bazar Tarkari Rate List
                     </h2>
                     <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-sm border-collapse">
                       <thead className="bg-green-50">
                         <tr>
-                          <th scope="col" className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-r border-gray-200">तरकारी (Kalimati Tarkari)</th>
+                          <th scope="col" className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-r border-gray-200">तरकारी</th>
                           <th scope="col" className="px-4 py-3 text-left text-sm font-semibold text-gray-900 border-r border-gray-200">एकाइ</th>
-                          <th scope="col" className="px-4 py-3 text-center text-sm font-semibold text-gray-900 border-r border-gray-200">न्यूनतम (Min Price)</th>
-                          <th scope="col" className="px-4 py-3 text-center text-sm font-semibold text-gray-900 border-r border-gray-200">अधिकतम (Max Price)</th>
-                          <th scope="col" className="px-4 py-3 text-center text-sm font-semibold text-gray-900">औसत (Avg Kalimati Price)</th>
+                          <th scope="col" className="px-4 py-3 text-center text-sm font-semibold text-gray-900 border-r border-gray-200">न्यूनतम</th>
+                          <th scope="col" className="px-4 py-3 text-center text-sm font-semibold text-gray-900 border-r border-gray-200">अधिकतम</th>
+                          <th scope="col" className="px-4 py-3 text-center text-sm font-semibold text-gray-900">औसत</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-200">
@@ -439,10 +431,10 @@ const KalimatiPrices = () => {
                           <tr>
                             <td colSpan="5" className="text-center py-12 px-4">
                               <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                                No Kalimati Tarkari Price Found
+                                No vegetables found
                               </h3>
                               <p className="text-gray-600">
-                                Try adjusting your search for Kalimati Tarkari Rate Today.
+                                Try adjusting your search or filters.
                               </p>
                             </td>
                           </tr>
@@ -451,13 +443,12 @@ const KalimatiPrices = () => {
                     </table>
                   </div>
                 )}
-                {/* --- END Table View with Enhanced Keywords --- */}
 
-                {/* --- START Card View with Enhanced Keywords --- */}
+                {/* Card View */}
                 {viewMode === 'card' && (
                   <div className="mb-8">
                     <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                      Kalimati Tarkari Price Cards - Today
+                      Kalimati Bazar Tarkari Cards
                     </h2>
                     {vegetables.length > 0 ? (
                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -467,20 +458,20 @@ const KalimatiPrices = () => {
                             className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow"
                           >
                             <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                              {vegetable.name_nepali} (Kalimati Tarkari)
+                              {vegetable.name_nepali}
                             </h3>
                             <p className="text-gray-600 mb-4">Unit: {vegetable.unit}</p>
                             <div className="space-y-2">
                               <div className="flex justify-between">
-                                <span className="text-green-600">Min Price:</span>
+                                <span className="text-green-600">Min:</span>
                                 <span className="font-medium">Rs. {vegetable.min_price}</span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-red-600">Max Price:</span>
+                                <span className="text-red-600">Max:</span>
                                 <span className="font-medium">Rs. {vegetable.max_price}</span>
                               </div>
                               <div className="flex justify-between">
-                                <span className="text-blue-600">Avg Kalimati Price:</span>
+                                <span className="text-blue-600">Avg:</span>
                                 <span className="font-medium">Rs. {vegetable.avg_price}</span>
                               </div>
                             </div>
@@ -490,16 +481,15 @@ const KalimatiPrices = () => {
                     ) : (
                       <div className="text-center py-12">
                         <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                          No Kalimati Tarkari Price Data Found
+                          No vegetables found
                         </h3>
                         <p className="text-gray-600">
-                          Please check back later for the Kalimati Tarkari Bazar Rate Today.
+                          Try adjusting your search or filters.
                         </p>
                       </div>
                     )}
                   </div>
                 )}
-                {/* --- END Card View with Enhanced Keywords --- */}
               </>
             )}
           </div>
@@ -507,36 +497,36 @@ const KalimatiPrices = () => {
           {/* Static Content Sections - Rendered Always */}
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-            {/* --- START Market Overview with Keywords --- */}
+            {/* Market Overview */}
             <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Today's Kalimati Market Overview - Kalimati Tarkari Rate Today
+                Today's Market Overview
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">Kalimati Market Hours</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">Market Hours</h3>
                   <ul className="space-y-1 text-gray-600">
                     <li>Wholesale Market: 4:00 AM - 9:00 AM</li>
                     <li>Retail Market: 9:00 AM - 8:00 PM</li>
-                    <li>Best Deals on Kalimati Tarkari Price: Early morning</li>
+                    <li>Best Deals: Early morning (4:00 AM - 7:00 AM)</li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-800 mb-2">Kalimati Tarkari Bazar Rate Today Highlights</h3>
+                  <h3 className="font-semibold text-gray-800 mb-2">Today's Highlights</h3>
                   <ul className="space-y-1 text-gray-600">
-                    <li>Market Status: Open (Kalimati)</li>
-                    <li>Kalimati Tarkari Price Trend: {loading ? 'Loading...' : (summary?.avgPrice > 0 ? 'Stable' : 'N/A')}</li>
-                    <li>Last Kalimati Rate Update: {loading ? 'Loading...' : new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</li>
+                    <li>Market Status: Open</li>
+                    {/* Adjust Price Trend to handle loading state */}
+                    <li>Price Trend: {loading ? 'Loading...' : (summary?.avgPrice > 0 ? 'Stable' : 'N/A')}</li>
+                    <li>Last Updated: {loading ? 'Loading...' : new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</li>
                   </ul>
                 </div>
               </div>
             </div>
-            {/* --- END Market Overview with Keywords --- */}
 
             {/* Image Carousel */}
             <section className="mb-12" aria-labelledby="gallery-heading">
               <h2 id="gallery-heading" className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Kalimati Tarkari Bazar Gallery
+                Kalimati Market Gallery
               </h2>
               <div className="relative overflow-hidden rounded-xl">
                 <div className="aspect-w-16 aspect-h-9 relative">
@@ -567,7 +557,6 @@ const KalimatiPrices = () => {
                 <button
                   onClick={prevSlide}
                   className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all"
-                  aria-label="Previous Kalimati image"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -576,8 +565,7 @@ const KalimatiPrices = () => {
                 <button
                   onClick={nextSlide}
                   className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full transition-all"
-                   aria-label="Next Kalimati image"
-               >
+                >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
@@ -592,44 +580,43 @@ const KalimatiPrices = () => {
                       className={`w-2 h-2 rounded-full transition-all ${
                         index === currentSlide ? 'bg-white w-4' : 'bg-white/50'
                       }`}
-                      aria-label={`Go to Kalimati gallery slide ${index + 1}`}
                     />
                   ))}
                 </div>
               </div>
             </section>
 
-            {/* --- START Why Prices Change Section with Keywords --- */}
+            {/* Why Do Vegetable Prices Change Section */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Why Does the Kalimati Tarkari Rate Today Change?
+                Why Do Vegetable Prices Change Daily?
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 {[
                   {
                     icon: "🌧️",
-                    title: "Weather",
-                    description: "Affects crops & kalimati tarkari price"
+                    title: "Weather Changes",
+                    description: "Monsoons, droughts, and landslides affect crop production"
                   },
                   {
                     icon: "🌱",
-                    title: "Seasonality",
-                    description: "Impacts kalimati tarkari bazar rate today"
+                    title: "Seasonal Variations",
+                    description: "In-season vegetables cost less than off-season imports"
                   },
                   {
                     icon: "⛽",
-                    title: "Fuel Costs",
-                    description: "Influences transport & final kalimati price"
+                    title: "Fuel Prices",
+                    description: "Transportation costs directly impact vegetable prices"
                   },
                   {
                     icon: "📜",
-                    title: "Policies",
-                    description: "Taxes/subsidies change kalimati tarkari rate"
+                    title: "Government Policies",
+                    description: "Taxes and subsidies influence market rates"
                   },
                   {
                     icon: "📊",
-                    title: "Supply/Demand",
-                    description: "Key driver for kalimati tarkari bazar price today"
+                    title: "Supply & Demand",
+                    description: "Market demand affects daily price fluctuations"
                   }
                 ].map((factor, index) => (
                   <div key={index} className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-all">
@@ -640,50 +627,76 @@ const KalimatiPrices = () => {
                 ))}
               </div>
             </section>
-            {/* --- END Why Prices Change Section with Keywords --- */}
 
-            {/* --- START Popular Vegetables Section with Keywords --- */}
+            {/* Popular Vegetables Section */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Popular Vegetables & Kalimati Tarkari Price
+                Most Popular Vegetables
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {[ // Note: Prices/changes here are static examples
+                {[
                   {
-                    name: "टमाटर (Tomato)",
+                    name: "टमाटर",
                     image: "/tomato.jpg",
                     price: 50,
                     change: -5,
                     unit: "केजी"
                   },
                   {
-                    name: "काउली (Cauliflower)",
+                    name: "काउली",
                     image: "/cauliflower.jpg",
                     price: 60,
                     change: 10,
                     unit: "केजी"
                   },
                   {
-                    name: "आलु (Potato)",
+                    name: "आलु",
                     image: "/potato.jpg",
                     price: 45,
                     change: -2,
                     unit: "केजी"
                   },
                   {
-                    name: "प्याज (Onion)",
+                    name: "प्याज",
                     image: "/onion.jpg",
                     price: 75,
                     change: 15,
                     unit: "केजी"
                   },
-                  // Add more examples if needed
+                  {
+                    name: "गाजर",
+                    image: "/carrot.jpg",
+                    price: 40,
+                    change: -8,
+                    unit: "केजी"
+                  },
+                  {
+                    name: "केराउ",
+                    image: "/peas.jpg",
+                    price: 120,
+                    change: 5,
+                    unit: "केजी"
+                  },
+                  {
+                    name: "पालुंगो",
+                    image: "/spinach.jpg",
+                    price: 30,
+                    change: -12,
+                    unit: "केजी"
+                  },
+                  {
+                    name: "बन्दा",
+                    image: "/cabbage.jpg",
+                    price: 35,
+                    change: -3,
+                    unit: "केजी"
+                  }
                 ].map((veg, index) => (
                   <div key={index} className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all">
                     <div className="h-48 overflow-hidden">
                       <img 
                         src={veg.image} 
-                        alt={`${veg.name} - Kalimati Tarkari Price`}
+                        alt={veg.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -693,28 +706,23 @@ const KalimatiPrices = () => {
                         <span className="text-xl font-bold">
                           रु. {veg.price}/{veg.unit}
                         </span>
-                        {/* Price change indicator - Example */}
                         <span className={`px-2 py-1 rounded text-sm ${
                           veg.change < 0 ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
                         }`}>
                           {veg.change > 0 ? '↑' : '↓'} {Math.abs(veg.change)}%
                         </span>
                       </div>
-                       <p className="text-xs text-gray-500 mt-1">Example Kalimati Tarkari Price</p>
                     </div>
                   </div>
                 ))}
               </div>
-               <p className="text-center text-sm text-gray-600 mt-4">Note: Prices shown are illustrative. Check the main table/cards for the official <strong>Kalimati Tarkari Rate Today</strong>.</p>
             </section>
-            {/* --- END Popular Vegetables Section with Keywords --- */}
-
 
             {/* Comment out the Price Trends Section temporarily */}
             {/*
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Kalimati Tarkari Price Trends Analysis
+                Price Trends Analysis
               </h2>
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 // ... chart code ...
@@ -722,15 +730,14 @@ const KalimatiPrices = () => {
             </section>
             */}
 
-            {/* --- START Enhanced Filter Section with Keywords --- */}
+            {/* Enhanced Filter Section */}
             <div className="mb-8 bg-white p-6 rounded-lg shadow-sm">
-               <h3 className="text-lg font-semibold text-gray-800 mb-4">Filter Kalimati Tarkari Price List</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div>
-                  <label htmlFor="price-range-filter" className="block text-sm font-medium text-gray-700 mb-2">
-                    Kalimati Price Range
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Price Range
                   </label>
-                  <select id="price-range-filter" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                  <select className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                     <option>All Prices</option>
                     <option>रु. 0 - रु. 50</option>
                     <option>रु. 50 - रु. 100</option>
@@ -738,81 +745,78 @@ const KalimatiPrices = () => {
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="sort-by-filter" className="block text-sm font-medium text-gray-700 mb-2">
-                    Sort Kalimati Rates By
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Sort By
                   </label>
-                  <select id="sort-by-filter" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                  <select className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                     <option>Price: Low to High</option>
                     <option>Price: High to Low</option>
-                    <option>Name (A-Z)</option>
-                    {/* Add more relevant sort options */}
+                    <option>Most Popular</option>
+                    <option>New Arrivals</option>
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="origin-filter" className="block text-sm font-medium text-gray-700 mb-2">
-                    Origin (Kalimati Source)
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Origin
                   </label>
-                  <select id="origin-filter" className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                  <select className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
                     <option>All</option>
-                    <option>Local (Nepal)</option>
+                    <option>Local</option>
                     <option>Imported</option>
                   </select>
                 </div>
-                {/* Consider adding category filter if applicable */}
               </div>
             </div>
-            {/* --- END Enhanced Filter Section with Keywords --- */}
 
-            {/* --- START Market Information Section with Keywords --- */}
+            {/* Market Information Section - New SEO Section */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                About Kalimati Tarkari Bazar & Price Today
+                Kalimati Vegetable Market Information
               </h2>
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                      About Kalimati Market (Kalimati)
+                      About Kalimati Market
                     </h3>
                     <p className="text-gray-600">
-                      <strong>Kalimati</strong> Fruits and Vegetable Market is Nepal's largest wholesale hub,
-                      supplying fresh produce. Located in <strong>Kalimati</strong>, Kathmandu, it's the primary source for the official <strong>Kalimati Tarkari Bazar Price Today</strong> reference for vegetables across Nepal. Get the daily <strong>kalimati tarkari price</strong> here.
+                      Kalimati Fruits and Vegetable Market is Nepal's largest wholesale market, 
+                      supplying fresh produce to the Kathmandu Valley. Located in Kalimati, 
+                      Kathmandu, it serves as the primary price reference for vegetables across Nepal.
                     </p>
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold text-gray-800 mb-4">
-                      Market Timings for Kalimati Tarkari Rate Today
+                      Market Timings
                     </h3>
                     <ul className="space-y-2 text-gray-600">
-                      <li>• Wholesale Market (Best Kalimati Tarkari Price): 4 AM - 9 AM</li>
-                      <li>• Retail Market (Check Kalimati Tarkari Rate Today): 9 AM - 8 PM</li>
-                      <li>• Visit early for the freshest produce at Kalimati.</li>
+                      <li>• Wholesale Market: 4 AM - 9 AM</li>
+                      <li>• Retail Market: 9 AM - 8 PM</li>
+                      <li>• Best Time to Visit: Early morning for freshest produce</li>
                     </ul>
                   </div>
                 </div>
               </div>
             </section>
-            {/* --- END Market Information Section with Keywords --- */}
 
-            {/* --- START Added Content Section from Home.jsx (Keep Original) --- */}
-            {/* This section seems relevant to Kalimati prices, keeping it */}
+            {/* --- START: Added Content Section from Home.jsx --- */}
             <section className="my-12 px-6" aria-labelledby="kalimati-highlights-heading">
               <div className="max-w-3xl mx-auto">
                 {/* Content Copied from Home Hero/Highlights */}
                 <div className="bg-white rounded-xl p-8 border border-green-100 shadow-sm mb-12">
                   <h2 id="kalimati-highlights-heading" className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight mb-3 text-center">
                     <span className="block mb-2">आजको कलिमाटी तरकारी रेट</span>
-                    <span className="block text-2xl">Kalimati Tarkari Rate Today [{new Date().getFullYear()}]</span> {/* Use current year */}
+                    <span className="block text-2xl">Kalimati Tarkari Rate Today [{new Date().getFullYear() + 1}]</span> {/* Dynamic Year */}
                     <span className="block text-lg text-green-600 mt-2">Daily Updates</span>
                   </h2>
                   <p className="text-gray-600 text-lg mb-8 text-center">
-                    दैनिक अपडेट गरिएको तरकारी बजारको मूल्य | Get real-time <strong>kalimati tarkari price</strong> from
-                    <strong className="text-green-600"> Kalimati Tarkari Bazar</strong>, Nepal's largest wholesale market. Find the latest <strong>kalimati tarkari bazar rate today</strong> list here.
+                    दैनिक अपडेट गरिएको तरकारी बजारको मूल्य | Get real-time vegetable prices from
+                    <span className="text-green-600"> Kalimati Tarkari Bazar</span>, Nepal's largest wholesale market. Check the Nepali date today and calendar too!
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8">
                     <div className="bg-green-50 rounded-lg p-4 border border-green-100">
                       <div className="font-medium text-gray-800">आजको तरकारी मुल्य</div>
-                      <div className="text-sm text-gray-600">Daily Kalimati Price Updates</div>
+                      <div className="text-sm text-gray-600">Daily price updates</div>
                     </div>
                     <div className="bg-green-50 rounded-lg p-4 border border-green-100">
                       <div className="font-medium text-gray-800">Wholesale Rates</div>
@@ -820,47 +824,100 @@ const KalimatiPrices = () => {
                     </div>
                     <div className="bg-green-50 rounded-lg p-4 border border-green-100">
                       <div className="font-medium text-gray-800">Live Updates</div>
-                      <div className="text-sm text-gray-600">Real-time Kalimati Tarkari Rate Today</div>
+                      <div className="text-sm text-gray-600">Real-time prices</div>
                     </div>
                   </div>
                   <div className="text-center">
+                    {/* This button might need adjustment based on KalimatiPrices context, maybe scroll to table? */}
                     <button
-                      onClick={() => document.getElementById('price-table-section')?.scrollIntoView({ behavior: 'smooth' })}
+                      onClick={() => document.getElementById('price-table-section')?.scrollIntoView({ behavior: 'smooth' })} // Example scroll behavior
                       className="bg-green-600 text-white font-medium text-base px-6 py-3 rounded-xl shadow-md hover:bg-green-700 transition-colors"
                     >
-                      Check Kalimati Tarkari Rate Today List
+                      Check Kalimati Tarkari Rate Today
                     </button>
                   </div>
                 </div>
 
                 {/* Market Highlights Section - Reverted */}
                 <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-                  आजको तरकारी मुल्य | Today's Market Highlights at Kalimati
+                  आजको तरकारी मुल्य | Today's Market Highlights
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                   <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
                     <h4 className="text-lg font-bold text-gray-800 mb-4">
-                      Most Searched Kalimati Tarkari
+                      Most Searched Items at Kalimati Tarkari Bazar
                     </h4>
                     <div className="space-y-3">
-                      {/* Static examples */}
-                      <div className="flex items-center justify-between"> /* ... potato ... */ </div>
-                      <div className="flex items-center justify-between"> /* ... onion ... */ </div>
-                      <div className="flex items-center justify-between"> /* ... tomato ... */ </div>
+                      {/* Example items - Replace with dynamic data if available */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">आलु (Potato)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-gray-600">Min-Max:</span>
+                          <span className="font-medium text-gray-800">₨40-60/kg</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">प्याज (Onion)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-gray-600">Min-Max:</span>
+                          <span className="font-medium text-gray-800">₨80-90/kg</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">टमाटर (Tomato)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-gray-600">Min-Max:</span>
+                          <span className="font-medium text-gray-800">₨45-55/kg</span>
+                        </div>
+                      </div>
                     </div>
-                     <p className="text-xs text-gray-500 mt-2">Check actual <strong>Kalimati Tarkari Price</strong> in the list above.</p>
                   </div>
                   <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
                     <h4 className="text-lg font-bold text-gray-800 mb-4">
-                      Today's Best Value - Kalimati Tarkari Rate Today
+                      Today's Best Value at Kalimati
                     </h4>
                     <div className="space-y-3">
-                      {/* Static examples */}
-                      <div className="flex items-center justify-between"> /* ... cauliflower ... */ </div>
-                      <div className="flex items-center justify-between"> /* ... cabbage ... */ </div>
-                      <div className="flex items-center justify-between"> /* ... radish ... */ </div>
+                      {/* Example items - Replace with dynamic data if available */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">काउली (Cauliflower)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-green-600 font-medium">↓20%</span>
+                          <span className="font-medium text-gray-800">₨35/kg</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">बन्दा (Cabbage)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-green-600 font-medium">↓15%</span>
+                          <span className="font-medium text-gray-800">₨30/kg</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">मूला (Radish)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-green-600 font-medium">↓25%</span>
+                          <span className="font-medium text-gray-800">₨25/kg</span>
+                        </div>
+                      </div>
                     </div>
-                    <p className="text-xs text-gray-500 mt-2">Based on recent <strong>Kalimati Tarkari Bazar Rate Today</strong> trends.</p>
                   </div>
                 </div>
 
@@ -868,80 +925,87 @@ const KalimatiPrices = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div id="market-status-kalimati" className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
                     <h4 className="text-lg font-bold text-gray-800 mb-4">Kalimati Market Status</h4>
-                    {/* ... status content ... */}
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span className="text-green-600 font-medium">कलिमाटी तरकारी बजार Open</span>
+                      </div>
+                      <p className="text-gray-600 text-sm">Operating Hours: 5:00 AM - 7:00 PM</p>
+                      <p className="text-gray-600 text-sm">Best visiting hours: 6:00 AM - 9:00 AM</p>
+                      <p className="text-gray-600 text-sm">Current crowd level: Moderate</p>
+                    </div>
                   </div>
                   <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
-                    <h4 className="text-lg font-bold text-gray-800 mb-4">Shopping Tips for Kalimati Tarkari Price</h4>
+                    <h4 className="text-lg font-bold text-gray-800 mb-4">Shopping Tips</h4>
                     <div className="space-y-2">
                       <div className="flex items-start gap-2">
                         <span className="text-green-600 mt-1">●</span>
-                        <p className="text-gray-600 text-sm">Check <strong>Kalimati tarkari rate today</strong> before visiting <strong>Kalimati</strong>.</p>
+                        <p className="text-gray-600 text-sm">Check Kalimati tarkari rate before visiting</p>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-green-600 mt-1">●</span>
-                        <p className="text-gray-600 text-sm">Best deals on <strong>kalimati tarkari price</strong> during early morning hours.</p>
+                        <p className="text-gray-600 text-sm">Best deals during early morning hours</p>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-green-600 mt-1">●</span>
-                        <p className="text-gray-600 text-sm">Compare <strong>kalimati tarkari bazar price today</strong> from multiple vendors.</p>
+                        <p className="text-gray-600 text-sm">Compare prices from multiple vendors</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </section>
-            {/* --- END Added Content Section from Home.jsx --- */}
+            {/* --- END: Added Content Section from Home.jsx --- */}
 
-
-            {/* --- START FAQ Section with Keywords --- */}
+            {/* FAQ Section */}
             <section className="mt-16 mb-12" aria-labelledby="faq-heading">
               <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
                 <h2 id="faq-heading" className="text-2xl font-bold text-gray-900 mb-8 text-center">
-                  Kalimati Tarkari Rate Today - FAQs
+                  Frequently Asked Questions (FAQs)
                 </h2>
                 
                 <div className="space-y-4">
-                  {[ // Using updated FAQ content from schema
+                  {[
                     {
                       question: "What is the latest Kalimati Tarkari rate today?",
-                      answer: `The latest kalimati tarkari rate today is updated daily. Today's average kalimati tarkari price range is Rs. ${summary?.minPrice || 0} to Rs. ${summary?.maxPrice || 0}. Check the full kalimati tarkari bazar price today list here.`
+                      answer: "The latest Kalimati Tarkari Rate Today is updated daily based on official market prices. Check today's rates for fresh vegetables from the Kalimati Bazar."
                     },
                     {
-                      question: "Why do Kalimati Tarkari prices change daily in Kalimati Bazar?",
-                      answer: "Kalimati tarkari price changes daily due to weather, fuel costs, supply/demand, and policies affecting the kalimati market. This impacts the kalimati tarkari bazar rate today."
+                      question: "Why do vegetable prices change daily in Kalimati Bazar?",
+                      answer: "Vegetable prices in Kalimati Bazar change daily due to weather conditions, fuel costs, demand & supply variations, and government policies."
                     },
                     {
                       question: "Where can I check the daily Kalimati vegetable price list?",
-                      answer: "You can check the updated Kalimati Tarkari Rate Today on this page. We provide the official kalimati tarkari bazar price today directly from the kalimati vegetable market."
-                    },
-                     {
-                      question: "Which vegetables have the cheapest Kalimati Tarkari Price today?",
-                      answer: "Seasonal vegetables usually have the cheapest kalimati tarkari price. Check today's updated kalimati tarkari bazar rate today list to find the current best prices at kalimati."
+                      answer: "You can check the updated Kalimati Tarkari Rate Today on this page, updated daily with official data from the Kalimati vegetable market."
                     },
                     {
-                      question: "Why is the Kalimati Tarkari Bazar Rate Today increasing?",
-                      answer: "The kalimati tarkari bazar rate today can increase due to weather, fuel price hikes, supply issues, demand, and policies. These factors influence the overall kalimati tarkari price."
+                      question: "Which vegetables are the cheapest today in Kalimati Bazar?",
+                      answer: "Seasonal vegetables like spinach, radish, and cabbage are usually the most affordable. Check today's updated rates to find the best prices."
                     },
-                     {
+                    {
+                      question: "Why do vegetable prices increase in Nepal?",
+                      answer: "Prices can increase due to weather changes, fuel price hikes, supply shortages, market demand, and government policies affecting imports and local farming."
+                    },
+                    {
                       question: "Are Kalimati Bazar prices the same across Nepal?",
-                      answer: "No, the kalimati tarkari bazar price today is a wholesale reference for Kathmandu. Retail kalimati tarkari price in other cities may vary due to transport and local factors."
+                      answer: "No, Kalimati is a wholesale vegetable market in Kathmandu, and prices may vary in other cities due to transport costs and local supply-demand conditions."
                     },
                     {
-                       question: "What is the best time to buy vegetables at Kalimati market?",
-                       answer: "Early morning is best for fresh vegetables and potentially better kalimati tarkari price deals before the main kalimati tarkari bazar rate today fluctuates."
-                     },
-                     {
-                       question: "Does Kalimati Tarkari Bazar have an online price list for today?",
-                       answer: "Yes, this website provides the updated Kalimati Tarkari Rate Today online. Get the official kalimati tarkari bazar price today list here daily."
-                     },
-                     {
-                       question: "Why are seasonal vegetables cheaper in the Kalimati Tarkari Bazar Rate Today?",
-                       answer: "Seasonal vegetables are locally abundant, reducing transport/storage costs, leading to a lower kalimati tarkari price in the kalimati tarkari bazar rate today."
-                     },
-                     {
-                       question: "How do transportation costs affect the Kalimati Tarkari Price?",
-                       answer: "Increased fuel prices raise transport costs, directly impacting the kalimati tarkari price reflected in the kalimati tarkari bazar rate today at the kalimati market."
-                     }
+                      question: "What is the best time to buy vegetables in Kalimati Market?",
+                      answer: "The best time to buy fresh and cheaper vegetables in Kalimati Bazar is early in the morning before prices fluctuate."
+                    },
+                    {
+                      question: "Does Kalimati Tarkari Bazar have an online price list?",
+                      answer: "Yes, you can check the updated Kalimati Tarkari Rate Today on our website for daily updates on vegetable prices in Nepal."
+                    },
+                    {
+                      question: "Why are seasonal vegetables cheaper than off-season vegetables?",
+                      answer: "Seasonal vegetables are locally grown and abundant, reducing transportation and storage costs. Off-season vegetables are often imported, making them more expensive."
+                    },
+                    {
+                      question: "How do transportation costs affect vegetable prices in Nepal?",
+                      answer: "When fuel prices rise, transportation costs increase, which directly impacts vegetable prices in Kalimati Bazar and across Nepal."
+                    }
                   ].map((faq, index) => (
                     <details
                       key={index}
@@ -974,7 +1038,7 @@ const KalimatiPrices = () => {
 
                 {/* FAQ CTA */}
                 <div className="mt-8 text-center">
-                  <p className="text-gray-600 mb-4">More questions about Kalimati Tarkari Rate Today?</p>
+                  <p className="text-gray-600 mb-4">Still have questions?</p>
                   <a
                     href="mailto:mail@nyure.com.np"
                     className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-colors"
@@ -984,33 +1048,31 @@ const KalimatiPrices = () => {
                 </div>
               </div>
             </section>
-            {/* --- END FAQ Section with Keywords --- */}
 
-            {/* --- START New SEO Section with Keywords --- */}
+            {/* New SEO Section */}
             <section className="mb-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Understanding Kalimati Tarkari Price & Rates
+                Kalimati Vegetable Market Insights
               </h2>
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <p className="text-gray-600">
-                  The <strong>Kalimati Vegetable Market</strong> (often searched as <strong>Kalimati</strong>) is a vital hub for fresh produce in Kathmandu, Nepal. Knowing the <strong>Kalimati Tarkari Rate Today</strong> is crucial for buyers. This page provides the official <strong>Kalimati Tarkari Bazar Price Today</strong>, ensuring you have the latest information.
+                  The Kalimati Vegetable Market is a vital hub for fresh produce in Kathmandu, Nepal. Known for its daily updates on vegetable prices, the market provides essential information for both wholesale and retail buyers. By checking the Kalimati Tarkari rate today, you can ensure you are getting the best deals on fresh vegetables.
                 </p>
                 <p className="text-gray-600 mt-4">
-                  Whether you're looking for the latest <strong>kalimati tarkari price</strong> or tracking the trends using the <strong>Kalimati Tarkari Bazar Rate Today</strong>, our platform offers comprehensive insights. Stay informed about daily <strong>kalimati tarkari price</strong> updates and make smarter purchasing decisions at <strong>Kalimati</strong>.
+                  Whether you are looking for the latest vegetable prices or trying to understand the trends in the Kalimati market, our platform offers comprehensive insights. Stay informed about the daily vegetable prices and make smarter purchasing decisions.
                 </p>
               </div>
             </section>
-            {/* --- END New SEO Section with Keywords --- */}
 
             {/* Additional Information Section */}
             <section className="mt-8 text-sm text-gray-500">
-              <h2 className="sr-only">Additional Information about Kalimati Tarkari Price</h2>
+              <h2 className="sr-only">Additional Information</h2>
               <div className="prose prose-sm max-w-none">
                 <p>
-                  Source for Kalimati Tarkari Rate Today: Kalimati Fruits and Vegetable Market Development Board<br />
+                  Source: Kalimati Fruits and Vegetable Market Development Board<br />
                   Location: Kalimati, Kathmandu, Nepal<br />
-                  Contact for Kalimati Tarkari Price Info: +977-9746265996<br />
-                  Updates: Daily Kalimati Tarkari Bazar Rate Today (including weekends/holidays)
+                  Contact: +977-9746265996<br />
+                  Updates: Daily (including weekends and holidays)
                 </p>
               </div>
             </section>
