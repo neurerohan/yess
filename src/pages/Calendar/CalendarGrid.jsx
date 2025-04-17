@@ -129,7 +129,7 @@ const CalendarGrid = ({ monthData, year, monthName }) => {
           return (
             <div
               key={`${dayData.year}-${dayData.month}-${dayData.day}`}
-              className={`relative flex flex-col h-28 md:h-32 lg:h-36 p-1.5 border border-transparent ${cellBgClass} ${hasEvents ? 'font-semibold' : ''} hover:bg-gray-50 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:z-10 transition duration-150 ease-in-out group cursor-pointer`}
+              className={`relative flex flex-col h-28 md:h-32 lg:h-36 p-1.5 border border-transparent ${cellBgClass} ${hasEvents ? 'font-semibold' : ''} hover:bg-gray-50 hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-green-400 focus:z-10 transition duration-150 ease-in-out group cursor-pointer`}
               onClick={() => handleDayClick(dayData)}
               onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleDayClick(dayData)}
               tabIndex={0}
@@ -153,7 +153,7 @@ const CalendarGrid = ({ monthData, year, monthName }) => {
               <div className="text-center h-4 mb-1"> {/* Reserve space */}
                 {tithiName && (
                     // Increased text size slightly on larger screens (text-xs)
-                    <span className="text-[9px] sm:text-[10px] md:text-xs font-medium text-indigo-800 bg-indigo-100 px-1.5 py-0.5 rounded-full truncate" title={`तिथि: ${tithiName} (${tithiNumber})`}>
+                    <span className="text-[9px] sm:text-[10px] md:text-xs font-medium text-green-800 bg-green-100 px-1.5 py-0.5 rounded-full truncate" title={`तिथि: ${tithiName} (${tithiNumber})`}>
                       {tithiName}
                     </span>
                 )}

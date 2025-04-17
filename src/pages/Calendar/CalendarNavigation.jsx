@@ -36,6 +36,10 @@ const CalendarNavigation = ({
     onNavigateTo(selectedYear, newMonth); // Navigate immediately on month change
   };
 
+  const handleGo = () => {
+    // Implementation of handleGo function
+  };
+
   return (
     <div className="flex flex-wrap justify-between items-center p-4 bg-gray-50 rounded-t-lg border-b border-gray-200 gap-4">
       {/* Prev Button */}
@@ -86,6 +90,16 @@ const CalendarNavigation = ({
          <span className="hidden sm:inline mr-1">Next</span>
         <ChevronRightIcon className="h-5 w-5" />
       </button>
+
+      <div className="flex items-center gap-2 order-4 sm:order-4">
+        <button
+          onClick={handleGo}
+          className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-150 ease-in-out"
+          disabled={!selectedYear || !selectedMonth}
+        >
+          Go
+        </button>
+      </div>
     </div>
   );
 };

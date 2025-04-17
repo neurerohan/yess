@@ -58,9 +58,9 @@ const MonthlyEventsList = ({ monthData, monthName, year }) => {
           <div key={dayWithEvents.bs_day} className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-200">
             <div className="flex items-center space-x-4 p-4 bg-gray-50 border-b border-gray-200">
               {/* Date Info Header */}
-              <div className="flex-shrink-0 w-12 h-12 flex flex-col items-center justify-center bg-indigo-100 rounded-md border border-indigo-200">
-                <span className="text-xl font-bold text-indigo-700 block leading-tight">{dayWithEvents.bs_day}</span>
-                <span className="text-[10px] text-indigo-500 block uppercase tracking-wide">{formatADDate(dayWithEvents.ad_date).split(', ')[0]}</span>
+              <div className="flex-shrink-0 w-12 h-12 flex flex-col items-center justify-center bg-green-50 rounded-md border border-green-100">
+                <span className="text-xl font-bold text-green-700 block leading-tight">{dayWithEvents.bs_day}</span>
+                <span className="text-[10px] text-green-600 block uppercase tracking-wide">{formatADDate(dayWithEvents.ad_date).split(', ')[0]}</span>
               </div>
               <h4 className="text-lg font-semibold text-gray-700">
                 {capitalizedMonthName} {dayWithEvents.bs_day}
