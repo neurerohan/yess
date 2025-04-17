@@ -9,6 +9,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { debugSanityConnection, checkSpecificBlogPost } from './services/sanity';
 import NotFoundPage from './pages/NotFoundPage';
 import CalendarPage from './pages/Calendar/CalendarPage';
+import InstallPwaPrompt from './components/InstallPwaPrompt';
 
 // Component to handle redirection for the base /calendar route
 const CalendarRedirect = () => {
@@ -124,6 +125,7 @@ const App = () => {
           
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <InstallPwaPrompt />
       </Router>
     </HelmetProvider>
   );
