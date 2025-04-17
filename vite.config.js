@@ -4,14 +4,19 @@ import path from "path";
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  logLevel: 'info',
   plugins: [
     react(),
     VitePWA({ 
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      strategy: 'injectManifest',
+      swSrc: 'src/sw.js',
+      swDest: 'dist/sw.js',
       devOptions: {
-        enabled: true
+        enabled: true,
+        type: 'module',
       },
+      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: 'Kalimati Rate & Calendar - Nyure',
         short_name: 'KalimatiRate',
@@ -41,42 +46,6 @@ export default defineConfig({
           }
         ]
       },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff,woff2}'],
-        cleanupOutdatedCaches: true,
-        runtimeCaching: [
-          {
-            urlPattern: ({ request }) => request.destination === 'font' || request.destination === 'image',
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'static-assets-cache',
-              expiration: {
-                maxEntries: 60,
-                maxAgeSeconds: 30 * 24 * 60 * 60
-              },
-              cacheableResponse: { statuses: [0, 200] }
-            }
-          },
-          {
-            urlPattern: /^\/api\/.*/,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'api-cache',
-              networkTimeoutSeconds: 10,
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 1 * 24 * 60 * 60
-              },
-              cacheableResponse: { statuses: [0, 200] },
-              plugins: [
-                new workbox.backgroundSync.BackgroundSyncPlugin('api-retry-queue', {
-                  maxRetentionTime: 24 * 60
-                })
-              ]
-            }
-          }
-        ]
-      } 
     })
   ],
   resolve: {
