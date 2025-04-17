@@ -1,98 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
-// Custom hook for managing meta tags
-const useMetaTags = (title, description) => {
-  useEffect(() => {
-    // Set publish and modified dates
-    const publishDate = '2024-03-21'; // Fixed publish date
-    const modifiedDate = new Date().toISOString().split('T')[0]; // Current date for modified
-
-    // Update title
-    document.title = title;
-    
-    // Update or create meta description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.name = 'description';
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.content = description;
-
-    // Add canonical URL
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.rel = 'canonical';
-      document.head.appendChild(canonical);
-    }
-    canonical.href = 'https://kalimatirate.nyure.com.np/';
-
-    // Add hreflang tag for English
-    let hreflang = document.querySelector('link[hreflang="en"]');
-    if (!hreflang) {
-      hreflang = document.createElement('link');
-      hreflang.rel = 'alternate';
-      hreflang.hreflang = 'en';
-      document.head.appendChild(hreflang);
-    }
-    hreflang.href = 'https://kalimatirate.nyure.com.np/';
-
-    // Add x-default hreflang
-    let xDefault = document.querySelector('link[hreflang="x-default"]');
-    if (!xDefault) {
-      xDefault = document.createElement('link');
-      xDefault.rel = 'alternate';
-      xDefault.hreflang = 'x-default';
-      document.head.appendChild(xDefault);
-    }
-    xDefault.href = 'https://kalimatirate.nyure.com.np/';
-
-    // Add publish date meta tag
-    let publishDateMeta = document.querySelector('meta[property="article:published_time"]');
-    if (!publishDateMeta) {
-      publishDateMeta = document.createElement('meta');
-      publishDateMeta.setAttribute('property', 'article:published_time');
-      document.head.appendChild(publishDateMeta);
-    }
-    publishDateMeta.content = publishDate;
-
-    // Add modified date meta tag
-    let modifiedDateMeta = document.querySelector('meta[property="article:modified_time"]');
-    if (!modifiedDateMeta) {
-      modifiedDateMeta = document.createElement('meta');
-      modifiedDateMeta.setAttribute('property', 'article:modified_time');
-      document.head.appendChild(modifiedDateMeta);
-    }
-    modifiedDateMeta.content = modifiedDate;
-
-    // Cleanup function
-    return () => {
-      // Remove only the tags we created in this component
-      if (metaDescription && metaDescription.parentNode) {
-        metaDescription.remove();
-      }
-      if (canonical && canonical.parentNode) {
-        canonical.remove();
-      }
-      if (hreflang && hreflang.parentNode) {
-        hreflang.remove();
-      }
-      if (xDefault && xDefault.parentNode) {
-        xDefault.remove();
-      }
-      if (publishDateMeta && publishDateMeta.parentNode) {
-        publishDateMeta.remove();
-      }
-      if (modifiedDateMeta && modifiedDateMeta.parentNode) {
-        modifiedDateMeta.remove();
-      }
-    };
-  }, [title, description]);
-};
 
 const Home = () => {
   const navigate = useNavigate();
@@ -102,11 +12,153 @@ const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Use the custom hook to set meta tags
-  useMetaTags(
-    'Nepali Calendar 2082 | Mero Patro & Hamro Patro | Nepali Date Today | Kalimati Rate',
-    'View the official Nepali Calendar 2082 (विक्रम सम्वत्). Find the Nepali date today using our detailed nepali calendar nepali calendar. Use Mero Patro & Hamro Patro style features to check the Nepal calendar date today and events.'
-  );
+  // --- Define Schema Data --- 
+  // (Moved schema definitions here for clarity, will be used in Helmet)
+  const pageTitle = 'Nepali Calendar 2082 | Mero Patro & Hamro Patro | Nepali Date Today | Kalimati Rate';
+  const pageDescription = 'View the official Nepali Calendar 2082 (विक्रम सम्वत्). Find the Nepali date today using our detailed nepali calendar nepali calendar. Use Mero Patro & Hamro Patro style features to check the Nepal calendar date today and events.';
+  const canonicalUrl = 'https://kalimatirate.nyure.com.np/';
+  const keywords = 'Nepali calendar, nepali date today, mero patro, hamro patro, nepal calendar date today, nepali calendar nepali calendar, 2082, Bikram Sambat, BS calendar, Nepali Patro, Nepal calendar, tithi, events, festivals, holidays Nepal, BS to AD, विक्रम सम्वत् पात्रो, Kalimati Rate';
+  const publishDate = '2024-03-21'; // Fixed publish date
+  const modifiedDate = new Date().toISOString().split('T')[0]; // Current date for modified
+  const ogImageUrl = 'https://kalimatirate.nyure.com.np/nepali-calendar-mero-patro-hamro-patro.png'; // Example OG image
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the Nepali Calendar (विक्रम सम्वत्)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Nepali Calendar (Bikram Sambat) is Nepal's official calendar. Our site provides the complete 'nepali calendar nepali calendar', allowing you to find the current 'nepali date today' and check any 'Nepal calendar date today' or future/past dates."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I find the Nepali date today?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The 'nepali date today' is clearly shown on our homepage. For more detail, explore the full 'nepali calendar', which functions like a digital 'Mero Patro', to see the date and events."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this like Hamro Patro or Mero Patro?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our 'nepali calendar' is designed to be a comprehensive alternative to 'Hamro Patro' and 'Mero Patro'. It offers a detailed 'nepali calendar nepali calendar' view, showing the 'nepal calendar date today', tithis, and important events."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How to use the Nepali Calendar nepali calendar feature?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Visit the main 'Nepali Calendar' page. Select the year and month to view the detailed 'nepali calendar nepali calendar'. It's intuitive, much like using 'Mero Patro' or 'Hamro Patro' to find the 'nepali date today'."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where can I check the Nepal calendar date today?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The 'nepal calendar date today' is displayed on the homepage and is the central focus of our 'Nepali Calendar' section. Our 'Hamro Patro' style interface ensures you always see the correct Bikram Sambat 'nepali date today'."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What events are shown in the Nepali Calendar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our 'nepali calendar' includes public holidays, major festivals, tithis, and significant cultural events, similar to 'Hamro Patro' and 'Mero Patro'. These are linked to the specific 'nepali date today' within the 'nepali calendar nepali calendar'."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is the Mero Patro style calendar here?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our 'Mero Patro' style 'nepali calendar' uses verified data to ensure high accuracy for all Bikram Sambat dates, including the current 'nepal calendar date today' and events listed in the 'nepali calendar nepali calendar'."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I convert the Nepali Date Today to English?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, use our BS to AD converter. It allows easy conversion of the 'nepali date today' or any date selected from the 'nepali calendar' (our 'Hamro Patro' alternative) to the English date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the Hamro Patro feature free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, all features, including the full 'nepali calendar', checking the 'nepali date today', and our 'Hamro Patro' / 'Mero Patro' style interface for the 'nepal calendar date today', are free."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often is the Nepali Calendar updated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The core data for the 'nepali calendar nepali calendar' is updated for future years well in advance. We ensure the 'nepali date today' and current events are always accurate, like a reliable 'Mero Patro'."
+        }
+      }
+    ]
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": canonicalUrl,
+    "name": pageTitle, // Use the defined page title
+    "description": pageDescription, // Use the defined page description
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${canonicalUrl}search?q={search_term_string}`, // Make sure search URL is correct
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "KalimatiRate - Nyure",
+    "url": canonicalUrl,
+    "logo": `${canonicalUrl}logo.png`, // Assuming logo is at root
+    "sameAs": [
+      "https://www.facebook.com/QuikNepal",
+      "https://twitter.com/QuikNepal",
+      "https://www.tiktok.com/@quiknepal"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+977-9746265996",
+      "contactType": "customer service",
+      "email": "mail@nyure.com.np",
+      "areaServed": "NP",
+      "availableLanguage": ["en", "ne"]
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kalimati",
+      "addressLocality": "Kathmandu",
+      "addressCountry": "Nepal"
+    }
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": canonicalUrl
+    }]
+  };
 
   useEffect(() => {
     // Update time every second
@@ -132,370 +184,10 @@ const Home = () => {
     // Fetch weather every 30 minutes
     const weatherTimer = setInterval(fetchWeather, 1800000);
 
-    // Add Schema Markup
-    const schemas = [
-      // Existing FAQ Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is the Nepali Calendar (विक्रम सम्वत्)?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The Nepali Calendar (Bikram Sambat) is Nepal's official calendar. Our site provides the complete 'nepali calendar nepali calendar', allowing you to find the current 'nepali date today' and check any 'Nepal calendar date today' or future/past dates."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How can I find the Nepali date today?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The 'nepali date today' is clearly shown on our homepage. For more detail, explore the full 'nepali calendar', which functions like a digital 'Mero Patro', to see the date and events."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is this like Hamro Patro or Mero Patro?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, our 'nepali calendar' is designed to be a comprehensive alternative to 'Hamro Patro' and 'Mero Patro'. It offers a detailed 'nepali calendar nepali calendar' view, showing the 'nepal calendar date today', tithis, and important events."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How to use the Nepali Calendar nepali calendar feature?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Visit the main 'Nepali Calendar' page. Select the year and month to view the detailed 'nepali calendar nepali calendar'. It's intuitive, much like using 'Mero Patro' or 'Hamro Patro' to find the 'nepali date today'."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Where can I check the Nepal calendar date today?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The 'nepal calendar date today' is displayed on the homepage and is the central focus of our 'Nepali Calendar' section. Our 'Hamro Patro' style interface ensures you always see the correct Bikram Sambat 'nepali date today'."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What events are shown in the Nepali Calendar?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our 'nepali calendar' includes public holidays, major festivals, tithis, and significant cultural events, similar to 'Hamro Patro' and 'Mero Patro'. These are linked to the specific 'nepali date today' within the 'nepali calendar nepali calendar'."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How accurate is the Mero Patro style calendar here?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Our 'Mero Patro' style 'nepali calendar' uses verified data to ensure high accuracy for all Bikram Sambat dates, including the current 'nepal calendar date today' and events listed in the 'nepali calendar nepali calendar'."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I convert the Nepali Date Today to English?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, use our BS to AD converter. It allows easy conversion of the 'nepali date today' or any date selected from the 'nepali calendar' (our 'Hamro Patro' alternative) to the English date."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is the Hamro Patro feature free to use?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, all features, including the full 'nepali calendar', checking the 'nepali date today', and our 'Hamro Patro' / 'Mero Patro' style interface for the 'nepal calendar date today', are free."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How often is the Nepali Calendar updated?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "The core data for the 'nepali calendar nepali calendar' is updated for future years well in advance. We ensure the 'nepali date today' and current events are always accurate, like a reliable 'Mero Patro'."
-            }
-          }
-        ]
-      },
-      // Website Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "url": "https://kalimatirate.nyure.com.np/",
-        "name": "Nepali Calendar | Mero Patro | Hamro Patro | Nepali Date Today",
-        "description": "Your primary source for the official Nepali Calendar (विक्रम सम्वत्). Check the 'Nepali date today', view the full 'Mero Patro' / 'Hamro Patro' style 'nepali calendar nepali calendar', and find the 'Nepal calendar date today' instantly.",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://kalimatirate.nyure.com.np/search?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      },
-      // Organization Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "KalimatiRate - Nyure",
-        "url": "https://kalimatirate.nyure.com.np",
-        "logo": "https://kalimatirate.nyure.com.np/logo.png",
-        "sameAs": [
-          "https://www.facebook.com/QuikNepal",
-          "https://twitter.com/QuikNepal",
-          "https://www.tiktok.com/@quiknepal"
-        ],
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+977-9746265996",
-          "contactType": "customer service",
-          "email": "mail@nyure.com.np",
-          "areaServed": "NP",
-          "availableLanguage": ["en", "ne"]
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Kalimati",
-          "addressLocality": "Kathmandu",
-          "addressCountry": "Nepal"
-        }
-      },
-      // BreadcrumbList Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [{
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://kalimatirate.nyure.com.np"
-        }]
-      },
-      // Article Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Nepali Calendar 2082 - Mero Patro & Hamro Patro Features",
-        "description": "Explore the full Nepali Calendar for 2082 BS. Find the 'Nepali date today', events, and holidays using our detailed 'nepali calendar nepali calendar'. Features similar to 'Mero Patro' and 'Hamro Patro'. Check the 'Nepal calendar date today' instantly.",
-        "image": "https://kalimatirate.nyure.com.np/market-image.jpg",
-        "author": {
-          "@type": "Organization",
-          "name": "KalimatiRate - Nyure"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "KalimatiRate - Nyure",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://kalimatirate.nyure.com.np/logo.png"
-          }
-        },
-        "datePublished": "2024-03-21",
-        "dateModified": new Date().toISOString().split('T')[0],
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "https://kalimatirate.nyure.com.np"
-        }
-      },
-      // LocalBusiness Schema for Kalimati Market
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Kalimati Tarkari Bazar",
-        "image": [
-          "https://kalimatirate.nyure.com.np/market-image.jpg",
-          "https://kalimatirate.nyure.com.np/market-entrance.jpg",
-          "https://kalimatirate.nyure.com.np/market-aerial.jpg"
-        ],
-        "description": "Nepal's largest wholesale vegetable market providing fresh produce at competitive prices.",
-        "@id": "https://kalimatirate.nyure.com.np/kalimati-market",
-        "url": "https://kalimatirate.nyure.com.np",
-        "telephone": "+977-1-4274097",
-        "priceRange": "₨₨",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Kalimati Tarkari Bazar, Ring Road, Kalimati",
-          "addressLocality": "Kathmandu",
-          "addressRegion": "Bagmati Province",
-          "postalCode": "44600",
-          "addressCountry": "NP"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": "27.6995",
-          "longitude": "85.2888"
-        },
-        "openingHoursSpecification": [{
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday",
-            "Saturday",
-            "Sunday"
-          ],
-          "opens": "05:00",
-          "closes": "19:00"
-        }],
-        "sameAs": [
-          "https://www.facebook.com/kalimatimarket",
-          "https://twitter.com/kalimatimarket"
-        ],
-        "areaServed": {
-          "@type": "City",
-          "name": "Kathmandu Valley"
-        },
-        "hasMap": "https://www.google.com/maps?q=kalimati+market+kathmandu",
-        "isAccessibleForFree": true,
-        "currenciesAccepted": "NPR",
-        "paymentAccepted": "Cash",
-        "additionalType": "http://www.productontology.org/id/Vegetable_market"
-      },
-
-      // Service Schema for Price Updates
-      {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "serviceType": "Nepali Calendar Information",
-        "name": "Nepali Calendar & Date Today Service",
-        "alternateName": "Mero Patro / Hamro Patro Style Calendar",
-        "provider": {
-          "@type": "Organization",
-          "name": "KalimatiRate - Nyure"
-        },
-        "description": "Provides the official Nepali Calendar (Bikram Sambat), featuring the 'nepali calendar nepali calendar'. Includes the current 'Nepali date today', event listings (similar to 'Mero Patro'/'Hamro Patro'), and BS/AD conversion. Check the 'Nepal calendar date today' easily.",
-        "areaServed": {
-          "@type": "Country",
-          "name": "Nepal"
-        },
-        "availableChannel": {
-          "@type": "ServiceChannel",
-          "serviceUrl": "https://kalimatirate.nyure.com.np",
-          "servicePhone": "+977-9746265996",
-          "availableLanguage": ["en", "ne"]
-        }
-      },
-
-      // AggregateRating Schema
-      {
-        "@context": "https://schema.org",
-        "@type": "AggregateRating",
-        "itemReviewed": {
-          "@type": "LocalBusiness",
-          "name": "Kalimati Tarkari Bazar",
-          "image": "https://kalimatirate.nyure.com.np/market-image.jpg"
-        },
-        "ratingValue": "4.5",
-        "bestRating": "5",
-        "worstRating": "1",
-        "ratingCount": "1250",
-        "reviewCount": "850"
-      },
-
-      // ItemList Schema for Popular Vegetables
-      {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "name": "Popular Vegetables at Kalimati Bazar",
-        "description": "Most searched and purchased vegetables at Kalimati Tarkari Bazar",
-        "numberOfItems": 3,
-        "itemListElement": [
-          {
-            "@type": "Product",
-            "position": 1,
-            "name": "आलु (Potato)",
-            "description": "Fresh potatoes from local farmers",
-            "offers": {
-              "@type": "AggregateOffer",
-              "lowPrice": "40",
-              "highPrice": "60",
-              "priceCurrency": "NPR",
-              "unitText": "KG"
-            }
-          },
-          {
-            "@type": "Product",
-            "position": 2,
-            "name": "प्याज (Onion)",
-            "description": "Fresh onions available daily",
-            "offers": {
-              "@type": "AggregateOffer",
-              "lowPrice": "80",
-              "highPrice": "90",
-              "priceCurrency": "NPR",
-              "unitText": "KG"
-            }
-          },
-          {
-            "@type": "Product",
-            "position": 3,
-            "name": "टमाटर (Tomato)",
-            "description": "Fresh tomatoes from local farms",
-            "offers": {
-              "@type": "AggregateOffer",
-              "lowPrice": "45",
-              "highPrice": "55",
-              "priceCurrency": "NPR",
-              "unitText": "KG"
-            }
-          }
-        ]
-      },
-
-      // HowTo Schema for Shopping Guide
-      {
-        "@context": "https://schema.org",
-        "@type": "HowTo",
-        "name": "How to Get Best Deals at Kalimati Tarkari Bazar",
-        "description": "Step by step guide to getting the best vegetable prices at Kalimati Market",
-        "totalTime": "PT2H",
-        "estimatedCost": {
-          "@type": "MonetaryAmount",
-          "currency": "NPR",
-          "value": "1000-5000"
-        },
-        "step": [
-          {
-            "@type": "HowToStep",
-            "name": "Check Current Rates",
-            "text": "Check Kalimati tarkari rate before visiting the market",
-            "position": 1
-          },
-          {
-            "@type": "HowToStep",
-            "name": "Visit Early",
-            "text": "Visit during early morning hours (6:00 AM - 9:00 AM) for best deals",
-            "position": 2
-          },
-          {
-            "@type": "HowToStep",
-            "name": "Compare Prices",
-            "text": "Compare prices from multiple vendors before making a purchase",
-            "position": 3
-          }
-        ]
-      }
-    ];
-
-    // Add all schemas to the page
-    schemas.forEach(schema => {
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.innerHTML = JSON.stringify(schema);
-      document.head.appendChild(script);
-    });
-
     // Cleanup timers and scripts
     return () => {
       clearInterval(timer);
       clearInterval(weatherTimer);
-      // Remove all schema scripts
-      document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
-        script.remove();
-      });
     };
   }, []);
 
@@ -551,6 +243,37 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-[#fdfbf6]">
+      {/* --- Add Helmet for SEO --- */}
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta name="keywords" content={keywords} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={ogImageUrl} /> 
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="ne_NP" /> 
+        {/* Add other relevant OG tags */}
+
+        {/* Schema Markup */} 
+        <script type="application/ld+json">
+          {JSON.stringify(websiteSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(organizationSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+        {/* Add other relevant schemas if needed, carefully considered */}
+      </Helmet>
+      {/* --- End Helmet --- */}
+
       <Header />
 
       {/* Date, Time, and Weather Display */}

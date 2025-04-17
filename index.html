@@ -4,17 +4,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="keywords" content="Kalimati Tarkari Rate Today, Today's Vegetable Price in Nepal, Kalimati Bazar Tarkari Rate, Kalimati Vegetable Market Price, Daily Vegetable Rate Nepal, tarkari bhau kalimati" />
-    
+    <!-- Basic site description - will be overridden by react-helmet-async -->
+    <meta name="description" content="Nepali Calendar, Kalimati Tarkari Rate Today, and Date Converter for Nepal." />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="KalimatiRate - Nyure" />
-    <meta property="og:image" content="/kalimati-tarkari-rate-today.png" />
-    <meta property="og:url" content="https://kalimatirate.nyure.com.np" />
-    <link rel="canonical" href="https://kalimatirate.nyure.com.np/kalimati-tarkari-rate-today" />
 
     <!-- Language Alternates -->
     <link rel="alternate" hreflang="ne" href="https://kalimatirate.nyure.com.np" />
-    <link rel="alternate" hreflang="en" href="https://kalimatirate.nyure.com.np/en" />
+    <!-- Assuming English version is the root or managed differently -->
+    <!-- <link rel="alternate" hreflang="en" href="https://kalimatirate.nyure.com.np/en" /> --> 
     <link rel="alternate" hreflang="x-default" href="https://kalimatirate.nyure.com.np" />
 
     <!-- Language Meta Tags -->
@@ -210,12 +208,17 @@
             }
           };
           
-          document.getElementById('pageSchema').innerHTML = JSON.stringify(dateConverterSchema);
+          // Ensure pageSchema element exists before updating
+          const schemaElem = document.getElementById('pageSchema');
+          if (schemaElem) {
+            schemaElem.innerHTML = JSON.stringify(dateConverterSchema);
+          }
         }
         // ...existing conditions for other routes...
       };
 
-      window.addEventListener('load', updateMetaTags);
+      // Changed to DOMContentLoaded as scripts might run before full load
+      window.addEventListener('DOMContentLoaded', updateMetaTags); 
       window.addEventListener('popstate', updateMetaTags);
     </script>
 
@@ -301,14 +304,16 @@
 
         // Update schema in DOM
         const schemaElement = document.getElementById('pageSchema');
-        if (schemaElement) {
+        if (schemaElement && schema) { // Added check for schema existence
           schemaElement.innerHTML = JSON.stringify(schema);
         }
 
         // Update canonical URL
         const canonicalLink = document.querySelector('link[rel="canonical"]');
         if (canonicalLink) {
-          canonicalLink.href = `https://kalimatirate.nyure.com.np${path}`;
+          // Ensure path starts with '/' for consistency
+          const safePath = path.startsWith('/') ? path : `/${path}`; 
+          canonicalLink.href = `https://kalimatirate.nyure.com.np${safePath}`;
         }
 
         // Update Open Graph tags
@@ -326,7 +331,7 @@
       };
 
       // Update metadata on route changes
-      window.addEventListener('load', () => updateSchema(window.location.pathname));
+      window.addEventListener('DOMContentLoaded', () => updateSchema(window.location.pathname)); // Changed to DOMContentLoaded
       window.addEventListener('popstate', () => updateSchema(window.location.pathname));
     </script>
     <!-- Google Tag Manager -->
@@ -340,7 +345,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- PWA Theme Color -->
     <meta name="theme-color" content="#ffffff" />
 
-    <title>Kalimati Rate & Calendar - Nyure</title>
+    <title>Nepali Calendar & Tarkari Rate - KalimatiRate</title> <!-- Basic Fallback Title -->
 
     <!-- Include Workbox and registration script (handled by vite-plugin-pwa) -->
     <!-- <script>
