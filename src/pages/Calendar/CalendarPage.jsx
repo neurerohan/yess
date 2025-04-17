@@ -20,6 +20,55 @@ const ContentSection = lazy(() => import('./ContentSection')); // Import Content
 // Helper to capitalize month names for display
 const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
 
+// --- START: Added Helper Functions from Home.jsx ---
+const formatDate = (date) => {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).replace(/\//g, '-');
+};
+
+const nepaliMonths = [
+  'बैशाख', 'जेठ', 'असार', 'श्रावण', 'भदौ', 'असोज',
+  'कार्तिक', 'मंसिर', 'पुष', 'माघ', 'फागुन', 'चैत'
+];
+
+const getNepaliDate = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+
+  // This is a simple approximation. You might want to use a proper Nepali date converter library
+  // Adding 56 years, 8 months and 17 days (approximate difference)
+  const nepYear = year + 56;
+  let nepMonth = month + 8;
+  let nepDay = day + 17;
+
+  // Crude adjustment for month/day overflow - needs a proper library for accuracy
+  if (nepDay > 30) { // Assuming 30 days max for simplicity, NOT ACCURATE
+      nepDay -= 30;
+      nepMonth += 1;
+  }
+  if (nepMonth > 12) {
+      nepMonth -= 12;
+      // Note: This simple logic doesn't adjust the year correctly if month wraps around.
+  }
+
+  return `${nepDay} ${nepaliMonths[nepMonth - 1] || '?'} ${nepYear}`; // Added fallback for month index
+};
+
+
+const formatTime = (date) => {
+  return date.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  });
+};
+// --- END: Added Helper Functions from Home.jsx ---
+
 const CalendarPage = () => {
   const { year: yearParam, month: monthParam } = useParams();
   const navigate = useNavigate();
@@ -28,6 +77,11 @@ const CalendarPage = () => {
   const [yearData, setYearData] = useState(null);
   const [isLoading, setIsLoading] = useState(false); // Initially false as data load is sync
   const [error, setError] = useState(null);
+
+  // --- START: Added State from Home.jsx ---
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [temperature, setTemperature] = useState('--');
+  // --- END: Added State from Home.jsx ---
 
   const currentBSYear = parseInt(yearParam);
   const currentBSMonthName = monthParam?.toLowerCase();
@@ -66,6 +120,49 @@ const CalendarPage = () => {
     loadData(); // Call the async function
 
   }, [currentBSYear, currentBSMonthName, navigate, yearParam, monthParam]); 
+
+  // --- START: Added useEffect from Home.jsx ---
+  useEffect(() => {
+    // Update time every second
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    // Fetch weather data
+    const fetchWeather = async () => {
+      try {
+        const response = await fetch(
+          'https://api.open-meteo.com/v1/forecast?latitude=27.15&longitude=85.9&current=temperature_2m&timezone=auto'
+        );
+        // Basic check for response status
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+         // Basic check for expected data structure
+        if (data && data.current && typeof data.current.temperature_2m !== 'undefined') {
+           setTemperature(Math.round(data.current.temperature_2m));
+        } else {
+           console.warn('Unexpected weather API response structure:', data);
+           setTemperature('--'); // Fallback if structure is wrong
+        }
+      } catch (error) {
+        console.error('Error fetching weather:', error);
+        setTemperature('--'); // Fallback on error
+      }
+    };
+
+    fetchWeather();
+    // Fetch weather every 30 minutes
+    const weatherTimer = setInterval(fetchWeather, 1800000); // 30 minutes
+
+    // Cleanup timers
+    return () => {
+      clearInterval(timer);
+      clearInterval(weatherTimer);
+    };
+  }, []); // Empty dependency array means this runs once on mount and cleans up on unmount
+  // --- END: Added useEffect from Home.jsx ---
 
   // --- Direct check of yearData state before useMemo ---
   console.log(`[CalendarPage Render] Checking yearData STATE. Available: ${!!yearData}. Keys: ${yearData ? Object.keys(yearData).join(', ') : 'null'}`);
@@ -225,6 +322,51 @@ const CalendarPage = () => {
             Viewing the month of <span className="font-semibold">{capitalize(currentBSMonthName || '')} {currentBSYear}</span>. Use the controls below to navigate.
           </p>
         </div>
+
+        {/* --- START: Added Date/Time/Weather Display from Home.jsx --- */}
+        <div className="px-2 sm:px-4 mt-6 mb-8"> {/* Adjusted margins slightly */}
+          <div className="max-w-3xl mx-auto">
+            <div className="bg-white rounded-xl p-6 relative border border-green-100 shadow-sm">
+              {/* Optional decorative dot */}
+              {/* <div className="absolute -top-1 left-1/2 transform -translate-x-1/2">
+                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+              </div> */}
+              <div className="text-center mb-4">
+                <div className="text-gray-800 text-xl font-medium inline-flex items-center gap-3 flex-wrap justify-center"> {/* Added flex-wrap */}
+                  <span className="text-gray-900">{getNepaliDate()}</span>
+                  <span className="text-gray-400 hidden sm:inline">/</span> {/* Hide separator on small screens */}
+                  <span className="text-gray-600">{formatDate(currentTime)}</span>
+                </div>
+                <div className="text-sm text-gray-500 mt-1">Kathmandu, Nepal</div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto"> {/* Changed to 1 col on small screens */}
+                <div className="bg-green-50 rounded-xl p-4 border border-green-100 h-20 flex items-center">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3 shrink-0"> {/* Added shrink-0 */}
+                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-gray-600 text-xs">Current Time</div>
+                    <div className="text-gray-800 text-2xl font-bold">{formatTime(currentTime)}</div>
+                  </div>
+                </div>
+                <div className="bg-green-50 rounded-xl p-4 border border-green-100 h-20 flex items-center">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3 shrink-0"> {/* Added shrink-0 */}
+                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-gray-600 text-xs">Temperature</div>
+                    <div className="text-gray-800 text-2xl font-bold">{temperature}°C</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* --- END: Added Date/Time/Weather Display from Home.jsx --- */}
 
         {/* Navigation Component */}
         <CalendarNavigation
