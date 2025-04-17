@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 const PERMISSION_LAST_ASKED_KEY = 'notificationPermissionLastAsked';
-const PERMISSION_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+const PERMISSION_COOLDOWN_MS = 2 * 24 * 60 * 60 * 1000; // 2 days
 
 /**
  * Custom hook to manage browser notification permissions with a weekly cool-down.

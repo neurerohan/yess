@@ -10,8 +10,8 @@ const InstallPwaPrompt = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   // --- Configuration ---
-  const POPUP_DELAY_MS = 5 * 60 * 1000; // 5 minutes
-  const COOL_DOWN_PERIOD_MS = 3 * 7 * 24 * 60 * 60 * 1000; // 3 weeks
+  const POPUP_DELAY_MS = 2 * 60 * 1000; // 2 minutes
+  const COOL_DOWN_PERIOD_MS = 7 * 24 * 60 * 60 * 1000; // 1 week
   const LOCAL_STORAGE_KEY = 'pwaInstallDismissedTimestamp';
   const carouselImages = [
     '/kalimatirate-app-download.png',
