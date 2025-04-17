@@ -237,8 +237,8 @@ const CalendarPage = () => {
         "keywords": ["Nepali Calendar Data", "Bikram Sambat Data", "Nepal Calendar JSON", "nepali date today", "mero patro", "hamro patro", "nepali calendar nepali calendar"],
         "creator": {
             "@type": "Organization",
-            "name": "(Source like miti.bikram.io or relevant authority)",
-            "url": "(URL of the source if known)"
+            "name": "Nepali Calendar - KalimatiRate",
+            "url": "https://kalimatirate.nyure.com.np"
         }
     }
   };
