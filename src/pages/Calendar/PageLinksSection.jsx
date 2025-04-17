@@ -30,18 +30,18 @@ const PageLinksSection = () => {
             <Link 
               key={index} 
               to={link.href}
-              className="block bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg hover:border-indigo-300 transition duration-200 ease-in-out group"
+              className="block bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg hover:border-green-300 transition duration-200 ease-in-out group"
             >
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0">
-                  <link.icon className="h-8 w-8 text-indigo-600 group-hover:text-indigo-700" aria-hidden="true" />
+                  <link.icon className="h-8 w-8 text-green-600 group-hover:text-green-700" aria-hidden="true" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-700">{link.title}</h4>
+                  <h4 className="text-lg font-semibold text-gray-900 group-hover:text-green-700">{link.title}</h4>
                   <p className="mt-1 text-sm text-gray-600">{link.description}</p>
                 </div>
                 <div className="flex-shrink-0 ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                    <ArrowTopRightOnSquareIcon className="h-5 w-5 text-indigo-500" />
+                    <ArrowTopRightOnSquareIcon className="h-5 w-5 text-green-500" />
                 </div>
               </div>
             </Link>

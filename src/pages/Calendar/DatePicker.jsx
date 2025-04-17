@@ -48,7 +48,7 @@ const DatePicker = ({ initialYear, initialMonth }) => {
             id="bsYearSelect"
             value={selectedYear}
             onChange={handleYearChange}
-            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md shadow-sm"
+            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md shadow-sm"
           >
             {yearOptions.map(year => (
               <option key={year} value={year}>{year}</option>
@@ -64,7 +64,7 @@ const DatePicker = ({ initialYear, initialMonth }) => {
             id="bsMonthSelect"
             value={selectedMonthIndex}
             onChange={handleMonthChange}
-            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md shadow-sm"
+            className="block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md shadow-sm"
           >
             {NEPALI_MONTHS.map((month, index) => (
               <option key={month} value={index}>
@@ -77,7 +77,7 @@ const DatePicker = ({ initialYear, initialMonth }) => {
         <div className="md:self-end">
           <button
             onClick={handleGoToDate}
-            className="w-full md:w-auto inline-flex justify-center items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="w-full md:w-auto inline-flex justify-center items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
           >
             Go
           </button>

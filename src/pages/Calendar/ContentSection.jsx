@@ -9,7 +9,7 @@ const ContentSection = ({ title, children }) => {
           {title}
         </h3>
       )}
-      <div className="prose prose-indigo sm:prose-lg max-w-none text-gray-700">
+      <div className="prose prose-green sm:prose-lg max-w-none text-gray-700">
         {children}
       </div>
     </div>

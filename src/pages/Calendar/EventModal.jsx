@@ -57,7 +57,7 @@ const EventModal = ({ dayData, onClose }) => {
           </h2>
           <button 
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-md p-1"
+            className="text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-md p-1"
             aria-label="Close modal"
           >
             <XMarkIcon className="h-6 w-6" />
@@ -68,7 +68,7 @@ const EventModal = ({ dayData, onClose }) => {
         <div className="p-5 sm:p-6 space-y-4 max-h-[60vh] overflow-y-auto">
           {/* CORRECTED Tithi display */}
           {tithiName && (
-            <p className="text-indigo-700 font-medium bg-indigo-50 px-3 py-1 rounded-full inline-block text-sm">
+            <p className="text-green-700 font-medium bg-green-50 px-3 py-1 rounded-full inline-block text-sm">
               तिथि: {tithiName} ({tithiNumber})
             </p>
           )}
@@ -107,7 +107,7 @@ const EventModal = ({ dayData, onClose }) => {
         <div className="px-4 py-3 border-t border-gray-200 bg-gray-50 text-right">
            <button 
             onClick={onClose}
-            className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="px-4 py-2 bg-green-600 text-white text-sm font-medium rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
           >
             Close
           </button>

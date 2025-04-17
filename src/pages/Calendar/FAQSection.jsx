@@ -31,12 +31,12 @@ const FAQItem = ({ question, answer }) => {
     <div className="border-b border-gray-200 py-4">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-between items-center w-full text-left text-gray-700 hover:text-indigo-600 focus:outline-none"
+        className="flex justify-between items-center w-full text-left text-gray-700 hover:text-green-600 focus:outline-none"
         aria-expanded={isOpen}
       >
         <span className="font-medium text-sm sm:text-base">{question}</span>
         {isOpen ? (
-          <ChevronUpIcon className="h-5 w-5 text-indigo-500 flex-shrink-0" />
+          <ChevronUpIcon className="h-5 w-5 text-green-500 flex-shrink-0" />
         ) : (
           <ChevronDownIcon className="h-5 w-5 text-gray-400 flex-shrink-0" />
         )}
