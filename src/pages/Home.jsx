@@ -104,8 +104,8 @@ const Home = () => {
 
   // Use the custom hook to set meta tags
   useMetaTags(
-    'Nepali Calendar 2081 | Mero Patro & Hamro Patro | Nepali Date Today | Kalimati Rate',
-    'View the official Nepali Calendar 2081 (विक्रम सम्वत्). Find the Nepali date today, upcoming events, and holidays using our Mero Patro / Hamro Patro style interface. Check Nepal calendar date today and Kalimati rates.'
+    'Nepali Calendar 2082 | Mero Patro & Hamro Patro | Nepali Date Today | Kalimati Rate',
+    'View the official Nepali Calendar 2082 (विक्रम सम्वत्). Find the Nepali date today, upcoming events, and holidays using our Mero Patro / Hamro Patro style interface. Check Nepal calendar date today and Kalimati rates.'
   );
 
   useEffect(() => {
@@ -276,8 +276,8 @@ const Home = () => {
       {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "Nepali Calendar 2081 - Mero Patro & Hamro Patro Features",
-        "description": "Explore the full Nepali Calendar for 2081 BS. Find the Nepali date today, events, and holidays with our easy-to-use Mero Patro and Hamro Patro interface. Check the Nepal calendar date today instantly.",
+        "headline": "Nepali Calendar 2082 - Mero Patro & Hamro Patro Features",
+        "description": "Explore the full Nepali Calendar for 2082 BS. Find the Nepali date today, events, and holidays with our easy-to-use Mero Patro and Hamro Patro interface. Check the Nepal calendar date today instantly.",
         "image": "https://kalimatirate.nyure.com.np/market-image.jpg",
         "author": {
           "@type": "Organization",
@@ -599,61 +599,65 @@ const Home = () => {
       <div className="px-6 mt-12">
         <h2 className="text-gray-800 text-2xl font-bold mb-8 text-center">Our Services</h2>
         
-        {/* Service Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {/* Kalimati Rates Card */}
-          <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
+        {/* Restructured: Calendar card above, others below */}
+        <div className="max-w-5xl mx-auto">
+          {/* Nepali Calendar Card - Top Row (Centered) */}
+          <div className="mb-6 md:flex md:justify-center">
+            <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm flex flex-col items-center text-center md:w-2/3 lg:w-1/2">
+              <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                {/* Calendar Icon */}
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2zM16 11h.01M12 11h.01M8 11h.01M16 15h.01M12 15h.01M8 15h.01"/>
+                </svg>
+              </div>
+              <h3 className="text-gray-800 text-xl font-bold mb-2">Nepali Calendar</h3>
+              <p className="text-gray-600 text-sm mb-6">Explore the full <strong>Nepali Calendar</strong> (विक्रम सम्वत्). Check the <strong>Nepali date today</strong>, events, and holidays with our <strong>Mero Patro / Hamro Patro</strong> style interface. Find the <strong>Nepal calendar date today</strong> easily.</p>
+              <Link
+                // Link to the base Nepali calendar route (similar to Mero Patro / Hamro Patro)
+                to="/calendar"
+                className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full block" // Added block display
+              >
+                View Calendar
+              </Link>
             </div>
-            <h3 className="text-gray-800 text-xl font-bold mb-2">Kalimati Rates Today</h3>
-            <p className="text-gray-600 text-sm mb-6">Get real-time vegetable market prices from Kalimati Bazar. Updated daily for your convenience.</p>
-            <button 
-              onClick={() => navigate('/kalimati-tarkari-rate-today')}
-              className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full"
-            >
-              Check Prices
-            </button>
           </div>
 
-          {/* Date Converter Card */}
-          <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+          {/* Other Services - Bottom Row (Grid) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Kalimati Rates Card */}
+            <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+              <h3 className="text-gray-800 text-xl font-bold mb-2">Kalimati Rates Today</h3>
+              <p className="text-gray-600 text-sm mb-6">Get real-time vegetable market prices from Kalimati Bazar. Updated daily for your convenience.</p>
+              <button 
+                onClick={() => navigate('/kalimati-tarkari-rate-today')}
+                className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full"
+              >
+                Check Prices
+              </button>
             </div>
-            <h3 className="text-gray-800 text-xl font-bold mb-2">Date Converter</h3>
-            <p className="text-gray-600 text-sm mb-6">Convert dates between BS (Bikram Sambat) and AD (Anno Domini) calendars instantly.</p>
-            <button 
-              onClick={() => navigate('/nep-to-eng-date-converter')}
-              className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full"
-            >
-              Convert Date
-            </button>
-          </div>
 
-          {/* --- Nepali Calendar Card --- */}
-          <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-              {/* Calendar Icon */}
-              <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2zM16 11h.01M12 11h.01M8 11h.01M16 15h.01M12 15h.01M8 15h.01"/>
-              </svg>
+            {/* Date Converter Card */}
+            <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="text-gray-800 text-xl font-bold mb-2">Date Converter</h3>
+              <p className="text-gray-600 text-sm mb-6">Convert dates between BS (Bikram Sambat) and AD (Anno Domini) calendars instantly.</p>
+              <button 
+                onClick={() => navigate('/nep-to-eng-date-converter')}
+                className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full"
+              >
+                Convert Date
+              </button>
             </div>
-            <h3 className="text-gray-800 text-xl font-bold mb-2">Nepali Calendar</h3>
-            <p className="text-gray-600 text-sm mb-6">Explore the full <strong>Nepali Calendar</strong> (विक्रम सम्वत्). Check the <strong>Nepali date today</strong>, events, and holidays with our <strong>Mero Patro / Hamro Patro</strong> style interface. Find the <strong>Nepal calendar date today</strong> easily.</p>
-            <Link
-              to="/calendar"
-              className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full block"
-            >
-              View Calendar
-            </Link>
           </div>
-          {/* --- End Nepali Calendar Card --- */}
-
         </div>
       </div>
 
