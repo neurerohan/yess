@@ -324,43 +324,43 @@ const CalendarPage = () => {
         </div>
 
         {/* --- START: Added Date/Time/Weather Display from Home.jsx --- */}
-        <div className="px-2 sm:px-4 mt-6 mb-8"> {/* Adjusted margins slightly */}
+        <div className="px-2 sm:px-4 mt-6 mb-8"> {/* Adjusted margins */}
           <div className="max-w-3xl mx-auto">
-            <div className="bg-white rounded-xl p-6 relative border border-green-100 shadow-sm">
-              {/* Optional decorative dot */}
-              {/* <div className="absolute -top-1 left-1/2 transform -translate-x-1/2">
-                <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-              </div> */}
-              <div className="text-center mb-4">
-                <div className="text-gray-800 text-xl font-medium inline-flex items-center gap-3 flex-wrap justify-center"> {/* Added flex-wrap */}
-                  <span className="text-gray-900">{getNepaliDate()}</span>
-                  <span className="text-gray-400 hidden sm:inline">/</span> {/* Hide separator on small screens */}
-                  <span className="text-gray-600">{formatDate(currentTime)}</span>
-                </div>
-                <div className="text-sm text-gray-500 mt-1">Kathmandu, Nepal</div>
+            {/* Removed the outer white container to integrate better with the page bg */}
+            {/* Main info row: Date/Location */}
+            <div className="text-center mb-6"> {/* Increased bottom margin */}
+              <div className="text-gray-800 text-xl font-medium inline-flex items-center gap-3 flex-wrap justify-center">
+                <span className="text-gray-900">{getNepaliDate()}</span>
+                <span className="text-gray-400 hidden sm:inline">/</span>
+                <span className="text-gray-600">{formatDate(currentTime)}</span>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto"> {/* Changed to 1 col on small screens */}
-                <div className="bg-green-50 rounded-xl p-4 border border-green-100 h-20 flex items-center">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3 shrink-0"> {/* Added shrink-0 */}
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-gray-600 text-xs">Current Time</div>
-                    <div className="text-gray-800 text-2xl font-bold">{formatTime(currentTime)}</div>
-                  </div>
+              <div className="text-sm text-gray-500 mt-1">Kathmandu, Nepal</div>
+            </div>
+            
+            {/* Time and Temperature Grid - Always 2 columns, square aspect ratio */}
+            <div className="grid grid-cols-2 gap-4 max-w-xs sm:max-w-sm mx-auto"> {/* Centered smaller grid */}
+              {/* Current Time Box */}
+              <div className="bg-white rounded-xl p-4 border border-green-100 shadow-sm aspect-square flex flex-col items-center justify-center text-center"> {/* Added aspect-square, flex-col, justify-center, text-center */}
+                <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center mb-2"> {/* Centered icon, reduced bottom margin */}
+                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                 </div>
-                <div className="bg-green-50 rounded-xl p-4 border border-green-100 h-20 flex items-center">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3 shrink-0"> {/* Added shrink-0 */}
-                    <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-gray-600 text-xs">Temperature</div>
-                    <div className="text-gray-800 text-2xl font-bold">{temperature}°C</div>
-                  </div>
+                <div>
+                  <div className="text-gray-600 text-xs mb-1">Current Time</div> {/* Added bottom margin */}
+                  <div className="text-gray-800 text-xl sm:text-2xl font-bold">{formatTime(currentTime)}</div> {/* Responsive text size */}
+                </div>
+              </div>
+              {/* Temperature Box */}
+              <div className="bg-white rounded-xl p-4 border border-green-100 shadow-sm aspect-square flex flex-col items-center justify-center text-center"> {/* Added aspect-square, flex-col, justify-center, text-center */}
+                <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center mb-2"> {/* Centered icon, reduced bottom margin */}
+                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-gray-600 text-xs mb-1">Temperature</div> {/* Added bottom margin */}
+                  <div className="text-gray-800 text-xl sm:text-2xl font-bold">{temperature}°C</div> {/* Responsive text size */}
                 </div>
               </div>
             </div>
