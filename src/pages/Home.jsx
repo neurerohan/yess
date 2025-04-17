@@ -596,26 +596,26 @@ const Home = () => {
       </div>
 
       {/* Services Section */}
-      <div className="px-6 mt-12">
-        <h2 className="text-gray-800 text-2xl font-bold mb-8 text-center">Our Services</h2>
+      <div className="max-w-7xl mx-auto px-6 mt-12">
+        <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Our Core Features</h2>
         
         {/* Restructured: Calendar card above, others below */}
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Nepali Calendar Card - Top Row (Centered) */}
           <div className="mb-6 md:flex md:justify-center">
-            <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm flex flex-col items-center text-center md:w-2/3 lg:w-1/2">
-              <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-200 shadow-lg flex flex-col items-center text-center md:w-full lg:w-3/4 transform hover:scale-[1.02] transition-transform duration-300 ease-out">
+              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-5 shadow-md border border-green-100">
                 {/* Calendar Icon */}
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2zM16 11h.01M12 11h.01M8 11h.01M16 15h.01M12 15h.01M8 15h.01"/>
                 </svg>
               </div>
-              <h3 className="text-gray-800 text-xl font-bold mb-2">Nepali Calendar</h3>
-              <p className="text-gray-600 text-sm mb-6">Explore the full <strong>Nepali Calendar</strong> (विक्रम सम्वत्). Check the <strong>Nepali date today</strong>, events, and holidays with our <strong>Mero Patro / Hamro Patro</strong> style interface. Find the <strong>Nepal calendar date today</strong> easily.</p>
+              <h3 className="text-gray-900 text-2xl font-semibold mb-3">Nepali Calendar</h3>
+              <p className="text-gray-700 text-base mb-6 max-w-md">Explore the full <strong>Nepali Calendar</strong> (विक्रम सम्वत्). Check the <strong>Nepali date today</strong>, events, and holidays with our <strong>Mero Patro / Hamro Patro</strong> style interface. Find the <strong>Nepal calendar date today</strong> easily.</p>
               <Link
                 // Link to the base Nepali calendar route (similar to Mero Patro / Hamro Patro)
                 to="/calendar"
-                className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full block" // Added block display
+                className="mt-auto bg-green-600 text-white font-semibold text-base px-8 py-3 rounded-xl shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-300 ease-out transform hover:scale-105 w-auto block"
               >
                 View Calendar
               </Link>
@@ -623,36 +623,36 @@ const Home = () => {
           </div>
 
           {/* Other Services - Bottom Row (Grid) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
             {/* Kalimati Rates Card */}
-            <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-md hover:shadow-lg flex flex-col items-center text-center transition-all duration-300 ease-out transform hover:-translate-y-1">
+              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-5 shadow-sm border border-blue-200">
+                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <h3 className="text-gray-800 text-xl font-bold mb-2">Kalimati Rates Today</h3>
-              <p className="text-gray-600 text-sm mb-6">Get real-time vegetable market prices from Kalimati Bazar. Updated daily for your convenience.</p>
+              <h3 className="text-gray-900 text-xl font-semibold mb-2">Kalimati Rates Today</h3>
+              <p className="text-gray-600 text-sm mb-6 flex-grow">Get real-time vegetable market prices from Kalimati Bazar. Updated daily for your convenience.</p>
               <button 
                 onClick={() => navigate('/kalimati-tarkari-rate-today')}
-                className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full"
+                className="mt-auto bg-blue-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors duration-300 w-full"
               >
                 Check Prices
               </button>
             </div>
 
             {/* Date Converter Card */}
-            <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-md hover:shadow-lg flex flex-col items-center text-center transition-all duration-300 ease-out transform hover:-translate-y-1">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-5 shadow-sm border border-purple-200">
+                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
-              <h3 className="text-gray-800 text-xl font-bold mb-2">Date Converter</h3>
-              <p className="text-gray-600 text-sm mb-6">Convert dates between BS (Bikram Sambat) and AD (Anno Domini) calendars instantly.</p>
+              <h3 className="text-gray-900 text-xl font-semibold mb-2">Date Converter</h3>
+              <p className="text-gray-600 text-sm mb-6 flex-grow">Convert dates between BS (Bikram Sambat) and AD (Anno Domini) calendars instantly.</p>
               <button 
                 onClick={() => navigate('/nep-to-eng-date-converter')}
-                className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full"
+                className="mt-auto bg-purple-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-1 transition-colors duration-300 w-full"
               >
                 Convert Date
               </button>
@@ -662,8 +662,8 @@ const Home = () => {
       </div>
 
       {/* Hero Section */}
-      <div className="px-6 mt-12 mb-12">
-        <div className="max-w-3xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 mt-12 mb-12">
+        <div className="mx-auto">
           <div className="bg-white rounded-xl p-8 border border-green-100 shadow-sm">
             {/* Main Heading - H1 tag with proper structure */}
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight mb-3 text-center">
@@ -707,8 +707,8 @@ const Home = () => {
       </div>
 
       {/* Market Highlights Section */}
-      <div className="px-6 mt-16">
-        <div className="max-w-3xl mx-auto">
+      <div className="max-w-7xl mx-auto px-6 mt-16">
+        <div className="mx-auto">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center" id="market-highlights">
             आजको तरकारी मुल्य | Today's Market Highlights
           </h2>
@@ -832,8 +832,8 @@ const Home = () => {
       </div>
 
       {/* FAQ Section */}
-      <div id="faq" className="px-6 mt-16 mb-12">
-        <div className="max-w-3xl mx-auto">
+      <div id="faq" className="max-w-7xl mx-auto px-6 mt-16 mb-12">
+        <div className="mx-auto">
           <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">
             FAQs: Nepali Calendar | Mero Patro | Hamro Patro | Nepali Date Today
           </h2>
