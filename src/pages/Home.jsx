@@ -600,13 +600,13 @@ const Home = () => {
         <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Our Core Features</h2>
         
         {/* Restructured: Calendar card above, others below */}
-        <div className="max-w-6xl mx-auto">
+        <div className="mx-auto">
           {/* Nepali Calendar Card - Top Row (Centered) */}
-          <div className="mb-6 md:flex md:justify-center">
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 border border-green-200 shadow-lg flex flex-col items-center text-center md:w-full lg:w-3/4 transform hover:scale-[1.02] transition-transform duration-300 ease-out">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-5 shadow-md border border-green-100">
+          <div className="mb-8">
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 border border-green-200 shadow-lg flex flex-col items-center text-center transform hover:scale-[1.01] transition-transform duration-300 ease-out">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-md border border-green-100">
                 {/* Calendar Icon */}
-                <svg className="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2zM16 11h.01M12 11h.01M8 11h.01M16 15h.01M12 15h.01M8 15h.01"/>
                 </svg>
               </div>
@@ -623,7 +623,7 @@ const Home = () => {
           </div>
 
           {/* Other Services - Bottom Row (Grid) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Kalimati Rates Card */}
             <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-md hover:shadow-lg flex flex-col items-center text-center transition-all duration-300 ease-out transform hover:-translate-y-1">
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-5 shadow-sm border border-blue-200">
