@@ -95,13 +95,14 @@ const DateConverter = () => {
   const today = new Date();
   const nepaliToday = new NepaliDate(today);
 
-  const publishDate = "2024-01-01T05:45:00+05:45";
-  const modifiedDate = "2024-03-13T05:45:00+05:45";
+  // Using simplified dates for schema, can be ISO string if preferred
+  const publishDate = "2024-01-01"; 
+  const modifiedDate = new Date().toISOString().split('T')[0]; // Current date
 
   const dateConverterSchema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "Nepali Date Converter",
+    "name": "Nepali Date Converter - BS to AD Date Converter",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",
     "offers": {
@@ -111,12 +112,12 @@ const DateConverter = () => {
     },
     "datePublished": publishDate,
     "dateModified": modifiedDate,
-    "description": "Free online tool to convert dates between Nepali (BS) and English (AD) calendar systems.",
+    "description": "Use this free Date Converter English tool to convert Nepali date into English (BS to AD) or translate Nepali date into English. Accurate date convertor.",
     "url": "https://kalimatirate.nyure.com.np/nep-to-eng-date-converter",
     "inLanguage": ["ne", "en"],
     "browserRequirements": "Requires JavaScript",
     "softwareVersion": "1.0",
-    "keywords": "Nepali date converter, BS to AD converter, AD to BS converter, Bikram Sambat converter",
+    "keywords": "Convert Nepali date into English, Translate Nepali date into English, Date converter English, Date convertor, Nepali date converter, BS to AD converter, AD to BS converter, Bikram Sambat converter",
     "creator": {
       "@type": "Organization",
       "name": "Nyure",
@@ -146,7 +147,7 @@ const DateConverter = () => {
         "@type": "Person",
         "name": "User Review"
       },
-      "reviewBody": "Accurate and easy to use Nepali date converter. Perfect for converting important dates."
+      "reviewBody": "Accurate and easy date converter English. Perfect to convert Nepali date into English."
     },
     "mainEntity": {
       "@type": "WebApplication",
@@ -180,45 +181,46 @@ const DateConverter = () => {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "name": "FAQ - Convert Nepali Date into English",
     "mainEntity": [
       {
         "@type": "Question",
         "name": "How do I convert a Nepali date to English?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Simply enter your Nepali date (BS) in the converter above, select the month and day, and get instant English (AD) conversion. Our tool provides accurate and immediate results."
+          "text": "Use our Date Converter English tool: enter the BS year, month, and day. Click convert to instantly translate Nepali date into English (AD). It's a simple date convertor."
         }
       },
       {
         "@type": "Question",
-        "name": "What is Bikram Sambat (BS) calendar?",
+        "name": "What is Bikram Sambat (BS)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bikram Sambat is Nepal's official calendar system, approximately 56-57 years ahead of the English calendar. It's the traditional calendar used in Nepal for all official and cultural purposes."
+          "text": "Bikram Sambat is Nepal's official calendar. This date converter English tool helps you convert BS dates to AD dates."
         }
       },
       {
         "@type": "Question",
-        "name": "What date range does this converter support?",
+        "name": "What date range does this date convertor support?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our date converter supports dates from 1970 to 2090 BS, covering a wide range of historical and future dates for accurate conversion between BS and AD."
+          "text": "This date convertor supports BS dates from 1970 to 2090 for conversion. Ideal to convert Nepali date into English for many years."
         }
       },
       {
         "@type": "Question",
-        "name": "Can I convert English dates to Nepali dates?",
+        "name": "Can I convert English dates to Nepali using this date converter English?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, our converter supports bi-directional conversion. You can convert dates from BS to AD and vice versa using the toggle switch above the converter."
+          "text": "Yes, this date converter English tool works both ways. Use the toggle to switch to AD to BS mode to translate English dates into Nepali."
         }
       },
       {
         "@type": "Question",
-        "name": "How accurate is the date conversion?",
+        "name": "How accurate is this tool to convert Nepali date into English?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Our date converter uses official Nepali calendar data and provides 100% accurate conversions between BS and AD dates within the supported range."
+          "text": "Our tool uses official data to accurately convert Nepali date into English (BS to AD) within the supported range. It's a reliable date convertor."
         }
       }
     ]
@@ -227,13 +229,13 @@ const DateConverter = () => {
   return (
     <>
       <Helmet>
-        <title>नेपाली मिति रूपान्तरक | Nepali Date Converter [2024] - BS to AD</title>
-        <meta name="description" content="Convert Nepali dates to English instantly with our free BS to AD converter. Accurate date conversion for historical dates, birthdays & official documents." />
-        
+        <title>Convert Nepali Date into English | Date Converter English | Date Convertor</title>
+        <meta name="description" content="Free online date converter English tool to convert Nepali date into English (BS to AD) and translate Nepali date into English. Accurate & easy date convertor." />
+        <meta name="keywords" content="Convert Nepali date into English, Translate Nepali date into English, Date converter English, Date convertor, BS to AD, AD to BS, Nepali date" />
         <link rel="canonical" href="https://kalimatirate.nyure.com.np/nep-to-eng-date-converter" />
         
-        <meta property="og:title" content="नेपाली मिति रूपान्तरक | Nepali Date Converter [2024]" />
-        <meta property="og:description" content="Convert Nepali dates to English instantly. Free online BS to AD date converter with accurate results." />
+        <meta property="og:title" content="Convert Nepali Date into English | Free Date Convertor" />
+        <meta property="og:description" content="Easily translate Nepali date into English (BS to AD) with our free date converter English tool. Simple and accurate date convertor." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://kalimatirate.nyure.com.np/nep-to-eng-date-converter" />
         <meta property="og:image" content="https://kalimatirate.nyure.com.np/nepali-date-converter.png" />
@@ -256,14 +258,13 @@ const DateConverter = () => {
         <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-gray-900 mb-3">
-              नेपाली मिति रूपान्तरक | Nepali Date Converter
+              Convert Nepali Date into English | Date Converter English
             </h1>
             <p className="text-xl text-gray-600 mb-4">
-              Convert Nepali Dates (BS) to English (AD) - Free Online Tool
+              Free Online Date Convertor (BS ⇌ AD)
             </p>
             <p className="text-gray-600 max-w-2xl mx-auto mb-4">
-              Instant and accurate date conversion between Bikram Sambat and English calendar. 
-              Perfect for birthdays, historical dates, and official documents.
+              Instantly <strong>convert Nepali date into English</strong> (Bikram Sambat to AD) or <strong>translate Nepali date into English</strong> using our easy <strong>date converter English</strong> tool. Reliable <strong>date convertor</strong> for all your needs.
             </p>
             <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
               <time dateTime={publishDate} className="flex items-center">
@@ -297,6 +298,7 @@ const DateConverter = () => {
                     ? 'bg-green-600 text-white shadow-md transform -translate-y-0.5'
                     : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
                 }`}
+                aria-label="Convert BS to AD / Convert Nepali date into English"
               >
                 BS → AD
               </button>
@@ -307,6 +309,7 @@ const DateConverter = () => {
                     ? 'bg-green-600 text-white shadow-md transform -translate-y-0.5'
                     : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
                 }`}
+                aria-label="Convert AD to BS / Translate English date into Nepali"
               >
                 AD → BS
               </button>
@@ -382,10 +385,7 @@ const DateConverter = () => {
                   onClick={handleConvert}
                   className="w-full bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
                 >
-                  <svg className="w-5 h-5" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                    <path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
-                  </svg>
-                  Convert Date
+                  Convert / Translate Date
                 </button>
               </div>
             </div>
@@ -414,7 +414,7 @@ const DateConverter = () => {
           <div className="bg-white rounded-xl shadow-sm p-6 md:p-8 mb-8">
             <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
               <span className="text-2xl">📅</span>
-              Popular Festival Dates
+              Convert Popular Festival Dates (BS to AD)
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
@@ -442,14 +442,12 @@ const DateConverter = () => {
                 <button 
                   key={index} 
                   onClick={() => {
-                    const [year, month, day] = date.bs.split('-');
-                    setNepYear(year);
-                    setNepMonth(month);
-                    setNepDay(day);
+                    const [bsYear, bsMonth, bsDay] = date.bs.split('-');
+                    setNepYear(bsYear); setNepMonth(bsMonth); setNepDay(bsDay);
                     setConversionType('bs-to-ad');
-                    handleConvert();
                   }}
-                  className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-left"
+                  className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors text-left focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1"
+                  aria-label={`Load ${date.festival} to convert Nepali date into English`}
                 >
                   <h4 className="font-medium text-gray-900 mb-2">{date.festival}</h4>
                   <p className="text-sm text-gray-600">BS: {date.bs}</p>
@@ -461,15 +459,15 @@ const DateConverter = () => {
 
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Quick Date Conversions
+              Quick Date Convertor Actions
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <button className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all text-left">
-                <h3 className="font-medium text-gray-900">Convert Today's Date</h3>
+                <h3 className="font-medium text-gray-900">Convert Today's Nepali Date into English</h3>
                 <p className="text-sm text-gray-600">Instantly translate today's date between BS and AD</p>
               </button>
               <button className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all text-left">
-                <h3 className="font-medium text-gray-900">Historical Date Converter</h3>
+                <h3 className="font-medium text-gray-900">Historical Date Converter English</h3>
                 <p className="text-sm text-gray-600">Convert dates from 1970 to 2090 BS</p>
               </button>
             </div>
@@ -477,24 +475,24 @@ const DateConverter = () => {
 
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Why Use Our Nepali Date Converter?
+              Why Use Our Date Converter English Tool?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
                   icon: "🚀",
                   title: "Instant Conversion",
-                  description: "Convert dates between BS and AD instantly with accurate results"
+                  description: "Quickly convert Nepali date into English (BS/AD) using our date convertor."
                 },
                 {
                   icon: "📅",
                   title: "Wide Date Range",
-                  description: "Supports dates from 1970 to 2090 with more years coming soon"
+                  description: "Translate Nepali date into English for years 1970-2090 BS."
                 },
                 {
                   icon: "📱",
                   title: "Mobile Friendly",
-                  description: "Works perfectly on all devices with a clean, ad-free experience"
+                  description: "Easy date converter English experience on all devices."
                 }
               ].map((feature, index) => (
                 <div key={index} className="p-6 bg-white rounded-lg shadow-sm">
@@ -508,7 +506,7 @@ const DateConverter = () => {
 
           <section className="mb-12 bg-white rounded-xl p-6 shadow-sm">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Popular Date Conversions
+              Popular Date Conversions (BS/AD)
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
@@ -544,29 +542,29 @@ const DateConverter = () => {
 
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              Frequently Asked Questions About Date Conversion
+              FAQ: Convert & Translate Nepali Date into English
             </h2>
             <div className="space-y-6">
               {[
                 {
                   question: "How do I convert a Nepali date to English?",
-                  answer: "Simply enter your Nepali date (BS) in the converter above, select the month and day, and get the instant English (AD) conversion. Our tool makes Nepali to English date conversion quick and accurate."
+                  answer: "Use our Date Converter English tool: enter the BS year, month, and day. Click convert to instantly translate Nepali date into English (AD). It's a simple date convertor."
                 },
                 {
                   question: "What is Bikram Sambat (BS)?",
-                  answer: "Bikram Sambat is Nepal's official calendar system, approximately 56-57 years ahead of the English calendar. Our converter helps translate dates between BS and AD formats accurately."
+                  answer: "Bikram Sambat is Nepal's official calendar. This date converter English tool helps you convert BS dates to AD dates."
                 },
                 {
-                  question: "How accurate is the date conversion?",
-                  answer: "The date conversion is based on the official Nepali calendar and is highly accurate for dates between 1970 and 2090."
+                  question: "How accurate is this tool to convert Nepali date into English?",
+                  answer: "Our tool uses official data to accurately convert Nepali date into English (BS to AD) within the supported range. It's a reliable date convertor."
                 },
                 {
-                  question: "Can I use this tool for historical dates?",
-                  answer: "Yes, you can use this tool to convert historical dates between BS and AD."
+                  question: "Can I convert English dates to Nepali using this date converter English?",
+                  answer: "Yes, this date converter English tool works both ways. Use the toggle to switch to AD to BS mode to translate English dates into Nepali."
                 },
                 {
-                  question: "Is this tool free to use?",
-                  answer: "Yes, this date converter is completely free to use and does not contain any ads."
+                  question: "Is this date convertor free to use?",
+                  answer: "Yes, this date convertor is completely free. Convert Nepali date into English anytime."
                 }
               ].map((faq, index) => (
                 <div key={index} className="p-4 bg-white rounded-lg shadow-sm">
@@ -579,16 +577,16 @@ const DateConverter = () => {
 
           <section className="text-center mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Never Miss an Important Date Again!
+              Convert Nepali Date into English Easily!
             </h2>
             <p className="text-gray-600 mb-6">
-              Get accurate date conversions instantly. Perfect for birthdays, official documents, and historical dates.
+              Use our free date converter English tool to translate Nepali date into English instantly. Accurate date convertor for all needs.
             </p>
             <button
               onClick={() => window.scrollTo(0, 0)}
               className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
             >
-              Convert Dates Now
+              Use Date Convertor Now
             </button>
           </section>
         </main>

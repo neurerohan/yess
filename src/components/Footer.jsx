@@ -56,7 +56,7 @@ const Footer = () => {
               <h3 className="text-gray-800 font-bold mb-4">Quick Links</h3>
               <ul className="space-y-3">
                 <li>
-                  <button onClick={() => navigate('/kalimatirate-tarkari-rate-today')} className="text-gray-600 hover:text-green-600 text-sm transition-colors">
+                  <button onClick={() => navigate('/kalimati-tarkari-rate-today')} className="text-gray-600 hover:text-green-600 text-sm transition-colors">
                     Today's Prices
                   </button>
                 </li>
