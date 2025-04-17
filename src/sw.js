@@ -12,8 +12,11 @@ const IDB_VERSION = 1;
 const IDB_STORE_NAME = 'notifiedEvents';
 // Constants for notification logic
 const DAYS_TO_CHECK_AHEAD = 3; 
-const NOTIFICATION_HOUR_2_DAYS_BEFORE = 20; // 8 PM
-const NOTIFICATION_HOUR_1_DAY_BEFORE = 10; // 10 AM
+const NOTIFICATION_HOUR_2_DAYS_BEFORE = 20; // 8 PM (Local time)
+const NOTIFICATION_HOUR_1_DAY_BEFORE = 10; // 10 AM (Local time)
+
+// Base URL for precached data files (relative to SW scope)
+const DATA_BASE_URL = 'src/data/'; 
 
 // --- IndexedDB Helper Functions ---
 /** Opens IndexedDB */
@@ -101,7 +104,8 @@ const isSaturdaySW = (day) => day?.week_day === 6; // Assuming 1=Mon, ..., 6=Sat
  * Includes a fallback mechanism for the previous year near year change.
  */
 const getCalendarDataFromCache = async (bsYear) => {
-  const url = `/src/data/${bsYear}-calendar.json`; // Path relative to the project root
+  // Construct URL relative to the service worker's scope (root)
+  const url = `${DATA_BASE_URL}${bsYear}-calendar.json`; 
   console.log(`SW: Trying to fetch precached calendar data from: ${url}`);
   try {
     // Fetch from the cache (or network if not precached, though it should be)
@@ -116,7 +120,7 @@ const getCalendarDataFromCache = async (bsYear) => {
     console.warn(`SW: Could not load primary calendar data for ${bsYear} from cache:`, error);
     // Fallback: Try fetching the previous year's data if primary fails (useful near year change)
     const prevYear = bsYear - 1;
-    const fallbackUrl = `/src/data/${prevYear}-calendar.json`;
+    const fallbackUrl = `${DATA_BASE_URL}${prevYear}-calendar.json`;
     console.log(`SW: Attempting fallback fetch for previous year: ${fallbackUrl}`);
     try {
         const fallbackResponse = await caches.match(fallbackUrl);
@@ -150,7 +154,8 @@ const parseAdDate = (adDateStr) => {
 
 const checkAndNotifyUpcomingHolidays = async () => {
   console.log('SW: Running checkAndNotifyUpcomingHolidays...');
-  const permission = await self.navigator.permissions.query({ name: 'notifications' });
+  // Use self.registration.scope to ensure correct permission context
+  const permission = await self.registration.pushManager.permissionState({ userVisibleOnly: true });
   if (permission.state !== 'granted') {
     console.log('SW: Notification permission not granted. Skipping check.');
     return;
@@ -168,9 +173,10 @@ const checkAndNotifyUpcomingHolidays = async () => {
     return;
   }
 
-  for (let i = 0; i < DAYS_TO_CHECK_AHEAD; i++) {
+  // --- Process potential holidays for the next few days ---
+  for (let dayOffset = 0; dayOffset < DAYS_TO_CHECK_AHEAD; dayOffset++) {
     const checkDate = new Date();
-    checkDate.setDate(now.getDate() + i);
+    checkDate.setDate(now.getDate() + dayOffset);
     checkDate.setHours(0, 0, 0, 0); // Normalize checkDate to start of day
     const checkDateStr = checkDate.toISOString().slice(0, 10);
 
@@ -182,87 +188,107 @@ const checkAndNotifyUpcomingHolidays = async () => {
         const monthDays = yearData[monthKey]; // Should be an array of day objects
         if(Array.isArray(monthDays)) {
             // Find the day where the AD date matches checkDateStr
-            dayData = monthDays.find(d => d.ad === checkDateStr);
-            if (dayData) {
-                break; // Found the day, exit month loop
+            const foundDay = monthDays.find(d => d.ad === checkDateStr);
+            if (foundDay) {
+                // Validate found day structure before assigning
+                if (typeof foundDay === 'object' && foundDay !== null && foundDay.ad) {
+                     dayData = foundDay;
+                     break; // Found the day, exit month loop
+                } else {
+                    console.warn(`SW: Found day data for ${checkDateStr} but structure is invalid:`, foundDay);
+                }
             }
+        } else {
+             console.warn(`SW: Data for month key ${monthKey} is not an array.`);
         }
       }
     } catch (parseError) {
-      console.error('SW: Error iterating through calendar data structure:', parseError);
-      continue; // Skip to next day if current year data parsing fails
+      console.error(`SW: Error iterating through calendar data structure for ${estimatedBsYear}:`, parseError);
+      // If parsing fails for the whole year, we can't continue checking days
+      return; // Exit the function if data is unusable
     }
     // --- End day data finding ---
 
-    if (dayData) {
-      const holidayCheck = isPublicHolidaySW(dayData);
+    // Skip if dayData wasn't found or was invalid
+    if (!dayData) {
+      console.log(`SW: No valid day data found for ${checkDateStr}.`);
+      continue; // Go to the next dayOffset
+    }
 
-      if (holidayCheck.isHoliday) {
-        const eventName = holidayCheck.eventName || 'Holiday';
-        const eventId = `${checkDateStr}_${eventName}`;
+    const holidayCheck = isPublicHolidaySW(dayData);
+    const saturdayCheck = isSaturdaySW(dayData);
 
-        const notified = await hasBeenNotifiedDB(eventId);
-        if (notified) {
-          // console.log(`SW: Already notified for ${eventId}. Skipping.`);
-          continue;
-        }
+    // Proceed only if it's a holiday or Saturday
+    if (holidayCheck.isHoliday || saturdayCheck) {
+      const eventName = holidayCheck.eventName || (saturdayCheck ? 'Sanibar' : 'Holiday');
+      const eventId = `${checkDateStr}_${eventName}`;
 
-        // Calculate target times relative to the *holiday date* (checkDate)
-        // Use normalized checkDate (which is already start of day)
-        const holidayDate = checkDate; 
-        const twoDaysBeforeTarget = new Date(holidayDate);
-        twoDaysBeforeTarget.setDate(holidayDate.getDate() - 2);
-        twoDaysBeforeTarget.setHours(NOTIFICATION_HOUR_2_DAYS_BEFORE, 0, 0, 0);
-
-        const oneDayBeforeTarget = new Date(holidayDate);
-        oneDayBeforeTarget.setDate(holidayDate.getDate() - 1);
-        oneDayBeforeTarget.setHours(NOTIFICATION_HOUR_1_DAY_BEFORE, 0, 0, 0);
-
-        let notificationTitle = '';
-        let notificationBody = '';
-        let shouldNotifyNow = false;
-
-        // Check conditions based on *CURRENT TIME* (now)
-        // Is it currently the time slot for the 2-days-before notification?
-        if (now >= twoDaysBeforeTarget && now < oneDayBeforeTarget && i === 2) { 
-            // Only trigger if today is exactly 2 days before
-            console.log(`SW: Condition met for '2 days before' notification for ${eventName}`);
-            notificationTitle = 'Upcoming Leave!';
-            notificationBody = `Parsi ta '${eventName}' ko xutti, party hanna jaam baby!!`;
-            shouldNotifyNow = true;
-        }
-        // Is it currently the time slot for the 1-day-before notification?
-        else if (now >= oneDayBeforeTarget && now < holidayDate && i === 1) { 
-            // Only trigger if today is exactly 1 day before 
-            // Ensure we haven't passed midnight of the holiday itself
-            console.log(`SW: Condition met for '1 day before' notification for ${eventName}. Now: ${now.toISOString()}, Target Start: ${oneDayBeforeTarget.toISOString()}, Target End: ${holidayDate.toISOString()}`);
-            notificationTitle = 'Leave Tomorrow!';
-            notificationBody = `Voli '${eventName}' ko xutti xa, moj gara`;
-            shouldNotifyNow = true;
-        }
-        // Is it the fallback condition (holiday today, missed 10 AM deadline)?
-        // Check if today IS the holiday (i === 0) AND the 10 AM deadline from yesterday has passed
-        else if (i === 0 && now >= oneDayBeforeTarget) { 
-            console.log(`SW: Condition met for 'Fallback (Today)' notification for ${eventName}. Now: ${now.toISOString()}, 10AM Deadline Passed: ${oneDayBeforeTarget.toISOString()}`);
-            notificationTitle = 'Happy Leave Day!';
-            notificationBody = `Babyy '${eventName}' ko xutti, have fun!!`;
-            shouldNotifyNow = true;
-        }
-
-        if (shouldNotifyNow) {
-          console.log(`SW: Showing notification for ${eventId}`);
-          try {
-            await self.registration.showNotification(notificationTitle, {
-              body: notificationBody,
-              icon: '/icons/icon-192x192.png', // Ensure icon exists
-              tag: eventId, // Use unique tag to prevent duplicates if check runs quickly
-            });
-            await markAsNotifiedDB(eventId); // Mark as notified only after successful show
-          } catch (err) {
-             console.error(`SW: Error showing notification for ${eventId}:`, err);
-          }
-        }
+      const notified = await hasBeenNotifiedDB(eventId);
+      if (notified) {
+        // console.log(`SW: Already notified for ${eventId}. Skipping.`);
+        continue; // Skip if already notified
       }
+
+      // Calculate target times relative to the *holiday date* (checkDate)
+      const holidayDate = checkDate; // checkDate is already normalized start of day
+      const twoDaysBeforeTarget = new Date(holidayDate);
+      twoDaysBeforeTarget.setDate(holidayDate.getDate() - 2);
+      twoDaysBeforeTarget.setHours(NOTIFICATION_HOUR_2_DAYS_BEFORE, 0, 0, 0);
+
+      const oneDayBeforeTarget = new Date(holidayDate);
+      oneDayBeforeTarget.setDate(holidayDate.getDate() - 1);
+      oneDayBeforeTarget.setHours(NOTIFICATION_HOUR_1_DAY_BEFORE, 0, 0, 0);
+
+      let notificationTitle = '';
+      let notificationBody = '';
+      let shouldNotifyNow = false;
+
+      // --- Determine which notification (if any) should be sent NOW --- 
+      // Note: This logic triggers based on the *current time* during SW activation,
+      // not precisely scheduled events.
+
+      // Condition 1: Is it currently the time slot for the 2-days-before notification?
+      // Check if *now* is between 8PM two days before and 10AM one day before, AND today is actually that day.
+      if (dayOffset === 2 && now >= twoDaysBeforeTarget && now < oneDayBeforeTarget) {
+          console.log(`SW: Condition met for '2 days before' notification for ${eventName}`);
+          notificationTitle = 'Upcoming Leave!';
+          notificationBody = `Parsi ta '${eventName}' ko xutti, party hanna jaam baby!!`;
+          shouldNotifyNow = true;
+      }
+      // Condition 2: Is it currently the time slot for the 1-day-before notification?
+      // Check if *now* is between 10AM one day before and midnight of the holiday, AND today is actually that day.
+      else if (dayOffset === 1 && now >= oneDayBeforeTarget && now < holidayDate) { 
+          console.log(`SW: Condition met for '1 day before' notification for ${eventName}. Now: ${now.toISOString()}, Target Start: ${oneDayBeforeTarget.toISOString()}, Target End: ${holidayDate.toISOString()}`);
+          notificationTitle = 'Leave Tomorrow!';
+          notificationBody = `Voli '${eventName}' ko xutti xa, moj gara`;
+          shouldNotifyNow = true;
+      }
+      // Condition 3: Is it the fallback condition (holiday today, missed 10 AM deadline)?
+      // Check if today IS the holiday (dayOffset === 0) AND *now* is after the 10 AM deadline from yesterday.
+      else if (dayOffset === 0 && now >= oneDayBeforeTarget) { 
+          console.log(`SW: Condition met for 'Fallback (Today)' notification for ${eventName}. Now: ${now.toISOString()}, 10AM Deadline Passed: ${oneDayBeforeTarget.toISOString()}`);
+               notificationTitle = 'Happy Leave Day!';
+               notificationBody = `Babyy '${eventName}' ko xutti, have fun!!`;
+               shouldNotifyNow = true;
+      }
+
+      // If any condition was met, show the notification and mark it
+      if (shouldNotifyNow) {
+        console.log(`SW: Showing notification for ${eventId}`);
+        try {
+          await self.registration.showNotification(notificationTitle, {
+            body: notificationBody,
+            icon: '/icons/icon-192x192.png', // Ensure icon exists and is accessible
+            tag: eventId, // Use unique tag to prevent duplicates if check runs quickly
+            // Optional: Add actions, vibration, etc.
+            // vibrate: [200, 100, 200], 
+          });
+          // Mark as notified only after successfully showing the notification
+          await markAsNotifiedDB(eventId);
+        } catch (err) {
+           console.error(`SW: Error showing notification for ${eventId}:`, err);
+        }
+      } 
     }
   }
   console.log('SW: Finished checkAndNotifyUpcomingHolidays.');
@@ -321,25 +347,17 @@ registerRoute(
 // Tries network first, uses cache if offline.
 // NOTE: The /api/ route rule might be removed if no other APIs are used.
 // Keep it if other parts of the app fetch from /api/ endpoints.
+
+// Example kept for now, remove if not needed:
 registerRoute(
-  ({ url }) => url.pathname.startsWith('/api/'), 
+  ({ url }) => url.pathname.startsWith('/api/'), // Match API calls like /api/vegetables?...
   new NetworkFirst({
     cacheName: 'api-cache',
-    networkTimeoutSeconds: 10, // How long to wait for network before falling back to cache
+    networkTimeoutSeconds: 10, 
     plugins: [
-      // Ensure only valid responses are cached
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      // Set expiration for cached API responses (e.g., 1 day)
-      new ExpirationPlugin({
-        maxEntries: 50,
-        maxAgeSeconds: 1 * 24 * 60 * 60, // 1 Day
-      }),
-      // Use the Background Sync plugin to retry failed requests
-      new BackgroundSyncPlugin('api-retry-queue', { // Define plugin inline
-           maxRetentionTime: 24 * 60 
-      }),
+      new CacheableResponsePlugin({ statuses: [0, 200] }),
+      new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 60 * 60 }), // Cache API for 1 hour
+      new BackgroundSyncPlugin('api-retry-queue', { maxRetentionTime: 24 * 60 }),
     ],
   })
 );
