@@ -421,22 +421,22 @@ const DateConverter = () => {
                 {
                   festival: "Vijaya Dashami 2082",
                   bs: "2082-07-01",
-                  ad: "October 15, 2024"
+                  ad: "October 15, 2025"
                 },
                 {
                   festival: "Tihar 2082",
                   bs: "2082-07-15",
-                  ad: "October 29, 2024"
+                  ad: "October 29, 2025"
                 },
                 {
                   festival: "Maghe Sankranti 2082",
                   bs: "2082-09-01",
-                  ad: "January 14, 2025"
+                  ad: "January 14, 2026"
                 },
                 {
                   festival: "Holi 2082",
                   bs: "2082-11-01",
-                  ad: "March 17, 2025"
+                  ad: "March 17, 2026"
                 }
               ].map((date, index) => (
                 <button 
@@ -513,22 +513,22 @@ const DateConverter = () => {
                 {
                   festival: "Vijaya Dashami 2082",
                   bs: "2082-07-01",
-                  ad: "October 15, 2024"
+                  ad: "October 15, 2025"
                 },
                 {
                   festival: "Tihar 2082",
                   bs: "2082-07-15",
-                  ad: "October 29, 2024"
+                  ad: "October 29, 2025"
                 },
                 {
                   festival: "Maghe Sankranti 2082",
                   bs: "2082-09-01",
-                  ad: "January 14, 2025"
+                  ad: "January 14, 2026"
                 },
                 {
                   festival: "Holi 2082",
                   bs: "2082-11-01",
-                  ad: "March 17, 2025"
+                  ad: "March 17, 2026"
                 }
               ].map((date, index) => (
                 <div key={index} className="p-4 bg-white rounded-lg shadow-sm">
