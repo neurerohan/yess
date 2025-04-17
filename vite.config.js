@@ -43,6 +43,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff,woff2}'],
+        cleanupOutdatedCaches: true,
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.destination === 'font' || request.destination === 'image',
@@ -54,6 +55,24 @@ export default defineConfig({
                 maxAgeSeconds: 30 * 24 * 60 * 60
               },
               cacheableResponse: { statuses: [0, 200] }
+            }
+          },
+          {
+            urlPattern: /^\/api\/.*/,
+            handler: 'NetworkFirst',
+            options: {
+              cacheName: 'api-cache',
+              networkTimeoutSeconds: 10,
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 1 * 24 * 60 * 60
+              },
+              cacheableResponse: { statuses: [0, 200] },
+              plugins: [
+                new workbox.backgroundSync.BackgroundSyncPlugin('api-retry-queue', {
+                  maxRetentionTime: 24 * 60
+                })
+              ]
             }
           }
         ]
