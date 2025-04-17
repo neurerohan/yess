@@ -838,14 +838,14 @@ const KalimatiPrices = () => {
                   </div>
                 </div>
 
-                {/* Market Highlights Section */}
+                {/* Market Highlights Section - Reverted */}
                 <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-                  आजको तरकारी मुल्य | Market Highlights & Nepali Calendar Info
+                  आजको तरकारी मुल्य | Today's Market Highlights
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                   <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
                     <h4 className="text-lg font-bold text-gray-800 mb-4">
-                      Popular Items & Today's Date Info
+                      Most Searched Items at Kalimati Tarkari Bazar
                     </h4>
                     <div className="space-y-3">
                       {/* Example items - Replace with dynamic data if available */}
@@ -880,11 +880,10 @@ const KalimatiPrices = () => {
                         </div>
                       </div>
                     </div>
-                    <p className="text-sm text-gray-500 mt-3">Check prices alongside the <strong className="text-gray-700">Nepali date today</strong> using our tools.</p>
                   </div>
                   <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
                     <h4 className="text-lg font-bold text-gray-800 mb-4">
-                      Best Value & Calendar Planning
+                      Today's Best Value at Kalimati
                     </h4>
                     <div className="space-y-3">
                       {/* Example items - Replace with dynamic data if available */}
@@ -919,14 +918,13 @@ const KalimatiPrices = () => {
                         </div>
                       </div>
                     </div>
-                    <p className="text-sm text-gray-500 mt-3">Plan your shopping using the <strong className="text-gray-700">Nepali Calendar</strong> (like <strong className="text-gray-700">Mero Patro</strong>) to find the best deals corresponding to the <strong className="text-gray-700">Nepal calendar date today</strong>.</p>
                   </div>
                 </div>
 
-                {/* Market Status and Tips */}
+                {/* Market Status and Tips - Reverted */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div id="market-status-kalimati" className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
-                    <h4 className="text-lg font-bold text-gray-800 mb-4">Market Status & <span className="text-green-600">Hamro Patro</span> Info</h4>
+                    <h4 className="text-lg font-bold text-gray-800 mb-4">Kalimati Market Status</h4>
                     <div className="space-y-3">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -936,22 +934,21 @@ const KalimatiPrices = () => {
                       <p className="text-gray-600 text-sm">Best visiting hours: 6:00 AM - 9:00 AM</p>
                       <p className="text-gray-600 text-sm">Current crowd level: Moderate</p>
                     </div>
-                    <p className="text-sm text-gray-500 mt-3">Check our <strong className="text-gray-700">Hamro Patro</strong> style <strong className="text-gray-700">Nepali Calendar</strong> for events that might affect market crowds on the <strong className="text-gray-700">Nepali date today</strong>.</p>
                   </div>
                   <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
-                    <h4 className="text-lg font-bold text-gray-800 mb-4">Shopping Tips & Using the Calendar</h4>
+                    <h4 className="text-lg font-bold text-gray-800 mb-4">Shopping Tips</h4>
                     <div className="space-y-2">
                       <div className="flex items-start gap-2">
                         <span className="text-green-600 mt-1">●</span>
-                        <p className="text-gray-600 text-sm">Check Kalimati rate & the <strong className="text-gray-700">Nepali date today</strong> before visiting.</p>
+                        <p className="text-gray-600 text-sm">Check Kalimati tarkari rate before visiting</p>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-green-600 mt-1">●</span>
-                        <p className="text-gray-600 text-sm">Best deals early; check the <strong className="text-gray-700">Nepal calendar date today</strong> for potential holidays affecting hours.</p>
+                        <p className="text-gray-600 text-sm">Best deals during early morning hours</p>
                       </div>
                       <div className="flex items-start gap-2">
                         <span className="text-green-600 mt-1">●</span>
-                        <p className="text-gray-600 text-sm">Use our <strong className="text-gray-700">Mero Patro</strong> / <strong className="text-gray-700">Hamro Patro</strong> calendar features to plan shopping around events.</p>
+                        <p className="text-gray-600 text-sm">Compare prices from multiple vendors</p>
                       </div>
                     </div>
                   </div>

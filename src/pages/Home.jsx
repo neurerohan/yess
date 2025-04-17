@@ -709,7 +709,7 @@ const Home = () => {
       {/* Market Highlights Section */}
       <div className="px-6 mt-16">
         <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center" id="market-highlights">
             आजको तरकारी मुल्य | Today's Market Highlights
           </h2>
           
@@ -751,6 +751,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
+              <p className="text-sm text-gray-500 mt-3">Find these prices alongside the <strong className="text-gray-700">Nepali date today</strong> and plan with our <strong className="text-gray-700">Nepali calendar</strong>.</p>
             </div>
 
             <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
@@ -789,13 +790,14 @@ const Home = () => {
                   </div>
                 </div>
               </div>
+              <p className="text-sm text-gray-500 mt-3">Use our <strong className="text-gray-700">Mero Patro / Hamro Patro</strong> style calendar to check the <strong className="text-gray-700">Nepal calendar date today</strong> for best shopping days.</p>
             </div>
           </div>
 
           {/* Market Status and Tips */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div id="market-status" className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
-              <h3 className="text-lg font-bold text-gray-800 mb-4">Kalimati Market Status</h3>
+              <h3 className="text-lg font-bold text-gray-800 mb-4">Market Status & Calendar Info</h3>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -805,22 +807,23 @@ const Home = () => {
                 <p className="text-gray-600 text-sm">Best visiting hours: 6:00 AM - 9:00 AM</p>
                 <p className="text-gray-600 text-sm">Current crowd level: Moderate</p>
               </div>
+              <p className="text-sm text-gray-500 mt-3">View the <strong className="text-gray-700">Nepali calendar nepali calendar</strong> to see if events on the <strong className="text-gray-700">Nepali date today</strong> might affect market activity.</p>
             </div>
 
             <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
-              <h3 className="text-lg font-bold text-gray-800 mb-4">Shopping Tips</h3>
+              <h3 className="text-lg font-bold text-gray-800 mb-4">Shopping Tips with Mero Patro</h3>
               <div className="space-y-2">
                 <div className="flex items-start gap-2">
                   <span className="text-green-600 mt-1">●</span>
-                  <p className="text-gray-600 text-sm">Check Kalimati tarkari rate before visiting</p>
+                  <p className="text-gray-600 text-sm">Check rates and use our <strong className="text-gray-700">Mero Patro</strong> style calendar for the <strong className="text-gray-700">Nepal calendar date today</strong> before visiting.</p>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-green-600 mt-1">●</span>
-                  <p className="text-gray-600 text-sm">Best deals during early morning hours</p>
+                  <p className="text-gray-600 text-sm">Best deals early; consult the <strong className="text-gray-700">Nepali calendar</strong> for holidays.</p>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-green-600 mt-1">●</span>
-                  <p className="text-gray-600 text-sm">Compare prices from multiple vendors</p>
+                  <p className="text-gray-600 text-sm">Compare prices and check <strong className="text-gray-700">Hamro Patro</strong> style event listings.</p>
                 </div>
               </div>
             </div>
