@@ -419,23 +419,23 @@ const DateConverter = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 {
-                  festival: "Vijaya Dashami 2081",
-                  bs: "2081-07-01",
+                  festival: "Vijaya Dashami 2082",
+                  bs: "2082-07-01",
                   ad: "October 15, 2024"
                 },
                 {
-                  festival: "Tihar 2081",
-                  bs: "2081-07-15",
+                  festival: "Tihar 2082",
+                  bs: "2082-07-15",
                   ad: "October 29, 2024"
                 },
                 {
-                  festival: "Maghe Sankranti 2081",
-                  bs: "2081-09-01",
+                  festival: "Maghe Sankranti 2082",
+                  bs: "2082-09-01",
                   ad: "January 14, 2025"
                 },
                 {
-                  festival: "Holi 2081",
-                  bs: "2081-11-01",
+                  festival: "Holi 2082",
+                  bs: "2082-11-01",
                   ad: "March 17, 2025"
                 }
               ].map((date, index) => (
@@ -511,23 +511,23 @@ const DateConverter = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {[
                 {
-                  festival: "Vijaya Dashami 2081",
-                  bs: "2081-07-01",
+                  festival: "Vijaya Dashami 2082",
+                  bs: "2082-07-01",
                   ad: "October 15, 2024"
                 },
                 {
-                  festival: "Tihar 2081",
-                  bs: "2081-07-15",
+                  festival: "Tihar 2082",
+                  bs: "2082-07-15",
                   ad: "October 29, 2024"
                 },
                 {
-                  festival: "Maghe Sankranti 2081",
-                  bs: "2081-09-01",
+                  festival: "Maghe Sankranti 2082",
+                  bs: "2082-09-01",
                   ad: "January 14, 2025"
                 },
                 {
-                  festival: "Holi 2081",
-                  bs: "2081-11-01",
+                  festival: "Holi 2082",
+                  bs: "2082-11-01",
                   ad: "March 17, 2025"
                 }
               ].map((date, index) => (
