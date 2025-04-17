@@ -104,8 +104,8 @@ const Home = () => {
 
   // Use the custom hook to set meta tags
   useMetaTags(
-    'आजको कलिमाटी तरकारी रेट | Kalimati Tarkari Rate Today [2025] - Daily Updates',
-    'आजको कलिमाटी तरकारी मूल्य (Kalimati Tarkari Rate Today) हेर्नुहोस्। दैनिक अपडेट गरिएको तरकारी बजारको मूल्य Kathmandu, Nepal बाट प्राप्त गर्नुहोस्। Also find Nepali Calendar (Hamro Patro/Mero Patro style) and Nepali Date Today.'
+    'Nepali Calendar 2081 | Mero Patro & Hamro Patro | Nepali Date Today | Kalimati Rate',
+    'View the official Nepali Calendar 2081 (विक्रम सम्वत्). Find the Nepali date today, upcoming events, and holidays using our Mero Patro / Hamro Patro style interface. Check Nepal calendar date today and Kalimati rates.'
   );
 
   useEffect(() => {
@@ -141,82 +141,82 @@ const Home = () => {
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What is Kalimati Tarkari Rate Today?",
+            "name": "What is the Nepali Calendar?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Kalimati tarkari rate today refers to the latest vegetable prices at Kalimati Tarkari Bazar, Nepal's biggest wholesale vegetable market. Prices are updated daily based on market trends. Check here for today's rates and also find the Nepali Date Today."
+              "text": "The Nepali Calendar, or Bikram Sambat, is the official calendar of Nepal. Use our site to find the current 'nepali date today' and explore the full 'nepali calendar nepali calendar' for any month."
             }
           },
           {
             "@type": "Question",
-            "name": "Where can I check Kalimati tarkari rate today?",
+            "name": "How can I find the Nepali date today?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "You can check Kalimati tarkari rate today on our website, where we provide daily updated vegetable prices from Kalimati Tarkari Bazar."
+              "text": "Our homepage prominently displays the 'nepali date today'. You can also browse the full 'nepali calendar' to see the date for any day of the year."
             }
           },
           {
             "@type": "Question",
-            "name": "What is the price of आलु, प्याज, टमाटर (potato, onion, tomato) today?",
+            "name": "Is this like Hamro Patro or Mero Patro?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The latest आलु (potato), प्याज (onion), and टमाटर (tomato) prices in Kalimati Tarkari Bazar change daily. Visit our आजको तरकारी मूल्य (Today's Vegetable Price) section for real-time updates."
+              "text": "Yes, our 'nepali calendar' provides features similar to 'Hamro Patro' and 'Mero Patro', offering a detailed view of the 'nepal calendar date today', events, and tithis."
             }
           },
           {
             "@type": "Question",
-            "name": "How is Kalimati Tarkari Rate updated?",
+            "name": "How to use the Nepali Calendar nepali calendar feature?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The Kalimati Tarkari Rate is updated every morning based on the official Kalimati Bazar price list. Prices depend on demand, supply, and seasonal factors."
+              "text": "Navigate to our 'Nepali Calendar' section. You can select the year and month to view the specific 'nepali calendar nepali calendar' page, just like using 'Mero Patro'."
             }
           },
           {
             "@type": "Question",
-            "name": "Can I download the full Kalimati Tarkari Rate list?",
+            "name": "Where can I check the Nepal calendar date today?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes! We provide the daily Kalimati Tarkari Rate list. You can also check the Nepali Calendar (similar to Mero Patro/Hamro Patro) and the Nepal calendar date today on our site."
+              "text": "The 'nepal calendar date today' is always visible on our homepage and within the main 'Nepali Calendar' section. We ensure it matches the official Bikram Sambat date."
             }
           },
           {
             "@type": "Question",
-            "name": "What are the cheapest vegetables in Kalimati Tarkari Bazar today?",
+            "name": "What events are shown in the Nepali Calendar?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The cheapest vegetables in Kalimati Bazar change daily. Common low-price vegetables include पालुङ्गो साग (Spinach), लौका (Bottle Gourd), and टमाटर (Tomato)."
+              "text": "Our 'nepali calendar', similar to 'Hamro Patro', includes public holidays, festivals, tithis, and other important events relevant to the 'nepali date today' and the entire year."
             }
           },
           {
             "@type": "Question",
-            "name": "Is Kalimati Tarkari Rate different from retail prices?",
+            "name": "How accurate is the Mero Patro style calendar here?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes! Kalimati Tarkari Rate is the wholesale price at Kalimati Bazar, while retail prices are usually higher."
+              "text": "We use reliable data sources to ensure our 'Mero Patro' style 'nepali calendar' accurately reflects the official Bikram Sambat dates and events for every 'nepal calendar date today'."
             }
           },
           {
             "@type": "Question",
-            "name": "Where is Kalimati Tarkari Bazar located?",
+            "name": "Can I convert the Nepali Date Today to English?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Kalimati Tarkari Bazar is in Kathmandu, Nepal, and is the biggest vegetable market in the country, supplying fresh vegetables daily."
+              "text": "Yes, we offer a BS to AD date converter tool. You can easily convert the 'nepali date today' or any other date from the 'nepali calendar' to the Gregorian calendar."
             }
           },
           {
             "@type": "Question",
-            "name": "What factors affect today's Kalimati Tarkari Rate?",
+            "name": "How is the Nepali date today determined?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Kalimati Tarkari Rate today depends on factors like seasonal availability, transportation costs, demand & supply, and weather conditions."
+              "text": "The 'nepal calendar date today' is based on the Bikram Sambat (BS) system, the official solar calendar of Nepal. Our 'Nepali Calendar' accurately reflects this."
             }
           },
           {
             "@type": "Question",
-            "name": "How can I get daily updates on Kalimati Tarkari Rate?",
+            "name": "How often is the Nepali Calendar updated?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Bookmark our website for daily Kalimati Tarkari Rate today. We also offer Nepali Calendar features like Hamro Patro and Mero Patro for checking the Nepali date today."
+              "text": "The underlying data for the 'nepali calendar nepali calendar' is updated annually, ensuring you always have the correct information for the current 'nepal calendar date today' and beyond."
             }
           }
         ]
@@ -226,8 +226,8 @@ const Home = () => {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "url": "https://kalimatirate.nyure.com.np/",
-        "name": "Kalimati Tarkari Rate Today",
-        "description": "Get real-time vegetable prices from Kalimati Tarkari Bazar, Nepal. Daily updates on vegetable rates, plus Nepali Calendar (Mero Patro/Hamro Patro style) and Nepali Date Today.",
+        "name": "Nepali Calendar | Mero Patro | Hamro Patro | Nepali Date Today",
+        "description": "Your primary source for the official Nepali Calendar (विक्रम सम्वत्). Check the Nepali date today, view the full Mero Patro / Hamro Patro style calendar, and find the Nepal calendar date today.",
         "potentialAction": {
           "@type": "SearchAction",
           "target": "https://kalimatirate.nyure.com.np/search?q={search_term_string}",
@@ -276,8 +276,8 @@ const Home = () => {
       {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "Kalimati Tarkari Rate Today - Daily Vegetable Price Updates",
-        "description": "Get the latest vegetable prices from Kalimati Tarkari Bazar, Nepal. Updated daily. Also features Nepali Calendar (similar to Hamro Patro/Mero Patro) and Nepali date today converter.",
+        "headline": "Nepali Calendar 2081 - Mero Patro & Hamro Patro Features",
+        "description": "Explore the full Nepali Calendar for 2081 BS. Find the Nepali date today, events, and holidays with our easy-to-use Mero Patro and Hamro Patro interface. Check the Nepal calendar date today instantly.",
         "image": "https://kalimatirate.nyure.com.np/market-image.jpg",
         "author": {
           "@type": "Organization",
@@ -359,13 +359,13 @@ const Home = () => {
       {
         "@context": "https://schema.org",
         "@type": "Service",
-        "serviceType": "Vegetable Price Information",
-        "name": "Kalimati Tarkari Rate Updates",
+        "serviceType": "Nepali Calendar Information",
+        "name": "Nepali Calendar & Date Today Service",
         "provider": {
           "@type": "Organization",
           "name": "KalimatiRate - Nyure"
         },
-        "description": "Daily vegetable price updates from Kalimati Tarkari Bazar. We also provide tools like Nepali Calendar (Mero Patro/Hamro Patro) and Nepali Date Today converter.",
+        "description": "Provides the official Nepali Calendar (Bikram Sambat), including the current Nepali date today, event listings (similar to Mero Patro/Hamro Patro), and BS/AD conversion. Check the Nepal calendar date today easily.",
         "areaServed": {
           "@type": "Country",
           "name": "Nepal"
@@ -644,7 +644,7 @@ const Home = () => {
               </svg>
             </div>
             <h3 className="text-gray-800 text-xl font-bold mb-2">Nepali Calendar</h3>
-            <p className="text-gray-600 text-sm mb-6">View Bikram Sambat calendar with Tithis, events, and holidays. Updated yearly.</p>
+            <p className="text-gray-600 text-sm mb-6">Explore the full <strong>Nepali Calendar</strong> (विक्रम सम्वत्). Check the <strong>Nepali date today</strong>, events, and holidays with our <strong>Mero Patro / Hamro Patro</strong> style interface. Find the <strong>Nepal calendar date today</strong> easily.</p>
             <Link
               to="/calendar"
               className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 transition-colors w-full block"
@@ -663,40 +663,39 @@ const Home = () => {
           <div className="bg-white rounded-xl p-8 border border-green-100 shadow-sm">
             {/* Main Heading - H1 tag with proper structure */}
             <h1 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight mb-3 text-center">
-              <span className="block mb-2">आजको कलिमाटी तरकारी रेट</span>
-              <span className="block text-2xl">Kalimati Tarkari Rate Today [2025]</span>
-              <span className="block text-lg text-green-600 mt-2">Daily Updates</span>
+              <span className="block mb-2">Nepali Calendar {new Date().getFullYear() + 56}</span>
+              <span className="block text-2xl">Mero Patro & Hamro Patro Alternative</span>
+              <span className="block text-lg text-green-600 mt-2">Check Nepali Date Today</span>
             </h1>
 
             {/* Descriptive Text */}
             <p className="text-gray-600 text-lg mb-8 text-center">
-              दैनिक अपडेट गरिएको तरकारी बजारको मूल्य | Get real-time vegetable prices from 
-              <span className="text-green-600"> Kalimati Tarkari Bazar</span>, Nepal's largest wholesale market. Check the Nepali date today and calendar too!
+              View the official <strong>Nepali Calendar</strong> (BS). Find the current <strong>Nepali date today</strong>, see upcoming events like in <strong>Mero Patro</strong> or <strong>Hamro Patro</strong>, and easily check the <strong>Nepal calendar date today</strong>. Your complete <strong>nepali calendar nepali calendar</strong> resource.
             </p>
 
             {/* Features */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8">
               <div className="bg-green-50 rounded-lg p-4 border border-green-100">
-                <div className="font-medium text-gray-800">आजको तरकारी मुल्य</div>
-                <div className="text-sm text-gray-600">Daily price updates</div>
+                <div className="font-medium text-gray-800">Nepali Date Today</div>
+                <div className="text-sm text-gray-600">Instantly see today's BS date</div>
               </div>
               <div className="bg-green-50 rounded-lg p-4 border border-green-100">
-                <div className="font-medium text-gray-800">Wholesale Rates</div>
-                <div className="text-sm text-gray-600">Direct from Kalimati</div>
+                <div className="font-medium text-gray-800">Full Nepali Calendar</div>
+                <div className="text-sm text-gray-600">Browse months like Mero Patro</div>
               </div>
               <div className="bg-green-50 rounded-lg p-4 border border-green-100">
-                <div className="font-medium text-gray-800">Live Updates</div>
-                <div className="text-sm text-gray-600">Real-time prices</div>
+                <div className="font-medium text-gray-800">Events & Holidays</div>
+                <div className="text-sm text-gray-600">Similar to Hamro Patro</div>
               </div>
             </div>
 
             {/* CTA Button */}
             <div className="text-center">
               <button
-                onClick={() => navigate('/kalimati-tarkari-rate-today')}
+                onClick={() => navigate('/calendar')}
                 className="bg-green-600 text-white font-medium text-base px-6 py-3 rounded-xl shadow-md hover:bg-green-700 transition-colors"
               >
-                Check Kalimati Tarkari Rate Today
+                View Nepali Calendar
               </button>
             </div>
           </div>
@@ -829,7 +828,7 @@ const Home = () => {
       <div id="faq" className="px-6 mt-16 mb-12">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl font-bold text-gray-800 mb-8 text-center">
-            FAQs: कलिमाटी तरकारी रेट | Kalimati Tarkari Rate
+            FAQs: Nepali Calendar | Mero Patro | Hamro Patro | Nepali Date Today
           </h2>
           
           <div className="space-y-6">
@@ -838,8 +837,8 @@ const Home = () => {
               <div className="flex gap-3">
                 <span className="text-green-600 font-bold">1️⃣</span>
                 <div>
-                  <h3 className="font-bold text-gray-800 mb-2">What is Kalimati Tarkari Rate Today?</h3>
-                  <p className="text-gray-600">Kalimati tarkari rate today refers to the latest vegetable prices at Kalimati Tarkari Bazar, Nepal's biggest wholesale vegetable market. Prices are updated daily based on market trends. Check here for today's rates and also find the Nepali Date Today.</p>
+                  <h3 className="font-bold text-gray-800 mb-2">What is the Nepali Calendar?</h3>
+                  <p className="text-gray-600">The Nepali Calendar, or Bikram Sambat, is the official calendar of Nepal. Use our platform to find the current 'nepali date today' and explore the full 'nepali calendar nepali calendar'.</p>
                 </div>
               </div>
             </div>
@@ -849,8 +848,8 @@ const Home = () => {
               <div className="flex gap-3">
                 <span className="text-green-600 font-bold">2️⃣</span>
                 <div>
-                  <h3 className="font-bold text-gray-800 mb-2">Where can I check Kalimati tarkari rate today?</h3>
-                  <p className="text-gray-600">You can check Kalimati tarkari rate today on our website, where we provide daily updated vegetable prices from Kalimati Tarkari Bazar.</p>
+                  <h3 className="font-bold text-gray-800 mb-2">How is this different from Hamro Patro or Mero Patro?</h3>
+                  <p className="text-gray-600">Our site offers a similar experience to Hamro Patro and Mero Patro, providing a detailed Nepali Calendar, the current Nepali date today, and event information. We also integrate Kalimati rates.</p>
                 </div>
               </div>
             </div>
@@ -860,8 +859,8 @@ const Home = () => {
               <div className="flex gap-3">
                 <span className="text-green-600 font-bold">3️⃣</span>
                 <div>
-                  <h3 className="font-bold text-gray-800 mb-2">What is the price of आलु, प्याज, टमाटर (potato, onion, tomato) today?</h3>
-                  <p className="text-gray-600">The latest आलु (potato), प्याज (onion), and टमाटर (tomato) prices in Kalimati Tarkari Bazar change daily. Visit our आजको तरकारी मूल्य (Today's Vegetable Price) section for real-time updates.</p>
+                  <h3 className="font-bold text-gray-800 mb-2">How do I find the Nepal calendar date today?</h3>
+                  <p className="text-gray-600">The Nepal calendar date today is clearly displayed on our homepage and within the main Nepali Calendar view. It's updated daily.</p>
                 </div>
               </div>
             </div>
@@ -871,8 +870,8 @@ const Home = () => {
               <div className="flex gap-3">
                 <span className="text-green-600 font-bold">4️⃣</span>
                 <div>
-                  <h3 className="font-bold text-gray-800 mb-2">How is Kalimati Tarkari Rate updated?</h3>
-                  <p className="text-gray-600">The Kalimati Tarkari Rate is updated every morning based on the official Kalimati Bazar price list. Prices depend on demand, supply, and seasonal factors.</p>
+                  <h3 className="font-bold text-gray-800 mb-2">What information does the Nepali Calendar include?</h3>
+                  <p className="text-gray-600">Our Nepali Calendar shows the Nepali date today, tithis, public holidays, festivals, and other significant events, similar to features found in Hamro Patro and Mero Patro.</p>
                 </div>
               </div>
             </div>
@@ -882,8 +881,8 @@ const Home = () => {
               <div className="flex gap-3">
                 <span className="text-green-600 font-bold">5️⃣</span>
                 <div>
-                  <h3 className="font-bold text-gray-800 mb-2">Can I download the full Kalimati Tarkari Rate list?</h3>
-                  <p className="text-gray-600">Yes! We provide the daily Kalimati Tarkari Rate list. Also explore our Nepali Calendar (Mero Patro / Hamro Patro style) feature to check the Nepal calendar date today.</p>
+                  <h3 className="font-bold text-gray-800 mb-2">Is the Nepali Calendar nepali calendar feature easy to navigate?</h3>
+                  <p className="text-gray-600">Yes, our Nepali Calendar interface is designed for ease of use. You can quickly jump between months and years to find any Nepal calendar date today or in the past/future.</p>
                 </div>
               </div>
             </div>
@@ -893,8 +892,8 @@ const Home = () => {
               <div className="flex gap-3">
                 <span className="text-green-600 font-bold">6️⃣</span>
                 <div>
-                  <h3 className="font-bold text-gray-800 mb-2">What are the cheapest vegetables in Kalimati Tarkari Bazar today?</h3>
-                  <p className="text-gray-600">The cheapest vegetables in Kalimati Bazar change daily. Common low-price vegetables include पालुङ्गो साग (Spinach), लौका (Bottle Gourd), and टमाटर (Tomato).</p>
+                  <h3 className="font-bold text-gray-800 mb-2">Can I see future dates in the Nepali Calendar?</h3>
+                  <p className="text-gray-600">Yes, you can navigate the Nepali Calendar to view future months and years, check upcoming events, and see the corresponding Nepali date today for those future dates.</p>
                 </div>
               </div>
             </div>
@@ -904,8 +903,8 @@ const Home = () => {
               <div className="flex gap-3">
                 <span className="text-green-600 font-bold">7️⃣</span>
                 <div>
-                  <h3 className="font-bold text-gray-800 mb-2">Is Kalimati Tarkari Rate different from retail prices?</h3>
-                  <p className="text-gray-600">Yes! Kalimati Tarkari Rate is the wholesale price at Kalimati Bazar, while retail prices are usually higher.</p>
+                  <h3 className="font-bold text-gray-800 mb-2">Do you offer a Mero Patro mobile app?</h3>
+                  <p className="text-gray-600">Currently, we offer a web-based platform providing Mero Patro and Hamro Patro style features. You can access the Nepali Calendar and Nepali date today from any device with a web browser.</p>
                 </div>
               </div>
             </div>
@@ -915,8 +914,8 @@ const Home = () => {
               <div className="flex gap-3">
                 <span className="text-green-600 font-bold">8️⃣</span>
                 <div>
-                  <h3 className="font-bold text-gray-800 mb-2">Where is Kalimati Tarkari Bazar located?</h3>
-                  <p className="text-gray-600">Kalimati Tarkari Bazar is in Kathmandu, Nepal, and is the biggest vegetable market in the country, supplying fresh vegetables daily.</p>
+                  <h3 className="font-bold text-gray-800 mb-2">How is the Nepali date today determined?</h3>
+                  <p className="text-gray-600">The Nepali date today is based on the Bikram Sambat (BS) system, the official solar calendar of Nepal. Our Nepali Calendar accurately reflects this.</p>
                 </div>
               </div>
             </div>
@@ -926,8 +925,8 @@ const Home = () => {
               <div className="flex gap-3">
                 <span className="text-green-600 font-bold">9️⃣</span>
                 <div>
-                  <h3 className="font-bold text-gray-800 mb-2">What factors affect today's Kalimati Tarkari Rate?</h3>
-                  <p className="text-gray-600">Kalimati Tarkari Rate today depends on factors like seasonal availability, transportation costs, demand & supply, and weather conditions.</p>
+                  <h3 className="font-bold text-gray-800 mb-2">Can I print the Nepali Calendar?</h3>
+                  <p className="text-gray-600">While direct printing isn't a feature, you can use your browser's print function to print the view of the Nepali Calendar month you are currently seeing, including the Nepal calendar date today.</p>
                 </div>
               </div>
             </div>
@@ -937,8 +936,8 @@ const Home = () => {
               <div className="flex gap-3">
                 <span className="text-green-600 font-bold">🔟</span>
                 <div>
-                  <h3 className="font-bold text-gray-800 mb-2">How can I get daily updates on Kalimati Tarkari Rate?</h3>
-                  <p className="text-gray-600">Bookmark our website for daily Kalimati Tarkari Rate today. We also offer Nepali Calendar features like Hamro Patro and Mero Patro for checking the Nepali date today.</p>
+                  <h3 className="font-bold text-gray-800 mb-2">Where does the data for the Hamro Patro style calendar come from?</h3>
+                  <p className="text-gray-600">We source our Nepali Calendar data from reliable public sources and astronomical calculations to ensure the accuracy of the Nepali Calendar and the Nepali date today, providing a dependable Hamro Patro alternative.</p>
                 </div>
               </div>
             </div>

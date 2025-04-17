@@ -394,30 +394,6 @@ const KalimatiPrices = () => {
               </div>
             ) : (
               <>
-                {/* Price Summary */}
-                {summary && (
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-                    <div className="bg-green-50 p-6 rounded-lg shadow-sm">
-                      <h3 className="text-green-800 font-semibold mb-2">Minimum Price</h3>
-                      <p className="text-2xl font-bold text-green-600">
-                        Rs. {summary.minPrice.toFixed(2)}
-                      </p>
-                    </div>
-                    <div className="bg-red-50 p-6 rounded-lg shadow-sm">
-                      <h3 className="text-red-800 font-semibold mb-2">Maximum Price</h3>
-                      <p className="text-2xl font-bold text-red-600">
-                        Rs. {summary.maxPrice.toFixed(2)}
-                      </p>
-                    </div>
-                    <div className="bg-blue-50 p-6 rounded-lg shadow-sm">
-                      <h3 className="text-blue-800 font-semibold mb-2">Average Price</h3>
-                      <p className="text-2xl font-bold text-blue-600">
-                        Rs. {summary.avgPrice.toFixed(2)}
-                      </p>
-                    </div>
-                  </div>
-                )}
-
                 {/* Table View */}
                 {viewMode === 'table' && (
                   <div className="mb-8 overflow-x-auto">
