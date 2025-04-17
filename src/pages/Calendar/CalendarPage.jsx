@@ -20,10 +20,36 @@ const ContentSection = lazy(() => import('./ContentSection')); // Import Content
 // Helper to capitalize month names for display
 const capitalize = (s) => s && s[0].toUpperCase() + s.slice(1);
 
-// --- START: Added Helper Functions from Home.jsx ---
-// Removed duplicate helper functions (formatDate, nepaliMonths, getNepaliDate, formatTime) as they are now centrally managed or part of the component logic.
-// Consider moving these to a utils file if used elsewhere.
-// --- END: Added Helper Functions from Home.jsx ---
+// --- START: Re-added Helper Functions ---
+const formatDate = (date) => {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).replace(/\//g, '-');
+};
+
+const nepaliMonths = [
+  'बैशाख', 'जेठ', 'असार', 'श्रावण', 'भदौ', 'असोज',
+  'कार्तिक', 'मंसिर', 'पुष', 'माघ', 'फागुन', 'चैत'
+];
+
+const getNepaliDate = () => {
+  const today = new NepaliDate(); // Use NepaliDate library for accuracy
+  return `${today.getDay()} ${nepaliMonths[today.getMonth()]} ${today.getYear()}`;
+  // Note: The previous simple approximation logic was highly inaccurate.
+  // This now uses the imported NepaliDate library.
+};
+
+
+const formatTime = (date) => {
+  return date.toLocaleTimeString('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  });
+};
+// --- END: Re-added Helper Functions ---
 
 const CalendarPage = () => {
   const { year: yearParam, month: monthParam } = useParams();
