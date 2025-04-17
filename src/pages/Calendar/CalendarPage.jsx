@@ -306,9 +306,11 @@ const CalendarPage = () => {
 
         {/* --- START: Reworked Date/Time/Weather Display --- */}
         <div className="px-2 sm:px-4 mt-4 mb-6">
-          <div className="max-w-4xl mx-auto"> {/* Increased max-width for wider layout */}
+          {/* Removed max-w-4xl to match main container width */}
+          <div className="mx-auto">
             {/* Outer white container */}
-            <div className="bg-white rounded-xl p-4 relative border border-green-100 shadow-sm">
+            {/* Increased padding from p-4 to p-6 */}
+            <div className="bg-white rounded-xl p-6 relative border border-green-100 shadow-sm">
               {/* Flex container for Desktop: Date/Location on Left, Time/Temp on Right */}
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center">
 

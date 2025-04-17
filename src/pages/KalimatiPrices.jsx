@@ -823,6 +823,164 @@ const KalimatiPrices = () => {
               </div>
             </section>
 
+            {/* --- START: Added Content Section from Home.jsx --- */}
+            <section className="my-12 px-6" aria-labelledby="kalimati-highlights-heading">
+              <div className="max-w-3xl mx-auto">
+                {/* Content Copied from Home Hero/Highlights */}
+                <div className="bg-white rounded-xl p-8 border border-green-100 shadow-sm mb-12">
+                  <h2 id="kalimati-highlights-heading" className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight mb-3 text-center">
+                    <span className="block mb-2">आजको कलिमाटी तरकारी रेट</span>
+                    <span className="block text-2xl">Kalimati Tarkari Rate Today [{new Date().getFullYear() + 1}]</span> {/* Dynamic Year */}
+                    <span className="block text-lg text-green-600 mt-2">Daily Updates</span>
+                  </h2>
+                  <p className="text-gray-600 text-lg mb-8 text-center">
+                    दैनिक अपडेट गरिएको तरकारी बजारको मूल्य | Get real-time vegetable prices from
+                    <span className="text-green-600"> Kalimati Tarkari Bazar</span>, Nepal's largest wholesale market. Check the Nepali date today and calendar too!
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center mb-8">
+                    <div className="bg-green-50 rounded-lg p-4 border border-green-100">
+                      <div className="font-medium text-gray-800">आजको तरकारी मुल्य</div>
+                      <div className="text-sm text-gray-600">Daily price updates</div>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-4 border border-green-100">
+                      <div className="font-medium text-gray-800">Wholesale Rates</div>
+                      <div className="text-sm text-gray-600">Direct from Kalimati</div>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-4 border border-green-100">
+                      <div className="font-medium text-gray-800">Live Updates</div>
+                      <div className="text-sm text-gray-600">Real-time prices</div>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    {/* This button might need adjustment based on KalimatiPrices context, maybe scroll to table? */}
+                    <button
+                      onClick={() => document.getElementById('price-table-section')?.scrollIntoView({ behavior: 'smooth' })} // Example scroll behavior
+                      className="bg-green-600 text-white font-medium text-base px-6 py-3 rounded-xl shadow-md hover:bg-green-700 transition-colors"
+                    >
+                      Check Kalimati Tarkari Rate Today
+                    </button>
+                  </div>
+                </div>
+
+                {/* Market Highlights Section */}
+                <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                  आजको तरकारी मुल्य | Today's Market Highlights
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                  <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
+                    <h4 className="text-lg font-bold text-gray-800 mb-4">
+                      Most Searched Items at Kalimati Tarkari Bazar
+                    </h4>
+                    <div className="space-y-3">
+                      {/* Example items - Replace with dynamic data if available */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">आलु (Potato)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-gray-600">Min-Max:</span>
+                          <span className="font-medium text-gray-800">₨40-60/kg</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">प्याज (Onion)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-gray-600">Min-Max:</span>
+                          <span className="font-medium text-gray-800">₨80-90/kg</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">टमाटर (Tomato)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm text-gray-600">Min-Max:</span>
+                          <span className="font-medium text-gray-800">₨45-55/kg</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
+                    <h4 className="text-lg font-bold text-gray-800 mb-4">
+                      Today's Best Value at Kalimati
+                    </h4>
+                    <div className="space-y-3">
+                      {/* Example items - Replace with dynamic data if available */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">काउली (Cauliflower)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-green-600 font-medium">↓20%</span>
+                          <span className="font-medium text-gray-800">₨35/kg</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">बन्दा (Cabbage)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-green-600 font-medium">↓15%</span>
+                          <span className="font-medium text-gray-800">₨30/kg</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-green-600">●</span>
+                          <span className="text-gray-800">मूला (Radish)</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-green-600 font-medium">↓25%</span>
+                          <span className="font-medium text-gray-800">₨25/kg</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Market Status and Tips */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div id="market-status-kalimati" className="bg-white rounded-xl p-6 border border-green-100 shadow-sm"> {/* Added ID */}
+                    <h4 className="text-lg font-bold text-gray-800 mb-4">Kalimati Market Status</h4>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <span className="text-green-600 font-medium">कलिमाटी तरकारी बजार Open</span>
+                      </div>
+                      <p className="text-gray-600 text-sm">Operating Hours: 5:00 AM - 7:00 PM</p>
+                      <p className="text-gray-600 text-sm">Best visiting hours: 6:00 AM - 9:00 AM</p>
+                      <p className="text-gray-600 text-sm">Current crowd level: Moderate</p>
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
+                    <h4 className="text-lg font-bold text-gray-800 mb-4">Shopping Tips</h4>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-2">
+                        <span className="text-green-600 mt-1">●</span>
+                        <p className="text-gray-600 text-sm">Check Kalimati tarkari rate before visiting</p>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-green-600 mt-1">●</span>
+                        <p className="text-gray-600 text-sm">Best deals during early morning hours</p>
+                      </div>
+                      <div className="flex items-start gap-2">
+                        <span className="text-green-600 mt-1">●</span>
+                        <p className="text-gray-600 text-sm">Compare prices from multiple vendors</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            {/* --- END: Added Content Section from Home.jsx --- */}
+
             {/* FAQ Section */}
             <section className="mt-16 mb-12" aria-labelledby="faq-heading">
               <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
