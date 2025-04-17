@@ -105,7 +105,7 @@ const Home = () => {
   // Use the custom hook to set meta tags
   useMetaTags(
     'Nepali Calendar 2082 | Mero Patro & Hamro Patro | Nepali Date Today | Kalimati Rate',
-    'View the official Nepali Calendar 2082 (विक्रम सम्वत्). Find the Nepali date today, upcoming events, and holidays using our Mero Patro / Hamro Patro style interface. Check Nepal calendar date today and Kalimati rates.'
+    'View the official Nepali Calendar 2082 (विक्रम सम्वत्). Find the Nepali date today using our detailed nepali calendar nepali calendar. Use Mero Patro & Hamro Patro style features to check the Nepal calendar date today and events.'
   );
 
   useEffect(() => {
@@ -141,10 +141,10 @@ const Home = () => {
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What is the Nepali Calendar?",
+            "name": "What is the Nepali Calendar (विक्रम सम्वत्)?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The Nepali Calendar, or Bikram Sambat, is the official calendar of Nepal. Use our site to find the current 'nepali date today' and explore the full 'nepali calendar nepali calendar' for any month."
+              "text": "The Nepali Calendar (Bikram Sambat) is Nepal's official calendar. Our site provides the complete 'nepali calendar nepali calendar', allowing you to find the current 'nepali date today' and check any 'Nepal calendar date today' or future/past dates."
             }
           },
           {
@@ -152,7 +152,7 @@ const Home = () => {
             "name": "How can I find the Nepali date today?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Our homepage prominently displays the 'nepali date today'. You can also browse the full 'nepali calendar' to see the date for any day of the year."
+              "text": "The 'nepali date today' is clearly shown on our homepage. For more detail, explore the full 'nepali calendar', which functions like a digital 'Mero Patro', to see the date and events."
             }
           },
           {
@@ -160,7 +160,7 @@ const Home = () => {
             "name": "Is this like Hamro Patro or Mero Patro?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, our 'nepali calendar' provides features similar to 'Hamro Patro' and 'Mero Patro', offering a detailed view of the 'nepal calendar date today', events, and tithis."
+              "text": "Yes, our 'nepali calendar' is designed to be a comprehensive alternative to 'Hamro Patro' and 'Mero Patro'. It offers a detailed 'nepali calendar nepali calendar' view, showing the 'nepal calendar date today', tithis, and important events."
             }
           },
           {
@@ -168,7 +168,7 @@ const Home = () => {
             "name": "How to use the Nepali Calendar nepali calendar feature?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Navigate to our 'Nepali Calendar' section. You can select the year and month to view the specific 'nepali calendar nepali calendar' page, just like using 'Mero Patro'."
+              "text": "Visit the main 'Nepali Calendar' page. Select the year and month to view the detailed 'nepali calendar nepali calendar'. It's intuitive, much like using 'Mero Patro' or 'Hamro Patro' to find the 'nepali date today'."
             }
           },
           {
@@ -176,7 +176,7 @@ const Home = () => {
             "name": "Where can I check the Nepal calendar date today?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The 'nepal calendar date today' is always visible on our homepage and within the main 'Nepali Calendar' section. We ensure it matches the official Bikram Sambat date."
+              "text": "The 'nepal calendar date today' is displayed on the homepage and is the central focus of our 'Nepali Calendar' section. Our 'Hamro Patro' style interface ensures you always see the correct Bikram Sambat 'nepali date today'."
             }
           },
           {
@@ -184,7 +184,7 @@ const Home = () => {
             "name": "What events are shown in the Nepali Calendar?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Our 'nepali calendar', similar to 'Hamro Patro', includes public holidays, festivals, tithis, and other important events relevant to the 'nepali date today' and the entire year."
+              "text": "Our 'nepali calendar' includes public holidays, major festivals, tithis, and significant cultural events, similar to 'Hamro Patro' and 'Mero Patro'. These are linked to the specific 'nepali date today' within the 'nepali calendar nepali calendar'."
             }
           },
           {
@@ -192,7 +192,7 @@ const Home = () => {
             "name": "How accurate is the Mero Patro style calendar here?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "We use reliable data sources to ensure our 'Mero Patro' style 'nepali calendar' accurately reflects the official Bikram Sambat dates and events for every 'nepal calendar date today'."
+              "text": "Our 'Mero Patro' style 'nepali calendar' uses verified data to ensure high accuracy for all Bikram Sambat dates, including the current 'nepal calendar date today' and events listed in the 'nepali calendar nepali calendar'."
             }
           },
           {
@@ -200,15 +200,15 @@ const Home = () => {
             "name": "Can I convert the Nepali Date Today to English?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes, we offer a BS to AD date converter tool. You can easily convert the 'nepali date today' or any other date from the 'nepali calendar' to the Gregorian calendar."
+              "text": "Yes, use our BS to AD converter. It allows easy conversion of the 'nepali date today' or any date selected from the 'nepali calendar' (our 'Hamro Patro' alternative) to the English date."
             }
           },
           {
             "@type": "Question",
-            "name": "How is the Nepali date today determined?",
+            "name": "Is the Hamro Patro feature free to use?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The 'nepal calendar date today' is based on the Bikram Sambat (BS) system, the official solar calendar of Nepal. Our 'Nepali Calendar' accurately reflects this."
+              "text": "Yes, all features, including the full 'nepali calendar', checking the 'nepali date today', and our 'Hamro Patro' / 'Mero Patro' style interface for the 'nepal calendar date today', are free."
             }
           },
           {
@@ -216,7 +216,7 @@ const Home = () => {
             "name": "How often is the Nepali Calendar updated?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "The underlying data for the 'nepali calendar nepali calendar' is updated annually, ensuring you always have the correct information for the current 'nepal calendar date today' and beyond."
+              "text": "The core data for the 'nepali calendar nepali calendar' is updated for future years well in advance. We ensure the 'nepali date today' and current events are always accurate, like a reliable 'Mero Patro'."
             }
           }
         ]
@@ -227,7 +227,7 @@ const Home = () => {
         "@type": "WebSite",
         "url": "https://kalimatirate.nyure.com.np/",
         "name": "Nepali Calendar | Mero Patro | Hamro Patro | Nepali Date Today",
-        "description": "Your primary source for the official Nepali Calendar (विक्रम सम्वत्). Check the Nepali date today, view the full Mero Patro / Hamro Patro style calendar, and find the Nepal calendar date today.",
+        "description": "Your primary source for the official Nepali Calendar (विक्रम सम्वत्). Check the 'Nepali date today', view the full 'Mero Patro' / 'Hamro Patro' style 'nepali calendar nepali calendar', and find the 'Nepal calendar date today' instantly.",
         "potentialAction": {
           "@type": "SearchAction",
           "target": "https://kalimatirate.nyure.com.np/search?q={search_term_string}",
@@ -277,7 +277,7 @@ const Home = () => {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": "Nepali Calendar 2082 - Mero Patro & Hamro Patro Features",
-        "description": "Explore the full Nepali Calendar for 2082 BS. Find the Nepali date today, events, and holidays with our easy-to-use Mero Patro and Hamro Patro interface. Check the Nepal calendar date today instantly.",
+        "description": "Explore the full Nepali Calendar for 2082 BS. Find the 'Nepali date today', events, and holidays using our detailed 'nepali calendar nepali calendar'. Features similar to 'Mero Patro' and 'Hamro Patro'. Check the 'Nepal calendar date today' instantly.",
         "image": "https://kalimatirate.nyure.com.np/market-image.jpg",
         "author": {
           "@type": "Organization",
@@ -361,11 +361,12 @@ const Home = () => {
         "@type": "Service",
         "serviceType": "Nepali Calendar Information",
         "name": "Nepali Calendar & Date Today Service",
+        "alternateName": "Mero Patro / Hamro Patro Style Calendar",
         "provider": {
           "@type": "Organization",
           "name": "KalimatiRate - Nyure"
         },
-        "description": "Provides the official Nepali Calendar (Bikram Sambat), including the current Nepali date today, event listings (similar to Mero Patro/Hamro Patro), and BS/AD conversion. Check the Nepal calendar date today easily.",
+        "description": "Provides the official Nepali Calendar (Bikram Sambat), featuring the 'nepali calendar nepali calendar'. Includes the current 'Nepali date today', event listings (similar to 'Mero Patro'/'Hamro Patro'), and BS/AD conversion. Check the 'Nepal calendar date today' easily.",
         "areaServed": {
           "@type": "Country",
           "name": "Nepal"
@@ -611,7 +612,7 @@ const Home = () => {
                 </svg>
               </div>
               <h3 className="text-gray-900 text-2xl font-semibold mb-3">Nepali Calendar</h3>
-              <p className="text-gray-700 text-base mb-6 max-w-md">Explore the full <strong>Nepali Calendar</strong> (विक्रम सम्वत्). Check the <strong>Nepali date today</strong>, events, and holidays with our <strong>Mero Patro / Hamro Patro</strong> style interface. Find the <strong>Nepal calendar date today</strong> easily.</p>
+              <p className="text-gray-700 text-base mb-6">Explore the full <strong>Nepali Calendar</strong> (विक्रम सम्वत्). Check the <strong>Nepali date today</strong>, events, and holidays with our <strong>Mero Patro / Hamro Patro</strong> style interface. Find the <strong>Nepal calendar date today</strong> easily.</p>
               <Link
                 // Link to the base Nepali calendar route (similar to Mero Patro / Hamro Patro)
                 to="/calendar"
@@ -626,8 +627,8 @@ const Home = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Kalimati Rates Card */}
             <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-md hover:shadow-lg flex flex-col items-center text-center transition-all duration-300 ease-out transform hover:-translate-y-1">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-5 shadow-sm border border-blue-200">
-                <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-5 shadow-sm border border-green-200">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                 </svg>
               </div>
@@ -635,7 +636,7 @@ const Home = () => {
               <p className="text-gray-600 text-sm mb-6 flex-grow">Get real-time vegetable market prices from Kalimati Bazar. Updated daily for your convenience.</p>
               <button 
                 onClick={() => navigate('/kalimati-tarkari-rate-today')}
-                className="mt-auto bg-blue-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-colors duration-300 w-full"
+                className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1 transition-colors duration-300 w-full"
               >
                 Check Prices
               </button>
@@ -643,8 +644,8 @@ const Home = () => {
 
             {/* Date Converter Card */}
             <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-md hover:shadow-lg flex flex-col items-center text-center transition-all duration-300 ease-out transform hover:-translate-y-1">
-              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-5 shadow-sm border border-purple-200">
-                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-5 shadow-sm border border-green-200">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
               </div>
@@ -652,7 +653,7 @@ const Home = () => {
               <p className="text-gray-600 text-sm mb-6 flex-grow">Convert dates between BS (Bikram Sambat) and AD (Anno Domini) calendars instantly.</p>
               <button 
                 onClick={() => navigate('/nep-to-eng-date-converter')}
-                className="mt-auto bg-purple-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-1 transition-colors duration-300 w-full"
+                className="mt-auto bg-green-600 text-white font-medium text-sm px-6 py-2.5 rounded-lg shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1 transition-colors duration-300 w-full"
               >
                 Convert Date
               </button>
@@ -674,7 +675,7 @@ const Home = () => {
 
             {/* Descriptive Text */}
             <p className="text-gray-600 text-lg mb-8 text-center">
-              View the official <strong>Nepali Calendar</strong> (BS). Find the current <strong>Nepali date today</strong>, see upcoming events like in <strong>Mero Patro</strong> or <strong>Hamro Patro</strong>, and easily check the <strong>Nepal calendar date today</strong>. Your complete <strong>nepali calendar nepali calendar</strong> resource.
+              View the official <strong>Nepali Calendar</strong> (Bikram Sambat). Find the current <strong>Nepali date today</strong>, see upcoming events with our <strong>Mero Patro</strong> and <strong>Hamro Patro</strong> style interface. Easily check the <strong>Nepal calendar date today</strong>. Your complete <strong>nepali calendar nepali calendar</strong> resource for daily use.
             </p>
 
             {/* Features */}
@@ -806,8 +807,8 @@ const Home = () => {
                 <p className="text-gray-600 text-sm">Operating Hours: 5:00 AM - 7:00 PM</p>
                 <p className="text-gray-600 text-sm">Best visiting hours: 6:00 AM - 9:00 AM</p>
                 <p className="text-gray-600 text-sm">Current crowd level: Moderate</p>
+                <p className="text-sm text-gray-500 mt-3">View the <strong>nepali calendar nepali calendar</strong> to see if events on the <strong>Nepali date today</strong> might affect market activity. Our <strong>Hamro Patro</strong> feature helps planning.</p>
               </div>
-              <p className="text-sm text-gray-500 mt-3">View the <strong className="text-gray-700">Nepali calendar nepali calendar</strong> to see if events on the <strong className="text-gray-700">Nepali date today</strong> might affect market activity.</p>
             </div>
 
             <div className="bg-white rounded-xl p-6 border border-green-100 shadow-sm">
@@ -819,11 +820,7 @@ const Home = () => {
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="text-green-600 mt-1">●</span>
-                  <p className="text-gray-600 text-sm">Best deals early; consult the <strong className="text-gray-700">Nepali calendar</strong> for holidays.</p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <span className="text-green-600 mt-1">●</span>
-                  <p className="text-gray-600 text-sm">Compare prices and check <strong className="text-gray-700">Hamro Patro</strong> style event listings.</p>
+                  <p className="text-gray-600 text-sm">Compare prices; use the <strong className="text-gray-700">Nepali calendar</strong> (like <strong className="text-gray-700">Hamro Patro</strong>) to check holidays affecting deals/hours for the <strong className="text-gray-700">nepali date today</strong>.</p>
                 </div>
               </div>
             </div>
@@ -845,7 +842,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">1️⃣</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">What is the Nepali Calendar?</h3>
-                  <p className="text-gray-600">The Nepali Calendar, or Bikram Sambat, is the official calendar of Nepal. Use our platform to find the current 'nepali date today' and explore the full 'nepali calendar nepali calendar'.</p>
+                  <p className="text-gray-600">The <strong>Nepali Calendar</strong> (Bikram Sambat) is Nepal's official calendar. Use our platform to find the current <strong>Nepali date today</strong> and explore the full <strong>nepali calendar nepali calendar</strong>. It's essential for knowing the <strong>Nepal calendar date today</strong>.</p>
                 </div>
               </div>
             </div>
@@ -856,7 +853,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">2️⃣</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">How is this different from Hamro Patro or Mero Patro?</h3>
-                  <p className="text-gray-600">Our site offers a similar experience to Hamro Patro and Mero Patro, providing a detailed Nepali Calendar, the current Nepali date today, and event information. We also integrate Kalimati rates.</p>
+                  <p className="text-gray-600">Our site offers a similar experience to <strong>Hamro Patro</strong> and <strong>Mero Patro</strong>, providing a detailed <strong>Nepali Calendar</strong>, the current <strong>Nepali date today</strong>, and event info for the <strong>nepal calendar date today</strong>. We also integrate Kalimati rates.</p>
                 </div>
               </div>
             </div>
@@ -867,7 +864,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">3️⃣</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">How do I find the Nepal calendar date today?</h3>
-                  <p className="text-gray-600">The Nepal calendar date today is clearly displayed on our homepage and within the main Nepali Calendar view. It's updated daily.</p>
+                  <p className="text-gray-600">The <strong>Nepal calendar date today</strong> is clearly displayed on our homepage and within the main <strong>Nepali Calendar</strong> view (our <strong>Mero Patro</strong> / <strong>Hamro Patro</strong> alternative). It's updated daily to show the correct <strong>Nepali date today</strong>.</p>
                 </div>
               </div>
             </div>
@@ -878,7 +875,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">4️⃣</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">What information does the Nepali Calendar include?</h3>
-                  <p className="text-gray-600">Our Nepali Calendar shows the Nepali date today, tithis, public holidays, festivals, and other significant events, similar to features found in Hamro Patro and Mero Patro.</p>
+                  <p className="text-gray-600">Our <strong>Nepali Calendar</strong> shows the <strong>Nepali date today</strong>, tithis, public holidays, festivals for the <strong>nepal calendar date today</strong>, and other events, similar to <strong>Mero Patro</strong> and <strong>Hamro Patro</strong>. Explore the full <strong>nepali calendar nepali calendar</strong> for details.</p>
                 </div>
               </div>
             </div>
@@ -889,7 +886,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">5️⃣</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">Is the Nepali Calendar nepali calendar feature easy to navigate?</h3>
-                  <p className="text-gray-600">Yes, our Nepali Calendar interface is designed for ease of use. You can quickly jump between months and years to find any Nepal calendar date today or in the past/future.</p>
+                  <p className="text-gray-600">Yes, our <strong>nepali calendar nepali calendar</strong> interface is user-friendly. Quickly navigate months/years like in <strong>Hamro Patro</strong> to find any <strong>Nepal calendar date today</strong> or view the complete <strong>Nepali calendar</strong>.</p>
                 </div>
               </div>
             </div>
@@ -900,7 +897,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">6️⃣</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">Can I see future dates in the Nepali Calendar?</h3>
-                  <p className="text-gray-600">Yes, you can navigate the Nepali Calendar to view future months and years, check upcoming events, and see the corresponding Nepali date today for those future dates.</p>
+                  <p className="text-gray-600">Yes, navigate the <strong>Nepali Calendar</strong> (our <strong>Mero Patro</strong> alternative) to view future months/years. Check events and see the corresponding <strong>Nepali date today</strong> equivalent for future <strong>Nepal calendar date today</strong> entries.</p>
                 </div>
               </div>
             </div>
@@ -911,7 +908,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">7️⃣</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">Do you offer a Mero Patro mobile app?</h3>
-                  <p className="text-gray-600">Currently, we offer a web-based platform providing Mero Patro and Hamro Patro style features. You can access the Nepali Calendar and Nepali date today from any device with a web browser.</p>
+                  <p className="text-gray-600">Currently, we offer this web platform with <strong>Mero Patro</strong> and <strong>Hamro Patro</strong> style features. Access the full <strong>Nepali Calendar</strong>, check the <strong>Nepali date today</strong>, and see the <strong>nepal calendar date today</strong> details from any browser.</p>
                 </div>
               </div>
             </div>
@@ -922,7 +919,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">8️⃣</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">How is the Nepali date today determined?</h3>
-                  <p className="text-gray-600">The Nepali date today is based on the Bikram Sambat (BS) system, the official solar calendar of Nepal. Our Nepali Calendar accurately reflects this.</p>
+                  <p className="text-gray-600">The <strong>Nepali date today</strong> follows the Bikram Sambat (BS) system. Our <strong>Nepali Calendar</strong> accurately reflects the official <strong>Nepal calendar date today</strong> based on this system.</p>
                 </div>
               </div>
             </div>
@@ -933,7 +930,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">9️⃣</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">Can I print the Nepali Calendar?</h3>
-                  <p className="text-gray-600">While direct printing isn't a feature, you can use your browser's print function to print the view of the Nepali Calendar month you are currently seeing, including the Nepal calendar date today.</p>
+                  <p className="text-gray-600">Use your browser's print function to print the current view of the <strong>Nepali Calendar</strong> month (like a <strong>Mero Patro</strong> page), including the <strong>Nepal calendar date today</strong> details shown in the <strong>nepali calendar nepali calendar</strong>.</p>
                 </div>
               </div>
             </div>
@@ -944,7 +941,7 @@ const Home = () => {
                 <span className="text-green-600 font-bold">🔟</span>
                 <div>
                   <h3 className="font-bold text-gray-800 mb-2">Where does the data for the Hamro Patro style calendar come from?</h3>
-                  <p className="text-gray-600">We source our Nepali Calendar data from reliable public sources and astronomical calculations to ensure the accuracy of the Nepali Calendar and the Nepali date today, providing a dependable Hamro Patro alternative.</p>
+                  <p className="text-gray-600">Our <strong>Hamro Patro</strong> style <strong>Nepali Calendar</strong> data comes from reliable public sources and calculations, ensuring accuracy for the <strong>nepali calendar nepali calendar</strong>, the <strong>Nepali date today</strong>, and the general <strong>Nepal calendar date today</strong> information.</p>
                 </div>
               </div>
             </div>
