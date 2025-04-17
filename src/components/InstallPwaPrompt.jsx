@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
 const InstallPwaPrompt = () => {
   // State to hold the deferred install prompt event
   const [installPromptEvent, setInstallPromptEvent] = useState(null);
@@ -27,7 +26,7 @@ const InstallPwaPrompt = () => {
       // Prevent the default browser install prompt
       event.preventDefault();
       // Store the event so it can be triggered later
-      console.log(''beforeinstallprompt' event captured.');
+      console.log("'beforeinstallprompt' event captured.");
       setInstallPromptEvent(event);
     };
 
