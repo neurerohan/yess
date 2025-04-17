@@ -17,6 +17,10 @@ export default defineConfig({
         type: 'module',
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+      injectionPoint: 'self.__WB_MANIFEST',
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff,woff2}'],
+      },
       manifest: {
         name: 'Kalimati Rate & Calendar - Nyure',
         short_name: 'KalimatiRate',

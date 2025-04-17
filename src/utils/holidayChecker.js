@@ -2,7 +2,7 @@ import NepaliDate from 'nepali-date-converter';
 
 /**
  * Checks if a given day object from calendar data represents a public holiday.
- * ASSUMPTION: Holiday events have an 'isHoliday: true' property.
+ * Checks if any event has jds.gh === '1'.
  * @param {object} day - The day object from calendar data.
  * @returns {{isHoliday: boolean, eventName: string|null}} - Whether it's a holiday and the primary event name.
  */
@@ -10,8 +10,8 @@ export const isPublicHoliday = (day) => {
   if (!day || !Array.isArray(day.events) || day.events.length === 0) {
     return { isHoliday: false, eventName: null };
   }
-  // Find the first event marked as a holiday
-  const holidayEvent = day.events.find(event => event.isHoliday === true);
+  // Find the first event marked as a government holiday (gh = 1)
+  const holidayEvent = day.events.find(event => event.jds?.gh === '1');
   return {
     isHoliday: !!holidayEvent,
     eventName: holidayEvent ? holidayEvent.name : null,
@@ -24,8 +24,8 @@ export const isPublicHoliday = (day) => {
  * @returns {boolean}
  */
 export const isSaturday = (day) => {
-  // Assuming day_of_week: 0 = Sunday, 6 = Saturday
-  return day?.day_of_week === 6;
+  // Assuming week_day: 1=Mon, ..., 6=Sat, 7=Sun (based on CalendarGrid.jsx)
+  return day?.week_day === 6;
 };
 
 /**
@@ -57,8 +57,8 @@ export const getUpcomingHolidays = (yearData, daysAhead = 3) => {
       const bsMonthIndex = nepaliVersion.getMonth();
       const bsDate = nepaliVersion.getDate();
 
-      // Ensure we're using the correct year data (handle year boundaries)
-      const dataForYear = yearData[bsYear];
+      // Access year data using the key (e.g., yearData itself if only one year loaded)
+      const dataForYear = yearData[String(bsYear)]; // Assuming yearData is keyed by BS year string
       if (!dataForYear) {
         // console.warn(`No calendar data available for year ${bsYear}`);
         continue; // Skip if data for that BS year isn't loaded
@@ -73,9 +73,8 @@ export const getUpcomingHolidays = (yearData, daysAhead = 3) => {
         continue;
       }
 
-      // Find the specific day in the month data
-      // Using bsDate (Nepali day number) for matching
-      const dayData = monthData.days.find(d => d.bs_date === bsDate);
+      // Assuming monthData is the array of days for that month
+      const dayData = Array.isArray(monthData) ? monthData.find(d => d.day === bsDate) : null;
 
       if (dayData) {
         const holidayCheck = isPublicHoliday(dayData);

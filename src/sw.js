@@ -77,55 +77,34 @@ const isPublicHolidaySW = (day) => {
   if (!day || !Array.isArray(day.events) || day.events.length === 0) {
     return { isHoliday: false, eventName: null };
   }
-  const holidayEvent = day.events.find(event => event.isHoliday === true); // *** ASSUMPTION ***
+  // Use the logic from CalendarGrid.jsx
+  const holidayEvent = day.events.find(event => event.jds?.gh === '1');
   return {
     isHoliday: !!holidayEvent,
     eventName: holidayEvent ? holidayEvent.name : null,
   };
 };
 
-const isSaturdaySW = (day) => day?.day_of_week === 6; // Assuming 0=Sun, 6=Sat
+const isSaturdaySW = (day) => day?.week_day === 6; // Assuming 1=Mon, ..., 6=Sat, 7=Sun
 
-/** Fetches calendar data for a specific AD year */
-const getCalendarDataForYear = async (year) => {
-  // IMPORTANT: Replace with your actual API endpoint
-  const url = `/api/calendar/${year}`; 
-  console.log(`SW: Fetching calendar data from ${url}`);
+/** Fetches precached calendar data JSON for a specific BS year */
+const getCalendarDataFromCache = async (bsYear) => {
+  const url = `/src/data/${bsYear}-calendar.json`; // Path relative to the project root
+  console.log(`SW: Trying to fetch precached calendar data from: ${url}`);
   try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch calendar data: ${response.statusText}`);
+    // Fetch from the cache (or network if not precached, though it should be)
+    const response = await caches.match(url);
+    if (response) {
+      const data = await response.json();
+      console.log(`SW: Successfully loaded calendar data for ${bsYear} from cache.`);
+      return data; // This should be the object like { "01": [...days...], "02": [...days...] }
     }
-    const data = await response.json();
-    console.log(`SW: Successfully fetched calendar data for ${year}`);
-    return data; // Assuming the API returns the data structure needed
+    throw new Error(`Calendar data for ${bsYear} not found in cache.`);
   } catch (error) {
-    console.error('SW: Error fetching calendar data:', error);
+    console.error(`SW: Error loading calendar data for ${bsYear} from cache:`, error);
     return null;
   }
 };
-
-/** Finds a specific day's data within the fetched year data */
-const findDayData = (yearData, dateToFind /* Date object */) => {
-    if (!yearData) return null;
-    // Need to convert AD dateToFind to BS equivalent to look up in typical BS calendar data
-    // This is complex without a reliable library in SW. 
-    // *** SIMPLIFICATION: Assuming API returns data indexed by AD date string YYYY-MM-DD ***
-    // OR that yearData is structured differently allowing direct AD date lookup.
-    // If data is BS-indexed, this function needs significant changes.
-    const dateStr = dateToFind.toISOString().slice(0, 10);
-    
-    // Example: If yearData is { "2024-10-26": { day_of_week: 6, ... } }
-    // This requires the API to provide data indexed this way.
-    if (yearData[dateStr]) {
-        return yearData[dateStr];
-    }
-
-    // Fallback: Iterate through months/days (if structured like original assumption)
-    // This requires BS date calculation which is hard here.
-    console.warn(`SW: Could not find day data for ${dateStr} using direct lookup. Requires BS conversion or different data structure.`);
-    return null; 
-}
 
 // --- Notification Scheduling Logic (within SW) ---
 
@@ -138,10 +117,13 @@ const checkAndNotifyUpcomingHolidays = async () => {
   }
 
   const now = new Date();
-  const currentAdYear = now.getFullYear();
-  const calendarData = await getCalendarDataForYear(currentAdYear);
+  // --- Determine current BS year (approximation, consider edge cases near year change) ---
+  // This is a rough estimate. For accuracy near year-end/start, a proper library or API is better.
+  const estimatedBsYear = now.getFullYear() + 57; 
+  // Fetch data for the estimated BS year from cache
+  const yearData = await getCalendarDataFromCache(estimatedBsYear);
 
-  if (!calendarData) {
+  if (!yearData) {
     console.error('SW: Cannot check holidays, failed to get calendar data.');
     return;
   }
@@ -153,17 +135,26 @@ const checkAndNotifyUpcomingHolidays = async () => {
     checkDate.setDate(now.getDate() + i);
     const checkDateStr = checkDate.toISOString().slice(0, 10);
 
-    // *** Adapt this based on your actual calendarData structure ***
-    // Using the simplified direct lookup assumption for now:
-    const dayData = calendarData[checkDateStr]; 
-    // const dayData = findDayData(calendarData, checkDate); // Use this if lookup implemented
+    // --- Find matching day data by iterating (simplified approach) ---
+    let dayData = null;
+    // Iterate through months (keys like "01", "02"...) in the fetched year data
+    for (const monthKey in yearData) {
+        const monthDays = yearData[monthKey]; // Should be an array of day objects
+        if(Array.isArray(monthDays)) {
+            // Find the day where the AD date matches checkDateStr
+            dayData = monthDays.find(d => d.ad === checkDateStr);
+            if (dayData) {
+                break; // Found the day, exit month loop
+            }
+        }
+    }
+    // --- End day data finding ---
 
     if (dayData) {
       const holidayCheck = isPublicHolidaySW(dayData);
-      const saturdayCheck = isSaturdaySW(dayData);
 
-      if (holidayCheck.isHoliday || saturdayCheck) {
-        const eventName = holidayCheck.eventName || (saturdayCheck ? 'Sanibar' : 'Holiday');
+      if (holidayCheck.isHoliday) {
+        const eventName = holidayCheck.eventName || 'Holiday';
         const eventId = `${checkDateStr}_${eventName}`;
 
         const notified = await hasBeenNotifiedDB(eventId);
