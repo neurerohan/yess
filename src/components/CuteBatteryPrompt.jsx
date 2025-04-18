@@ -18,28 +18,43 @@ const CuteBatteryPrompt = () => {
     try {
       const battery = await navigator.getBattery();
       const level = battery.level;
-      // Optional: We could also check battery.charging here if needed
+      // Get the charging status
+      const isCharging = battery.charging; 
 
-      console.log(`Battery level: ${level * 100}%`);
+      console.log(`Battery level: ${level * 100}%, Charging: ${isCharging}`);
 
       let config = null;
-      if (level <= LOW_BATTERY_THRESHOLD) {
+
+      // --- NEW: Check for charging first ---
+      if (isCharging) {
+        config = {
+          image: '/charging.png', // Use the new image
+          text: "mmhm mommy ley karaunu vayena phone charge gardai chalauda??", // Single text option
+          buttonText: "utha jau aalu", // New button text
+        };
+      } 
+      // --- MODIFIED: Check levels only if NOT charging ---
+      else if (level <= LOW_BATTERY_THRESHOLD && !isCharging) { 
         config = {
           image: '/20perc.png',
           text: "Babyy battery's low, jau charge gara guiye",
           buttonText: "Okiee Babyy",
         };
-      } else if (level > HIGH_BATTERY_THRESHOLD) {
+      } else if (level > HIGH_BATTERY_THRESHOLD && !isCharging) { 
         config = {
           image: '/90perc.png',
-          text: "Babyy ko phone's fully charged ohoo ohoo",
+          text: "Babyy ko phone's fully charged ohoo ohoo", // Keep existing random text logic if needed, or set specific one
           buttonText: "Hehe najiskau aalu",
         };
       }
+      // --- End Modifications ---
 
       if (config) {
+        console.log('Setting prompt config:', config);
         setPromptConfig(config);
         setIsVisible(true);
+      } else {
+        console.log('No matching battery condition met for popup.');
       }
     } catch (error) {
       console.error('Error accessing battery status:', error);
