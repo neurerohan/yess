@@ -11,7 +11,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import CalendarPage from './pages/Calendar/CalendarPage';
 import InstallPwaPrompt from './components/InstallPwaPrompt';
 import useNotificationPermission from './hooks/useNotificationPermission';
-import Navbar from './components/Navbar';
+import Header from './components/Header';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -131,7 +131,7 @@ const App = () => {
     <HelmetProvider>
       <Router>
         <div className="App">
-          <Navbar />
+          <Header />
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
