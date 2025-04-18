@@ -13,7 +13,6 @@ import InstallPwaPrompt from './components/InstallPwaPrompt';
 import useNotificationPermission from './hooks/useNotificationPermission';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import './App.css';
 
 // Component to handle redirection for the base /calendar route
 const CalendarRedirect = () => {
