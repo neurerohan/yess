@@ -32,8 +32,8 @@ const CuteBatteryPrompt = () => {
       } else if (level > HIGH_BATTERY_THRESHOLD) {
         config = {
           image: '/90perc.png',
-          text: "Babyy ko phone's fully charged seems prepared to have guff pretty long",
-          buttonText: "Hehe najiskau na",
+          text: "Babyy ko phone's fully charged ohoo ohoo",
+          buttonText: "Hehe najiskau aalu",
         };
       }
 
