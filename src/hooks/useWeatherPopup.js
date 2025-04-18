@@ -4,6 +4,10 @@ import { useState, useEffect, useCallback } from 'react';
 const WEATHER_API_KEY = 'b2d26873fc0a40e486f192332251804'; // <<< Set API key
 const CHECK_ON_MOUNT = true; // Check weather immediately when the hook is used
 const FALLBACK_CITY = 'Kathmandu'; // Fallback city name
+const PWA_MODE_ONLY = true; // <<< Set to true to only run in PWA mode
+const POPUP_COOLDOWN_MS = 6 * 60 * 60 * 1000; // <<< 6 hours in milliseconds
+const INITIAL_DELAY_MS = 30 * 1000; // <<< 30 seconds delay
+const LOCAL_STORAGE_KEY = 'weatherPopupLastShownTimestamp'; // Key for cooldown
 
 // --- Weather Conditions Data (Keep as is) ---
 const weatherConditions = {
@@ -108,17 +112,37 @@ const getConditionConfig = (weatherData) => {
 const useWeatherPopup = () => {
   const [popupConfig, setPopupConfig] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [hasChecked, setHasChecked] = useState(false); // Prevent multiple checks per session
 
   const attemptWeatherCheck = useCallback(async () => {
-    if (hasChecked) return;
-    setHasChecked(true);
-    console.log('Attempting weather check...');
+    // 1. PWA Mode Check
+    if (PWA_MODE_ONLY) {
+      const isPWA = window.matchMedia?.('(display-mode: standalone)').matches;
+      if (!isPWA) {
+        console.log('Not in PWA mode, skipping weather popup check.');
+        return; 
+      }
+      console.log('Running in PWA mode.');
+    }
 
+    // 2. Cooldown Check
+    try {
+      const lastShownTimestamp = parseInt(localStorage.getItem(LOCAL_STORAGE_KEY) || '0', 10);
+      const now = Date.now();
+      if (now - lastShownTimestamp < POPUP_COOLDOWN_MS) {
+        const hoursRemaining = ((POPUP_COOLDOWN_MS - (now - lastShownTimestamp)) / (1000 * 60 * 60)).toFixed(1);
+        console.log(`Weather popup cooldown active. ${hoursRemaining} hours remaining.`);
+        return; // Exit if within cooldown period
+      }
+    } catch (error) {
+      console.error('Error checking cooldown from localStorage:', error);
+      // Continue execution even if localStorage fails, but don't update timestamp later if error?
+    }
+
+    console.log('Cooldown passed. Attempting weather check...');
     let weatherData = null;
     let query = FALLBACK_CITY;
 
-    // 1. Try Geolocation
+    // 3. Try Geolocation
     if ('geolocation' in navigator) {
       try {
         const position = await new Promise((resolve, reject) => {
@@ -137,28 +161,40 @@ const useWeatherPopup = () => {
       // query remains FALLBACK_CITY
     }
 
-    // 2. Fetch Weather Data using the determined query
+    // 4. Fetch Weather Data using the determined query
     weatherData = await fetchWeatherData(query);
 
-    // 3. Determine Condition and Show Popup
+    // 5. Determine Condition and Show Popup
     if (weatherData) {
         const conditionConfig = getConditionConfig(weatherData);
         if (conditionConfig) {
+            // Store timestamp BEFORE showing popup to prevent race conditions
+            try {
+              localStorage.setItem(LOCAL_STORAGE_KEY, Date.now().toString());
+              console.log('Stored new cooldown timestamp.');
+            } catch (error) {
+               console.error('Error storing cooldown timestamp:', error);
+            }
+            // Set config and make visible
             setPopupConfig(conditionConfig);
             setIsVisible(true);
             console.log('Weather popup triggered.', conditionConfig);
         }
     }
 
-  }, [hasChecked]); // Dependency ensures it runs only if hasChecked changes
+  }, []); // Removed hasChecked from dependencies
 
-  // Effect to run the check on mount if configured
+  // Effect to run the check on mount with delay
   useEffect(() => {
     if (CHECK_ON_MOUNT) {
-      // Removed the slight delay
-      attemptWeatherCheck(); 
+      console.log(`Scheduling weather check in ${INITIAL_DELAY_MS / 1000} seconds.`);
+      const timerId = setTimeout(attemptWeatherCheck, INITIAL_DELAY_MS); 
+      return () => {
+        clearTimeout(timerId);
+        console.log('Cleared scheduled weather check timer.');
+      }; 
     }
-  }, [attemptWeatherCheck]); // Run when the check function is ready
+  }, [attemptWeatherCheck]); // Re-run setup if check function changes (it shouldn't often)
 
   // Function to manually dismiss the popup
   const dismissPopup = useCallback(() => {
