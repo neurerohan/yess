@@ -12,6 +12,8 @@ import CalendarPage from './pages/Calendar/CalendarPage';
 import InstallPwaPrompt from './components/InstallPwaPrompt';
 import useNotificationPermission from './hooks/useNotificationPermission';
 import CuteBatteryPrompt from './components/CuteBatteryPrompt';
+import useWeatherPopup from './hooks/useWeatherPopup';
+import WeatherPopup from './components/WeatherPopup';
 
 // Component to handle redirection for the base /calendar route
 const CalendarRedirect = () => {
@@ -111,6 +113,7 @@ const SanityDebug = () => {
 
 const App = () => {
   const { permissionStatus, requestPermission, canAskPermission } = useNotificationPermission();
+  const { popupConfig: weatherPopupConfig, isVisible: isWeatherPopupVisible, dismissPopup: dismissWeatherPopup } = useWeatherPopup();
 
   useEffect(() => {
     if (permissionStatus === 'default' && canAskPermission) {
@@ -146,6 +149,12 @@ const App = () => {
             </Routes>
           </main>
         </div>
+        {isWeatherPopupVisible && (
+          <WeatherPopup 
+            config={weatherPopupConfig} 
+            onClose={dismissWeatherPopup} 
+          />
+        )}
         <CuteBatteryPrompt />
         <InstallPwaPrompt />
       </Router>
