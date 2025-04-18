@@ -14,6 +14,8 @@ import useNotificationPermission from './hooks/useNotificationPermission';
 import CuteBatteryPrompt from './components/CuteBatteryPrompt';
 import useWeatherPopup from './hooks/useWeatherPopup';
 import WeatherPopup from './components/WeatherPopup';
+import useTimeBasedPopup from './hooks/useTimeBasedPopup';
+import TimeBasedPopup from './components/TimeBasedPopup';
 
 // Component to handle redirection for the base /calendar route
 const CalendarRedirect = () => {
@@ -114,6 +116,7 @@ const SanityDebug = () => {
 const App = () => {
   const { permissionStatus, requestPermission, canAskPermission } = useNotificationPermission();
   const { popupConfig: weatherPopupConfig, isVisible: isWeatherPopupVisible, dismissPopup: dismissWeatherPopup } = useWeatherPopup();
+  const { popupConfig: timePopupConfig, isVisible: isTimePopupVisible, dismissPopup: dismissTimePopup } = useTimeBasedPopup();
 
   useEffect(() => {
     if (permissionStatus === 'default' && canAskPermission) {
@@ -153,6 +156,12 @@ const App = () => {
           <WeatherPopup 
             config={weatherPopupConfig} 
             onClose={dismissWeatherPopup} 
+          />
+        )}
+        {isTimePopupVisible && (
+          <TimeBasedPopup 
+            config={timePopupConfig} 
+            onClose={dismissTimePopup} 
           />
         )}
         <CuteBatteryPrompt />
