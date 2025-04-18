@@ -11,6 +11,10 @@ import NotFoundPage from './pages/NotFoundPage';
 import CalendarPage from './pages/Calendar/CalendarPage';
 import InstallPwaPrompt from './components/InstallPwaPrompt';
 import useNotificationPermission from './hooks/useNotificationPermission';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import OneSignalHolidayNotifier from './components/OneSignalHolidayNotifier';
+import './App.css';
 
 // Component to handle redirection for the base /calendar route
 const CalendarRedirect = () => {
@@ -127,20 +131,27 @@ const App = () => {
   return (
     <HelmetProvider>
       <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/kalimati-tarkari-rate-today" element={<KalimatiPrices />} />
-          <Route path="/nep-to-eng-date-converter" element={<DateConverter />} />
-          <Route path="/blogs" element={<BlogList />} />
-          <Route path="/blog/:slug" element={<Blog />} />
-          <Route path="/debug-sanity" element={<SanityDebug />} />
-          
-          {/* Calendar Routes */}
-          <Route path="/calendar" element={<CalendarRedirect />} />
-          <Route path="/calendar/:year/:month" element={<CalendarPage />} />
-          
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
+        <div className="App">
+          <Navbar />
+          <OneSignalHolidayNotifier />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/kalimati-tarkari-rate-today" element={<KalimatiPrices />} />
+              <Route path="/nep-to-eng-date-converter" element={<DateConverter />} />
+              <Route path="/blogs" element={<BlogList />} />
+              <Route path="/blog/:slug" element={<Blog />} />
+              <Route path="/debug-sanity" element={<SanityDebug />} />
+              
+              {/* Calendar Routes */}
+              <Route path="/calendar" element={<CalendarRedirect />} />
+              <Route path="/calendar/:year/:month" element={<CalendarPage />} />
+              
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
         <InstallPwaPrompt />
       </Router>
     </HelmetProvider>
