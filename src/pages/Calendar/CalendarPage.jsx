@@ -6,8 +6,6 @@ import NepaliDate from 'nepali-date-converter'; // Needed to determine current B
 
 import { getStaticCalendarData, getMonthData, getNextMonth, getPreviousMonth, NEPALI_MONTHS } from '../../utils/api';
 import CalendarNavigation from './CalendarNavigation';
-import Header from '../../components/Header'; // Assuming Header path
-import Footer from '../../components/Footer'; // Assuming Footer path
 
 // Lazy load components (Comment explaining lazy loading)
 const CalendarGrid = lazy(() => import('./CalendarGrid'));
@@ -294,7 +292,6 @@ const CalendarPage = () => {
         </script>
       </Helmet>
 
-      <Header />
       <main className="container mx-auto px-2 sm:px-4 py-8">
         {/* Introductory Content - Made Dynamic with keywords */}
         <div className="mb-6 text-center">
@@ -437,7 +434,6 @@ const CalendarPage = () => {
         <PageLinksSection />
 
       </main>
-      <Footer />
     </>
   );
 };
