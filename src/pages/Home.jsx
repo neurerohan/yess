@@ -8,7 +8,6 @@ import NepaliDate from 'nepali-date-converter';
 const Home = () => {
   const navigate = useNavigate();
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [temperature, setTemperature] = useState('--');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -162,34 +161,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    // Update time every second
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
-
-    // Fetch weather data
-    const fetchWeather = async () => {
-      try {
-        const response = await fetch(
-          'https://api.open-meteo.com/v1/forecast?latitude=27.15&longitude=85.9&current=temperature_2m&timezone=auto'
-        );
-        const data = await response.json();
-        setTemperature(Math.round(data.current.temperature_2m));
-      } catch (error) {
-        console.error('Error fetching weather:', error);
-        setTemperature('--');
-      }
-    };
-
-    fetchWeather();
-    // Fetch weather every 30 minutes
-    const weatherTimer = setInterval(fetchWeather, 1800000);
-
-    // Cleanup timers and scripts
-    return () => {
-      clearInterval(timer);
-      clearInterval(weatherTimer);
-    };
+    return () => clearInterval(timer);
   }, []);
 
   // --- Date/Time Formatting Helpers (Using Library) ---
@@ -310,17 +285,6 @@ const Home = () => {
                 <div>
                   <div className="text-gray-600 text-xs">Current Time</div>
                   <div className="text-gray-800 text-2xl font-bold">{formatTime(currentTime)}</div>
-                </div>
-              </div>
-              <div className="bg-green-50 rounded-xl p-4 border border-green-100 h-20 flex items-center">
-                <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
-                  <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="text-gray-600 text-xs">Temperature</div>
-                  <div className="text-gray-800 text-2xl font-bold">{temperature}°C</div>
                 </div>
               </div>
             </div>

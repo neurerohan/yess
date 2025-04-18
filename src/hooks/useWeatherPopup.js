@@ -31,7 +31,7 @@ const weatherConditions = {
     image: "heat.png"
   },
   cold: {
-    keywords: ["cold", "freezing", "snow", "ice", "fog", "mist", "overcast"], // Added mist/overcast
+    keywords: ["cold", "freezing", "snow", "ice", "fog", "mist", "overcast", "cloudy", "partly cloudy"],
     overlayTexts: [
       "Babyy hyaa kasto chiso k haiii",
       "baby Santa ley fridge khullei xodeko jasto chiso haii",
