@@ -30,7 +30,7 @@ const CuteBatteryPrompt = () => {
         config = {
           image: '/charging.png', // Use the new image
           text: "mmhm mommy ley karaunu vayena phone charge gardai chalauda??", // Single text option
-          buttonText: "utha jau aalu", // New button text
+          buttonText: "nabola jau aalu", // New button text
         };
       } 
       // --- MODIFIED: Check levels only if NOT charging ---
