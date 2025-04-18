@@ -10,10 +10,10 @@ const weatherConditions = {
   rain: {
     keywords: ["rain", "drizzle", "showers"],
     overlayTexts: [
-      "Babyy mastt paani paryo, masala chiya ra pakauda kham na",
-      "Babyy paani ma rujhna jani haina ni feri",
-      "wanna dance in rain w you darlin",
-      "This rain makes me miss you more"
+      "Babyy mastt paani paryo, masala chiya ra pakauda kham na [Weather: Rain]",
+      "Babyy paani ma rujhna jani haina ni feri tyaa [Weather: Rain]",
+      "I wanna dance in rain w you darlin [Weather: Rain]",
+      "This rain makes me miss you more [Weather: Rain]"
     ],
     buttonText: "Im blushing hehe 🤭",
     image: "rain.png"
@@ -21,11 +21,10 @@ const weatherConditions = {
   heat: {
     keywords: ["sunny", "clear", "hot"],
     overlayTexts: [
-      "Babyy hyaa kasto garmi k haiiii",
-      "baby duita gham laagey jasto garmi haii",
-      "baby bahira naniskeu tanned hunxau",
-      "Sunscreen lagau aalu, bahira gham xa",
-      "Umbrella liyera jau aalu, bahira gham xa"
+      "Babyy hyaa kasto garmi k haii, take care of yours!! [Weather: Sunny]",
+      "baby bahira naniskeu tanned hunxau [Weather: Sunny]",
+      "Sunscreen lagau aalu, bahira gham xa [Weather: Sunny]",
+      "Umbrella liyera jau aalu, bahira gham xa [Weather: Sunny]"
     ],
     buttonText: "Huss BadaMaharani Sahiba",
     image: "heat.png"
@@ -33,13 +32,13 @@ const weatherConditions = {
   cold: {
     keywords: ["cold", "freezing", "snow", "ice", "fog", "mist", "overcast", "cloudy", "partly cloudy"],
     overlayTexts: [
-      "Babyy hyaa kasto chiso k haiii",
-      "baby Santa ley fridge khullei xodeko jasto chiso haii",
-      "baby bahira naniskeu rugha khoki lagxa",
-      "Nyano lugha lagau aalu, birami parxa natra",
-      'Just like your other sidechicks said "tato paani khau"'
+      "Babyy hyaa kasto chiso k haii, nyano vayera basa! [Weather: Cold]",
+      "Baby Santa ley fridge khulla nai xodeko jasto chiso haii, take care of yours!! [Weather: Cold]",
+      "Baby bahira naniskeu rugha khoki lagxa [Weather: Cold]",
+      "Nyano lugha lagau aalu, birami parxa natra [Weather: Cold]",
+      'Just like your other sidechicks said "tato paani khau" [Weather: Cold]'
     ],
-    buttonText: "Huss BadaMaharani Sahiba",
+    buttonText: "Huss Okiee",
     image: "cold.png"
   },
   wind: {
@@ -49,7 +48,7 @@ const weatherConditions = {
       "Babyy bessari hawa lageko xa, bahira najau",
       "Kasto dar lagdo hawa chaleko, i was worried for you"
     ],
-    buttonText: "Huss BadaMaharani Sahiba",
+    buttonText: "Guffadi Aalu",
     image: "wind.png"
   }
 };
