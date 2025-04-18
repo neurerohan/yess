@@ -1,14 +1,20 @@
 import { useState, useEffect, useCallback } from 'react';
 
 // --- Configuration ---
-const WEATHER_API_KEY = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=weather_code,rain_sum&hourly=temperature_2m,wind_speed_180m,temperature_180m,weather_code,rain,precipitation,apparent_temperature&forecast_days=1'; // <<< IMPORTANT: Replace with your actual key
+// No API Key needed for basic Open-Meteo
 const CHECK_ON_MOUNT = true; // Check weather immediately when the hook is used
-const FALLBACK_CITY = 'Kathmandu';
+const FALLBACK_LAT = 27.7172; // Kathmandu Latitude
+const FALLBACK_LON = 85.3240; // Kathmandu Longitude
 
-// --- Weather Conditions Data ---
+// Temperature/Wind thresholds for category matching
+const HEAT_THRESHOLD_C = 28;
+const COLD_THRESHOLD_C = 10;
+const WIND_THRESHOLD_KPH = 20; // Roughly 5.5 m/s
+
+// --- Weather Conditions Data (Keep as is) ---
 const weatherConditions = {
   rain: {
-    keywords: ["rain", "drizzle", "showers"],
+    keywords: ["rain", "drizzle", "showers"], // Keywords are now illustrative, logic uses WMO codes
     overlayTexts: [
       "Babyy mastt paani paryo, masala chiya ra pakauda kham na",
       "Babyy paani ma rujhna jani haina ni feri",
@@ -19,7 +25,7 @@ const weatherConditions = {
     image: "rain.png"
   },
   heat: {
-    keywords: ["sunny", "clear", "hot"],
+    keywords: ["sunny", "clear", "hot"], // Illustrative
     overlayTexts: [
       "Babyy hyaa kasto garmi k haiiii",
       "baby duita gham laagey jasto garmi haii",
@@ -31,7 +37,7 @@ const weatherConditions = {
     image: "heat.png"
   },
   cold: {
-    keywords: ["cold", "freezing", "snow", "ice", "fog"],
+    keywords: ["cold", "freezing", "snow", "ice", "fog"], // Illustrative
     overlayTexts: [
       "Babyy hyaa kasto chiso k haiii",
       "baby Santa ley fridge khullei xodeko jasto chiso haii",
@@ -43,7 +49,7 @@ const weatherConditions = {
     image: "cold.png"
   },
   wind: {
-    keywords: ["wind", "breeze", "gale"],
+    keywords: ["wind", "breeze", "gale"], // Illustrative
     overlayTexts: [
       "Babyy hawa ley udaula timilai ni feri tya",
       "Babyy bessari hawa lageko xa, bahira najau",
@@ -54,50 +60,78 @@ const weatherConditions = {
   }
 };
 
+// WMO Weather Code Mappings (Simplified Categories)
+const WMO_RAIN_CODES = [51, 53, 55, 61, 63, 65, 80, 81, 82];
+const WMO_COLD_CODES = [45, 48, 71, 73, 75, 77, 85, 86];
+const WMO_HEAT_CODES = [0]; // Clear sky - will also check temperature
+
 // --- Helper Functions ---
 const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-const fetchWeatherData = async (query) => {
-  if (!WEATHER_API_KEY || WEATHER_API_KEY === 'YOUR_WEATHERAPI_COM_KEY') {
-    console.warn('WeatherAPI key not set in useWeatherPopup.js');
-    return null;
-  }
-  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=${WEATHER_API_KEY}&q=${query}&aqi=no`;
+// Updated fetchWeatherData for Open-Meteo
+const fetchWeatherData = async (latitude, longitude) => {
+  // Construct the URL using provided base and parameters
+  const params = `latitude=${latitude}&longitude=${longitude}&current=weather_code,temperature_2m,apparent_temperature,wind_speed_10m&hourly=weather_code&forecast_days=1&timezone=auto`;
+  const apiUrl = `https://api.open-meteo.com/v1/forecast?${params}`;
+  
+  console.log(`Fetching Open-Meteo data: ${apiUrl}`);
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
-      throw new Error(`WeatherAPI error: ${response.status} ${response.statusText}`);
+      throw new Error(`Open-Meteo API error: ${response.status} ${response.statusText}`);
     }
     const data = await response.json();
-    console.log(`Weather data fetched for query '${query}':`, data);
+    console.log(`Weather data fetched for Lat=${latitude}, Lon=${longitude}:`, data);
     return data;
   } catch (error) {
-    console.error(`Failed to fetch weather data for query '${query}':`, error);
+    console.error(`Failed to fetch weather data for Lat=${latitude}, Lon=${longitude}:`, error);
     return null;
   }
 };
 
+// Updated getConditionConfig for Open-Meteo response
 const getConditionConfig = (weatherData) => {
-    if (!weatherData?.current?.condition?.text) {
+    // Use `current` data if available
+    const current = weatherData?.current;
+    if (!current || typeof current.weather_code === 'undefined') {
+        console.log('Current weather data or weather_code missing.');
         return null;
     }
-    const conditionText = weatherData.current.condition.text.toLowerCase();
 
-    for (const conditionKey in weatherConditions) {
-        const condition = weatherConditions[conditionKey];
-        if (condition.keywords.some(keyword => conditionText.includes(keyword))) {
-            console.log(`Matched weather condition: ${conditionKey}`);
-            return {
-                ...condition, // Include keywords, texts etc.
-                text: getRandomItem(condition.overlayTexts) // Pick one text randomly
-            };
-        }
+    const code = current.weather_code;
+    const apparentTemp = current.apparent_temperature;
+    const windSpeedMs = current.wind_speed_10m; // Wind speed at 10m in m/s
+    const windSpeedKph = windSpeedMs * 3.6; // Convert m/s to km/h
+
+    console.log(`Processing Weather: Code=${code}, ApparentTemp=${apparentTemp}°C, Wind=${windSpeedKph.toFixed(1)} kph`);
+
+    let conditionKey = null;
+
+    // Prioritize rain/cold codes, then check temp/wind
+    if (WMO_RAIN_CODES.includes(code)) {
+        conditionKey = 'rain';
+    } else if (WMO_COLD_CODES.includes(code) || (apparentTemp !== null && apparentTemp <= COLD_THRESHOLD_C)) {
+        conditionKey = 'cold';
+    } else if (WMO_HEAT_CODES.includes(code) && (apparentTemp !== null && apparentTemp >= HEAT_THRESHOLD_C)) {
+        conditionKey = 'heat';
+    } else if (windSpeedKph >= WIND_THRESHOLD_KPH) {
+         conditionKey = 'wind';
     }
-    console.log(`No matching weather category found for condition: "${conditionText}"`);
-    return null;
+
+    if (conditionKey) {
+        console.log(`Matched weather condition: ${conditionKey}`);
+        const condition = weatherConditions[conditionKey];
+        return {
+            ...condition, // Include keywords, texts etc. from original structure
+            text: getRandomItem(condition.overlayTexts) // Pick one text randomly
+        };
+    } else {
+        console.log(`No matching weather category found for Code=${code}, Temp=${apparentTemp}, Wind=${windSpeedKph.toFixed(1)}`);
+        return null;
+    }
 };
 
-// --- Hook Logic ---
+// --- Hook Logic (mostly unchanged, uses updated helpers) ---
 const useWeatherPopup = () => {
   const [popupConfig, setPopupConfig] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -109,6 +143,8 @@ const useWeatherPopup = () => {
     console.log('Attempting weather check...');
 
     let weatherData = null;
+    let lat = FALLBACK_LAT;
+    let lon = FALLBACK_LON;
 
     // 1. Try Geolocation
     if ('geolocation' in navigator) {
@@ -116,23 +152,20 @@ const useWeatherPopup = () => {
         const position = await new Promise((resolve, reject) => {
           navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10000 });
         });
-        const { latitude, longitude } = position.coords;
-        console.log(`Geolocation success: Lat=${latitude}, Lon=${longitude}`);
-        weatherData = await fetchWeatherData(`${latitude},${longitude}`);
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+        console.log(`Geolocation success: Lat=${lat}, Lon=${lon}`);
       } catch (geoError) {
-        console.warn('Geolocation failed or permission denied:', geoError.message);
-        // Proceed to fallback city
+        console.warn('Geolocation failed or permission denied:', geoError.message, '. Using fallback coordinates.');
+        // lat/lon remain fallback values
       }
     } else {
-      console.warn('Geolocation not supported by this browser.');
-      // Proceed to fallback city
+      console.warn('Geolocation not supported by this browser. Using fallback coordinates.');
+      // lat/lon remain fallback values
     }
 
-    // 2. Fallback to City if Geolocation/API failed
-    if (!weatherData) {
-        console.log(`Fetching weather for fallback city: ${FALLBACK_CITY}`);
-        weatherData = await fetchWeatherData(FALLBACK_CITY);
-    }
+    // 2. Fetch Weather Data using coordinates
+    weatherData = await fetchWeatherData(lat, lon);
 
     // 3. Determine Condition and Show Popup
     if (weatherData) {
@@ -149,7 +182,9 @@ const useWeatherPopup = () => {
   // Effect to run the check on mount if configured
   useEffect(() => {
     if (CHECK_ON_MOUNT) {
-      attemptWeatherCheck();
+      // Add a small delay before checking to allow other things to load
+      const timerId = setTimeout(attemptWeatherCheck, 1500); 
+      return () => clearTimeout(timerId);
     }
   }, [attemptWeatherCheck]); // Run when the check function is ready
 
