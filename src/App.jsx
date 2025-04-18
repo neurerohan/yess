@@ -11,8 +11,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import CalendarPage from './pages/Calendar/CalendarPage';
 import InstallPwaPrompt from './components/InstallPwaPrompt';
 import useNotificationPermission from './hooks/useNotificationPermission';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import CuteBatteryPrompt from './components/CuteBatteryPrompt';
 
 // Component to handle redirection for the base /calendar route
 const CalendarRedirect = () => {
@@ -130,7 +129,6 @@ const App = () => {
     <HelmetProvider>
       <Router>
         <div className="App">
-          <Header />
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
@@ -147,8 +145,8 @@ const App = () => {
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </main>
-          <Footer />
         </div>
+        <CuteBatteryPrompt />
         <InstallPwaPrompt />
       </Router>
     </HelmetProvider>
