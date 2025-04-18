@@ -13,7 +13,6 @@ import InstallPwaPrompt from './components/InstallPwaPrompt';
 import useNotificationPermission from './hooks/useNotificationPermission';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import OneSignalHolidayNotifier from './components/OneSignalHolidayNotifier';
 import './App.css';
 
 // Component to handle redirection for the base /calendar route
@@ -133,7 +132,6 @@ const App = () => {
       <Router>
         <div className="App">
           <Navbar />
-          <OneSignalHolidayNotifier />
           <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Home />} />
